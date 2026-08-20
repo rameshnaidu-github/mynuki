@@ -41,16 +41,43 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
       return;
     }
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setUser(data.session?.user ?? null);
-      setLoading(false);
-    });
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => {
+
+    // If we're returning from an OAuth redirect, the URL carries a code that the
+    // client exchanges for a session asynchronously. Don't settle to "logged out"
+    // in that window, or a protected landing route (e.g. /account) bounces to /login
+    // before the session arrives.
+    const url = new URL(window.location.href);
+    const oauthPending =
+      url.searchParams.has("code") || url.hash.includes("access_token");
+
+    let settled = false;
+    const settle = (s: Session | null) => {
+      settled = true;
       setSession(s);
       setUser(s?.user ?? null);
+      setLoading(false);
+    };
+
+    const { data: sub } = supabase.auth.onAuthStateChange((event, s) => {
+      if (!s && oauthPending && !settled && event === "INITIAL_SESSION") return;
+      settle(s);
     });
-    return () => sub.subscription.unsubscribe();
+
+    supabase.auth.getSession().then(({ data }) => {
+      if (settled) return;
+      if (data.session || !oauthPending) settle(data.session);
+      // else: wait for onAuthStateChange to fire once the code is exchanged
+    });
+
+    // Safety net so the app never hangs on a stuck exchange.
+    const timeout = window.setTimeout(() => {
+      if (!settled) setLoading(false);
+    }, 8000);
+
+    return () => {
+      sub.subscription.unsubscribe();
+      window.clearTimeout(timeout);
+    };
   }, []);
 
   const value = useMemo<AuthContextValue>(

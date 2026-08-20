@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   MyNuki design tokens — matched to the Culla & Cloud (Soft) reference.
+   Exposed to Tailwind v4 as utilities: bg-cream, text-forest, font-serif, etc.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-cream: #f4f0e8;
+  --color-paper2: #ebe6da;
+  --color-card: #fbf9f3;
+  --color-line: #e4ddce;
+  --color-ink: #2a2a24;
+  --color-inksoft: #615c51;
+  --color-muted: #918b7d;
+  --color-forest: #2e3d31;
+  --color-forestdeep: #243026;
+  --color-foresttint: #e7ebe2;
+  --color-sage: #8c9a86;
+  --color-sand: #c3b196;
+  --color-butter: #efe7c4;
+  --color-blush: #f1e8e2;
+  --color-mist: #e7e5df;
+  --color-clay: #c08466;
+
+  --font-serif: "Fraunces", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: "Mulish", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-serif);
+    color: var(--color-forest);
+    font-weight: 600;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-forest);
+    color: #f4f0e8;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    transition: background-color 0.18s ease, transform 0.18s ease;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-forestdeep);
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-forest);
+    color: var(--color-forest);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    transition: background-color 0.18s ease;
+  }
+  .btn-outline:hover {
+    background-color: var(--color-foresttint);
+  }
+  .input {
+    width: 100%;
+    background-color: var(--color-cream);
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    transition: border-color 0.15s ease;
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--color-forest);
+  }
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-sage);
+  }
+  /* soft image placeholder — reads as an intentional frame until real photos land */
+  .ph {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,0.5), transparent 60%),
+      linear-gradient(135deg, var(--ph-a, #e7e5df), var(--ph-b, #d9d3c4));
+  }
+  .ph::after {
+    content: attr(data-label);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--color-forest);
+    opacity: 0.55;
+  }
+}

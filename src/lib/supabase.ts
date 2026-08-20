@@ -12,5 +12,13 @@ export const isSupabaseConfigured = Boolean(url && anon);
  * keys are added, instead of crashing on boot.
  */
 export const supabase: SupabaseClient | null = isSupabaseConfigured
-  ? createClient(url as string, anon as string)
+  ? createClient(url as string, anon as string, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        // We parse the OAuth callback ourselves in AuthContext (handles both the
+        // implicit #access_token hash and the PKCE ?code flows reliably).
+        detectSessionInUrl: false,
+      },
+    })
   : null;

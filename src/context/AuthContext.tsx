@@ -42,42 +42,59 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    // If we're returning from an OAuth redirect, the URL carries a code that the
-    // client exchanges for a session asynchronously. Don't settle to "logged out"
-    // in that window, or a protected landing route (e.g. /account) bounces to /login
-    // before the session arrives.
-    const url = new URL(window.location.href);
-    const oauthPending =
-      url.searchParams.has("code") || url.hash.includes("access_token");
-
-    let settled = false;
-    const settle = (s: Session | null) => {
-      settled = true;
+    let resolved = false;
+    const finish = (s: Session | null) => {
+      resolved = true;
       setSession(s);
       setUser(s?.user ?? null);
       setLoading(false);
     };
 
-    const { data: sub } = supabase.auth.onAuthStateChange((event, s) => {
-      if (!s && oauthPending && !settled && event === "INITIAL_SESSION") return;
-      settle(s);
+    // After the initial resolution, reflect every auth change (incl. sign-out).
+    // Before it, only a real session settles us — a transient null is ignored so a
+    // protected landing route doesn't bounce mid OAuth-callback.
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, s) => {
+      if (resolved) {
+        setSession(s);
+        setUser(s?.user ?? null);
+      } else if (s) {
+        finish(s);
+      }
     });
 
-    supabase.auth.getSession().then(({ data }) => {
-      if (settled) return;
-      if (data.session || !oauthPending) settle(data.session);
-      // else: wait for onAuthStateChange to fire once the code is exchanged
-    });
+    const cleanUrl = () =>
+      window.history.replaceState(null, "", window.location.pathname);
 
-    // Safety net so the app never hangs on a stuck exchange.
-    const timeout = window.setTimeout(() => {
-      if (!settled) setLoading(false);
-    }, 8000);
+    (async () => {
+      // Implicit OAuth flow: tokens arrive in the URL hash.
+      if (window.location.hash.includes("access_token")) {
+        const p = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+        const access_token = p.get("access_token");
+        const refresh_token = p.get("refresh_token");
+        if (access_token && refresh_token) {
+          const { data, error } = await supabase!.auth.setSession({
+            access_token,
+            refresh_token,
+          });
+          cleanUrl();
+          if (!error && data.session) return finish(data.session);
+        }
+      }
 
-    return () => {
-      sub.subscription.unsubscribe();
-      window.clearTimeout(timeout);
-    };
+      // PKCE OAuth flow: ?code= in the query string.
+      const code = new URLSearchParams(window.location.search).get("code");
+      if (code) {
+        const { data, error } = await supabase!.auth.exchangeCodeForSession(code);
+        cleanUrl();
+        if (!error && data.session) return finish(data.session);
+      }
+
+      // Normal load: use any persisted session.
+      const { data } = await supabase!.auth.getSession();
+      if (!resolved) finish(data.session);
+    })();
+
+    return () => authListener.subscription.unsubscribe();
   }, []);
 
   const value = useMemo<AuthContextValue>(

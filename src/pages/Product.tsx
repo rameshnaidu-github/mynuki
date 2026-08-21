@@ -32,7 +32,9 @@ export default function Product() {
   const cat = getCategory(product.category);
   const family = cat?.family;
   const liked = has(product.slug);
-  const views = ["Front", "Angle", "Detail", "Contents"];
+  // With a real photo we show just that shot (+ the 360 tab); the extra
+  // view slots only exist for products still on placeholder art.
+  const views = product.image ? ["Front"] : ["Front", "Angle", "Detail", "Contents"];
 
   function handleAdd() {
     add(product!.slug, qty);
@@ -66,7 +68,7 @@ export default function Product() {
       <div className="grid lg:grid-cols-2 gap-10">
         {/* gallery */}
         <div>
-          {view < 4 ? (
+          {view < views.length ? (
             product.image && view === 0 ? (
               <div className="aspect-square rounded-3xl border border-line overflow-hidden">
                 <img src={product.image} alt={`${product.name} — front`} className="w-full h-full object-cover" />
@@ -101,9 +103,9 @@ export default function Product() {
             ))}
             <button
               type="button"
-              onClick={() => setView(4)}
+              onClick={() => setView(views.length)}
               className={`w-16 h-16 rounded-xl border text-[11px] font-semibold text-flame flex items-center justify-center ${
-                view === 4 ? "border-flame bg-peach" : "border-line bg-card"
+                view === views.length ? "border-flame bg-peach" : "border-line bg-card"
               }`}
             >
               360°

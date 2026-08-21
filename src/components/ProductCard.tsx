@@ -29,7 +29,7 @@ export default function ProductCard({
   }
 
   return (
-    <div className="group relative flex flex-col">
+    <div className="group relative flex flex-col h-full">
       <button
         type="button"
         onClick={() => toggle(p.slug)}
@@ -73,13 +73,15 @@ export default function ProductCard({
       </Link>
 
       {showAddToCart && (
-        <button
-          type="button"
-          onClick={handleAdd}
-          className="btn-primary mt-3 w-full !rounded-xl"
-        >
-          {added ? "Added ✓" : "Add to Cart"}
-        </button>
+        <div className="mt-auto pt-3">
+          <button
+            type="button"
+            onClick={handleAdd}
+            className="btn-primary w-full !rounded-xl"
+          >
+            {added ? "Added ✓" : "Add to Cart"}
+          </button>
+        </div>
       )}
     </div>
   );

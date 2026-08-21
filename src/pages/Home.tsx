@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { categories, products } from "../data/catalog";
 import ProductCard from "../components/ProductCard";
 
-const featuredCats = ["desk-vanity", "frames", "planters", "lighting"]
+const featuredCats = ["desk-office", "vanity-storage", "wall", "frames"]
   .map((s) => categories.find((c) => c.slug === s)!)
   .filter(Boolean);
 
@@ -29,10 +29,10 @@ export default function Home() {
     <div>
       {/* 1 · HERO — image with an offset orange block */}
       <section className="relative">
-        <div
-          className="ph min-h-[460px] md:min-h-[600px]"
-          data-label="Hero photo — styled product scene"
-          style={{ ["--ph-a" as string]: "#dfe9d8", ["--ph-b" as string]: "#f7cfc0" }}
+        <img
+          src="/products/bloom-memo-board.jpg"
+          alt="Bloom memo board styled on a wall"
+          className="w-full h-[460px] md:h-[600px] object-cover object-[70%_center]"
         />
         <div className="absolute inset-0">
           <div className="max-w-6xl mx-auto px-6 h-full flex items-center">
@@ -95,10 +95,14 @@ export default function Home() {
           {featuredCats.map((c) => (
             <Link key={c.slug} to={`/shop?category=${c.slug}`} className="group block">
               <div
-                className="ph aspect-[4/5] rounded-[22px] border-2 border-line group-hover:border-flame transition-colors"
-                data-label={c.name}
+                className={`aspect-[4/5] rounded-[22px] border-2 border-line group-hover:border-flame transition-colors overflow-hidden ${c.image ? "" : "ph"}`}
+                data-label={c.image ? undefined : c.name}
                 style={{ ["--ph-a" as string]: c.tint[0], ["--ph-b" as string]: c.tint[1] }}
-              />
+              >
+                {c.image && (
+                  <img src={c.image} alt={c.name} loading="lazy" className="w-full h-full object-cover" />
+                )}
+              </div>
               <div className="mt-3 text-center font-display text-[16px] font-medium text-ink group-hover:text-flame transition-colors">
                 {c.name}
               </div>

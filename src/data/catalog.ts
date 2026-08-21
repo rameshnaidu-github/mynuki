@@ -12,6 +12,7 @@ export interface Category {
   family: Family;
   blurb: string;
   tint: [string, string]; // placeholder gradient a→b
+  image?: string;         // category tile photo
 }
 
 export interface Spec {
@@ -58,12 +59,10 @@ const BLUE: [string, string] = ["#d4e6ff", "#9dc4f7"];
 
 export const categories: Category[] = [
   // ── 3D Objects (hero family) ─────────────────────────────────────────────
-  { slug: "desk-vanity", name: "Desk & Vanity", family: "objects", blurb: "Organisers and trays that earn their desk space.", tint: PINK },
-  { slug: "frames", name: "Photo Frames", family: "objects", blurb: "Sculptural frames for the pictures worth showing.", tint: ORANGE },
-  { slug: "planters", name: "Planters & Vases", family: "objects", blurb: "Homes for your plants, in shapes that aren't shy.", tint: MINT },
-  { slug: "storage", name: "Storage & Trinkets", family: "objects", blurb: "Little boxes, trays and dishes for small treasures.", tint: LILAC },
-  { slug: "lighting", name: "Lamps & Lighting", family: "objects", blurb: "Soft light through sculpted shades.", tint: YELLOW },
-  { slug: "wall-decor", name: "Wall Decor", family: "objects", blurb: "Hooks, mirrors and pieces that lift a bare wall.", tint: BLUE },
+  { image: "/products/daisy-desk-clock.jpg", slug: "desk-office", name: "Desk & Office", family: "objects", blurb: "Pieces that make a working desk worth sitting at.", tint: PINK },
+  { image: "/products/petal-vanity-organiser.jpg", slug: "vanity-storage", name: "Vanity & Storage", family: "objects", blurb: "Drawers, trays and stands for small treasures.", tint: LILAC },
+  { image: "/products/bloom-wall-hooks.jpg", slug: "wall", name: "Wall & Decor", family: "objects", blurb: "Hooks, boards and pieces that lift a bare wall.", tint: BLUE },
+  { image: "/products/wavy-photo-frame.jpg", slug: "frames", name: "Frames", family: "objects", blurb: "Sculptural frames for the pictures worth showing.", tint: ORANGE },
 
   // ── DIY Kits ─────────────────────────────────────────────────────────────
   { slug: "miniature-kits", name: "Miniature Kits", family: "kits", blurb: "Tiny shops, homes and scenes you build and light up.", tint: PINK },
@@ -94,21 +93,19 @@ const kitSpecs = (pieces: number, time: string, level: string): Spec[] => [
 ];
 
 export const products: Product[] = [
-  // ── 3D Objects ───────────────────────────────────────────────────────────
-  { slug: "petal-desk-organiser", name: "Petal Desk & Vanity Organiser", price: 1499, compareAt: 1990, category: "desk-vanity", badge: "Best Seller", tint: PINK, blurb: "A blooming organiser for brushes, pens and everything else.", description: OBJ_DESC, specs: objSpecs("18 × 18 × 9 cm", "Matte pink") },
-  { slug: "blossom-drawer-box", name: "Blossom Box with Drawer", price: 1999, category: "storage", tint: LILAC, blurb: "A soft-cornered box with a smooth pull-out drawer.", description: OBJ_DESC, specs: objSpecs("16 × 12 × 12 cm", "Matte lilac") },
-  { slug: "ripple-photo-frame", name: "Ripple Photo Frame", price: 1199, category: "frames", badge: "New", tint: ORANGE, blurb: "Wavy edges that make a plain photo look considered.", description: OBJ_DESC, specs: objSpecs("Fits 4 × 6 in", "Gloss orange") },
-  { slug: "wildflower-desk-tidy", name: "Wildflower Desk Tidy", price: 1299, category: "desk-vanity", tint: YELLOW, blurb: "Petal compartments for clips, cables and small chaos.", description: OBJ_DESC, specs: objSpecs("15 × 15 × 7 cm", "Matte butter") },
-  { slug: "wave-vase", name: "Wave Vase", price: 1899, category: "planters", tint: MINT, blurb: "A rippled vase that looks good even empty.", description: OBJ_DESC, specs: objSpecs("12 × 12 × 24 cm", "Matte mint") },
-  { slug: "bloom-planter", name: "Bloom Planter Pot", price: 999, category: "planters", tint: PINK, blurb: "A scalloped pot with a drainage tray built in.", description: OBJ_DESC, specs: objSpecs("14 × 14 × 13 cm", "Matte blush") },
-  { slug: "halo-table-lamp", name: "Halo Table Lamp", price: 2499, category: "lighting", badge: "Best Seller", tint: YELLOW, blurb: "A sculpted shade that throws a warm, even glow.", description: OBJ_DESC, specs: objSpecs("18 × 18 × 26 cm", "Warm white LED") },
-  { slug: "petal-wall-hooks", name: "Petal Wall Hook Set", price: 899, category: "wall-decor", tint: BLUE, blurb: "Three flower hooks for coats, bags and keys.", description: OBJ_DESC, specs: objSpecs("Set of 3 · 8 cm", "Gloss blue") },
-  { slug: "squiggle-trinket-tray", name: "Squiggle Trinket Tray", price: 749, compareAt: 999, category: "storage", badge: "Sale", tint: ORANGE, blurb: "A wiggly catch-all for rings, coins and odds.", description: OBJ_DESC, specs: objSpecs("20 × 12 × 3 cm", "Matte coral") },
-  { slug: "arch-frame-duo", name: "Arch Photo Frame Duo", price: 1599, category: "frames", tint: LILAC, blurb: "Two arched frames, made to sit side by side.", description: OBJ_DESC, specs: objSpecs("Fits 2 × 4 in", "Matte violet") },
-  { slug: "dahlia-wall-mirror", name: "Dahlia Wall Mirror", price: 2799, category: "wall-decor", badge: "New", tint: PINK, blurb: "Our namesake — a petal-framed mirror for a small wall.", description: OBJ_DESC, specs: objSpecs("32 cm diameter", "Matte magenta") },
-  { slug: "pebble-desk-riser", name: "Pebble Desk Riser", price: 1749, category: "desk-vanity", tint: MINT, blurb: "Lifts your screen; hides your clutter underneath.", description: OBJ_DESC, specs: objSpecs("30 × 22 × 9 cm", "Matte sage") },
+  // ── 3D Objects — real range, photographed ────────────────────────────────
+  { slug: "petal-vanity-organiser", name: "Petal Vanity Organiser", price: 2499, category: "vanity-storage", badge: "Best Seller", tint: LILAC, image: "/products/petal-vanity-organiser.jpg", blurb: "A flower-topped tower with two wavy drawers and a brush well.", description: OBJ_DESC, specs: objSpecs("16 × 16 × 14 cm", "Lilac · pink · blue") },
+  { slug: "pebble-drawer-organiser", name: "Pebble Five-Drawer Organiser", price: 2799, category: "vanity-storage", tint: PINK, image: "/products/pebble-drawer-organiser.jpg", blurb: "Five pebble-shaped drawers in a soft pink shell.", description: OBJ_DESC, specs: objSpecs("22 × 20 × 9 cm", "Pink · multi drawers") },
+  { slug: "armchair-trinket-stand", name: "Armchair Trinket Stand", price: 1799, category: "vanity-storage", tint: PINK, image: "/products/armchair-trinket-stand.jpg", blurb: "A tiny armchair for your rings, with a drawer underneath.", description: OBJ_DESC, specs: objSpecs("13 × 12 × 17 cm", "Pink · mint drawer") },
+  { slug: "bloom-memo-board", name: "Bloom Memo Board with Shelf", price: 2399, category: "wall", badge: "New", tint: PINK, image: "/products/bloom-memo-board.jpg", blurb: "A wavy pin board with flower magnets and a floating shelf.", description: OBJ_DESC, specs: objSpecs("34 × 40 cm", "Pink · mint shelf") },
+  { slug: "bloom-wall-hooks", name: "Bloom Cloud Wall Hooks", price: 1499, category: "wall", tint: BLUE, image: "/products/bloom-wall-hooks.jpg", blurb: "Four flower hooks on a cloud — for coats, bags and keys.", description: OBJ_DESC, specs: objSpecs("38 × 18 cm · 4 hooks", "Cobalt · multi flowers") },
+  { slug: "wavy-photo-frame", name: "Wavy Bloom Photo Frame", price: 1199, category: "frames", badge: "New", tint: ORANGE, image: "/products/wavy-photo-frame.jpg", blurb: "Layered wavy borders and two flowers, for a 4 × 6 print.", description: OBJ_DESC, specs: objSpecs("Fits 4 × 6 in", "Purple · blue · pink") },
+  { slug: "daisy-desk-clock", name: "Daisy Desk Clock", price: 1999, category: "desk-office", tint: MINT, image: "/products/daisy-desk-clock.jpg", blurb: "A flower-faced clock balanced on two chunky pebbles.", description: OBJ_DESC, specs: objSpecs("18 × 8 × 24 cm", "Sage · pink · orange") },
+  { slug: "wave-magazine-holder", name: "Wave Magazine Holder", price: 1899, category: "desk-office", tint: ORANGE, image: "/products/wave-magazine-holder.jpg", blurb: "Ribbed, wavy walls that keep magazines standing up straight.", description: OBJ_DESC, specs: objSpecs("26 × 12 × 30 cm", "Orange · lilac · red") },
+  { slug: "bloom-disc-notebook", name: "Bloom Disc Notebook", price: 1299, category: "desk-office", tint: PINK, image: "/products/bloom-disc-notebook.jpg", blurb: "A refillable disc-bound cover in wavy pink, orange and mint.", description: OBJ_DESC, specs: objSpecs("A5 · 9 discs", "Pink · orange · mint") },
+  { slug: "wave-zip-pouch", name: "Wave Zip Pouch", price: 1149, compareAt: 1499, category: "desk-office", badge: "Sale", tint: LILAC, image: "/products/wave-zip-pouch.jpg", blurb: "A ribbed, rounded case with a flower zip pull.", description: OBJ_DESC, specs: objSpecs("21 × 9 × 7 cm", "Pink · purple · blue") },
 
-  // ── DIY Kits ─────────────────────────────────────────────────────────────
+  // ── DIY Kits (placeholder — real range pending) ─────────────────────────
   { slug: "petals-and-posies", name: "Petals & Posies Flower Shop", price: 2499, compareAt: 2999, category: "miniature-kits", badge: "Best Seller", tint: PINK, blurb: "A sunlit corner florist with a striped awning.", description: KIT_DESC, specs: kitSpecs(220, "3–4 hours", "Intermediate") },
   { slug: "corner-coffee-house", name: "Corner Coffee House", price: 2699, category: "miniature-kits", badge: "New", tint: ORANGE, blurb: "A warm little café with working lights.", description: KIT_DESC, specs: kitSpecs(240, "4 hours", "Intermediate") },
   { slug: "cozy-book-nook", name: "Cozy Book Nook", price: 1899, category: "miniature-kits", tint: YELLOW, blurb: "A shelf-insert alley that glows from within.", description: KIT_DESC, specs: kitSpecs(180, "3 hours", "Beginner") },

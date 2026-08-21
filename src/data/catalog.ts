@@ -53,7 +53,7 @@ const D =
   "A complete, self-contained kit — every laser-cut part, miniature detail, tool and a step-by-step illustrated manual arrive in one box. Made for slow, mindful building and a keepsake worth displaying.";
 
 export const products: Product[] = [
-  { slug: "petals-and-posies", name: "Petals & Posies Flower Shop", price: 2499, compareAt: 2999, category: "shops-cafes", badge: "Best Seller", tint: ["#e7ebe2", "#cdd6c6"], image: "/products/petals-and-posies.svg", blurb: "A sunlit corner florist with a striped awning.", description: D, pieces: 220, buildTime: "3–4 hours", difficulty: "Intermediate" },
+  { slug: "petals-and-posies", name: "Petals & Posies Flower Shop", price: 2499, compareAt: 2999, category: "shops-cafes", badge: "Best Seller", tint: ["#e7ebe2", "#cdd6c6"], blurb: "A sunlit corner florist with a striped awning.", description: D, pieces: 220, buildTime: "3–4 hours", difficulty: "Intermediate" },
   { slug: "corner-coffee-house", name: "Corner Coffee House", price: 2699, category: "shops-cafes", badge: "New", tint: ["#f1e8e2", "#e2cfc4"], blurb: "A warm little café with working lights.", description: D, pieces: 240, buildTime: "4 hours", difficulty: "Intermediate" },
   { slug: "old-town-bookstore", name: "Old Town Bookstore", price: 2399, category: "shops-cafes", tint: ["#efe7c4", "#ddd0a0"], blurb: "Shelves of tiny books and a reading nook.", description: D, pieces: 210, buildTime: "3–4 hours", difficulty: "Intermediate" },
 

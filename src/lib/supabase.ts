@@ -16,12 +16,10 @@ export const supabase: SupabaseClient | null = isSupabaseConfigured
       auth: {
         persistSession: true,
         autoRefreshToken: true,
-        // Let the client establish the session from the OAuth redirect URL
-        // (implicit flow #access_token hash). getSession() awaits this, so the
-        // callback route can rely on it. OAuth lands on the unprotected
-        // /auth/callback route (see AuthContext + AuthCallback) to avoid a
-        // protected-route redirect race.
-        detectSessionInUrl: true,
+        // The OAuth callback is handled explicitly in AuthCallback (setSession from
+        // the implicit-flow hash), with full error surfacing. We disable the
+        // built-in URL detection so there's a single, controlled code path.
+        detectSessionInUrl: false,
       },
     })
   : null;

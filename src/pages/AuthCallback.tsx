@@ -3,10 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 
 /**
- * OAuth landing route (unprotected). The Supabase client parses the redirect URL
- * during init, so getSession() resolves with the new session here. On success we
- * move to /account; on failure we show the actual error instead of silently
- * bouncing to /login.
+ * OAuth landing route (unprotected). Establishes the session from the redirect
+ * URL, then routes to /account. On failure it shows the exact error instead of a
+ * silent bounce, so problems are diagnosable.
  */
 export default function AuthCallback() {
   const navigate = useNavigate();
@@ -15,52 +14,94 @@ export default function AuthCallback() {
   useEffect(() => {
     let active = true;
 
-    async function resolve() {
+    async function run() {
       if (!supabase) {
         navigate("/login", { replace: true });
         return;
       }
 
-      // Surface a provider error passed back in the URL (hash or query).
-      const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
-      const query = new URLSearchParams(window.location.search);
-      const providerError =
-        hash.get("error_description") || query.get("error_description");
-      if (providerError) {
-        if (active) setError(providerError);
-        return;
-      }
+      try {
+        const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+        const query = new URLSearchParams(window.location.search);
 
-      // getSession() awaits the client's URL parsing (detectSessionInUrl).
-      const { data } = await supabase.auth.getSession();
-      if (!active) return;
-      if (data.session) {
-        navigate("/account", { replace: true });
-        return;
-      }
+        // A provider-side error is passed back in the URL.
+        const providerError =
+          hash.get("error_description") || query.get("error_description");
+        if (providerError) {
+          if (active) setError("Provider error: " + providerError);
+          return;
+        }
 
-      // Belt-and-suspenders: retry once in case the parse is still settling.
-      const { data: retry } = await supabase.auth.getSession();
-      if (!active) return;
-      if (retry.session) {
-        navigate("/account", { replace: true });
-      } else {
-        setError("Sign-in didn’t complete. Please try again.");
+        // 1) The client's built-in handler may already have set the session.
+        const existing = await supabase.auth.getSession();
+        if (!active) return;
+        if (existing.data.session) {
+          navigate("/account", { replace: true });
+          return;
+        }
+
+        // 2) Establish it explicitly from the implicit-flow hash tokens.
+        const access_token = hash.get("access_token");
+        const refresh_token = hash.get("refresh_token");
+        if (access_token && refresh_token) {
+          const { data, error: setErr } = await supabase.auth.setSession({
+            access_token,
+            refresh_token,
+          });
+          if (!active) return;
+          if (setErr) {
+            const status = (setErr as { status?: number }).status;
+            const code = (setErr as { code?: string }).code;
+            const detail = [setErr.message, code && `(${code})`, status && `[${status}]`]
+              .filter(Boolean)
+              .join(" ");
+            console.error("[MyNuki auth] setSession failed:", setErr);
+            setError(detail);
+            return;
+          }
+          if (data.session) {
+            navigate("/account", { replace: true });
+            return;
+          }
+        }
+
+        // 3) PKCE fallback (?code=), in case the flow ever changes.
+        const code = query.get("code");
+        if (code) {
+          const { data, error: exErr } = await supabase.auth.exchangeCodeForSession(code);
+          if (!active) return;
+          if (exErr) {
+            console.error("[MyNuki auth] exchangeCodeForSession failed:", exErr);
+            setError(exErr.message);
+            return;
+          }
+          if (data.session) {
+            navigate("/account", { replace: true });
+            return;
+          }
+        }
+
+        setError("No session was returned in the sign-in link.");
+      } catch (e) {
+        console.error("[MyNuki auth] callback exception:", e);
+        if (active) setError(e instanceof Error ? e.message : String(e));
       }
     }
 
-    resolve();
+    run();
     return () => {
       active = false;
     };
   }, [navigate]);
 
   return (
-    <section className="max-w-md mx-auto px-6 py-24 text-center">
+    <section className="max-w-lg mx-auto px-6 py-24 text-center">
       {error ? (
         <>
           <h1 className="text-3xl">Sign-in problem</h1>
-          <p className="mt-3 text-inksoft font-light">{error}</p>
+          <p className="mt-4 text-sm text-clay break-words bg-card border border-line rounded-xl px-4 py-3">
+            {error}
+          </p>
           <Link to="/login" className="btn-primary mt-7">Back to log in</Link>
         </>
       ) : (

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
@@ -23,9 +23,13 @@ export default function App() {
         <Route index element={<Home />} />
 
         <Route path="/shop" element={<Catalog />} />
-        <Route path="/miniature" element={<Catalog family="miniature" />} />
-        <Route path="/other" element={<Catalog family="other" />} />
+        <Route path="/objects" element={<Catalog family="objects" />} />
+        <Route path="/kits" element={<Catalog family="kits" />} />
         <Route path="/product/:slug" element={<Product />} />
+
+        {/* legacy URLs from the MyNuki structure */}
+        <Route path="/miniature" element={<Navigate to="/kits" replace />} />
+        <Route path="/other" element={<Navigate to="/kits" replace />} />
 
         <Route path="/cart" element={<Cart />} />
         <Route

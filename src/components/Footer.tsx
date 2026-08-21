@@ -5,8 +5,8 @@ const columns = [
     title: "Shop",
     links: [
       { label: "Shop All", to: "/shop" },
-      { label: "DIY Miniature", to: "/miniature" },
-      { label: "Other DIY", to: "/other" },
+      { label: "3D Objects", to: "/objects" },
+      { label: "DIY Kits", to: "/kits" },
       { label: "New Arrivals", to: "/shop" },
     ],
   },

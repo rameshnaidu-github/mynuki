@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getProduct, getCategory, inr, familyLabels } from "../data/catalog";
+import { getProduct, getCategory, inr, familyLabels, familyPaths } from "../data/catalog";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 import Turntable360 from "../components/Turntable360";
@@ -48,7 +48,7 @@ export default function Product() {
         <span className="mx-1.5">/</span>
         {family && (
           <>
-            <Link to={family === "miniature" ? "/miniature" : "/other"} className="hover:text-flame">
+            <Link to={familyPaths[family]} className="hover:text-flame">
               {familyLabels[family]}
             </Link>
             <span className="mx-1.5">/</span>
@@ -130,9 +130,9 @@ export default function Product() {
 
           {/* specs */}
           <dl className="mt-6 grid grid-cols-3 gap-3">
-            <Spec label="Pieces" value={String(product.pieces)} />
-            <Spec label="Build time" value={product.buildTime} />
-            <Spec label="Level" value={product.difficulty} />
+            {product.specs.map((s) => (
+              <Spec key={s.label} label={s.label} value={s.value} />
+            ))}
           </dl>
 
           {/* quantity + actions */}
@@ -176,7 +176,7 @@ export default function Product() {
 
           {/* description */}
           <div className="mt-8 border-t border-line pt-6">
-            <h2 className="text-xl">What’s in the box</h2>
+            <h2 className="text-xl">{family === "kits" ? "What’s in the box" : "About this piece"}</h2>
             <p className="mt-2 text-inksoft font-light leading-relaxed">{product.description}</p>
           </div>
 

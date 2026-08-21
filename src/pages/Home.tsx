@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { categories, products } from "../data/catalog";
 import ProductCard from "../components/ProductCard";
 
-const featuredCats = ["shops-cafes", "houses", "candles", "painting"]
+const featuredCats = ["desk-vanity", "frames", "planters", "lighting"]
   .map((s) => categories.find((c) => c.slug === s)!)
   .filter(Boolean);
 

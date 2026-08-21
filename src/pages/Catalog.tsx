@@ -4,6 +4,8 @@ import {
   categories,
   categoriesInFamily,
   familyLabels,
+  familyBlurbs,
+  familyPaths,
   filterProducts,
   getCategory,
   sortProducts,
@@ -37,10 +39,8 @@ export default function Catalog({ family }: { family?: Family }) {
   const blurb = activeCat
     ? activeCat.blurb
     : family
-    ? family === "miniature"
-      ? "Build and light your own tiny worlds — shops, homes and scenes."
-      : "Paint, pour, mould and stitch — the wider craft of making."
-    : "Every Dabble & Dahlia kit, in one place.";
+    ? familyBlurbs[family]
+    : "Everything we make, in one place.";
 
   function setParam(key: string, value?: string) {
     const next = new URLSearchParams(params);
@@ -49,7 +49,7 @@ export default function Catalog({ family }: { family?: Family }) {
     setParams(next, { replace: true });
   }
 
-  const basePath = family === "miniature" ? "/miniature" : family === "other" ? "/other" : "/shop";
+  const basePath = family ? familyPaths[family] : "/shop";
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
@@ -93,7 +93,7 @@ export default function Catalog({ family }: { family?: Family }) {
       {/* results header */}
       <div className="mt-8 flex items-center justify-between gap-4 border-t border-line pt-4">
         <span className="text-sm text-muted tabular-nums">
-          {results.length} {results.length === 1 ? "kit" : "kits"}
+          {results.length} {results.length === 1 ? "item" : "items"}
         </span>
         <label className="text-sm text-inksoft flex items-center gap-2">
           <span className="hidden sm:inline">Sort</span>
@@ -117,7 +117,7 @@ export default function Catalog({ family }: { family?: Family }) {
           ))}
         </div>
       ) : (
-        <p className="mt-16 text-center text-inksoft">No kits here yet — check back soon.</p>
+        <p className="mt-16 text-center text-inksoft">Nothing here yet — check back soon.</p>
       )}
     </div>
   );

@@ -4,8 +4,8 @@ import { useCart } from "../context/CartContext";
 
 const nav = [
   { to: "/shop", label: "Shop All" },
-  { to: "/miniature", label: "DIY Miniature" },
-  { to: "/other", label: "Other DIY" },
+  { to: "/objects", label: "3D Objects" },
+  { to: "/kits", label: "DIY Kits" },
   { to: "/story", label: "Our Story" },
 ];
 

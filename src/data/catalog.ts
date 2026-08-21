@@ -1,7 +1,10 @@
-// Mock catalog for the catalog slice. Swapped for Supabase queries later; the
-// shape here mirrors the planned `products` / `categories` tables. Prices in INR.
+// Catalog data. Mock for now — mirrors the planned Supabase `products` /
+// `categories` tables. Prices in INR.
+//
+// NOTE: these are placeholder products until the real range + photography
+// arrive. Set `image` to a file in /public to swap in a real photo.
 
-export type Family = "miniature" | "other";
+export type Family = "objects" | "kits";
 
 export interface Category {
   slug: string;
@@ -9,6 +12,11 @@ export interface Category {
   family: Family;
   blurb: string;
   tint: [string, string]; // placeholder gradient a→b
+}
+
+export interface Spec {
+  label: string;
+  value: string;
 }
 
 export interface Product {
@@ -22,62 +30,96 @@ export interface Product {
   image?: string; // real product image; falls back to tinted placeholder
   blurb: string;
   description: string;
-  pieces: number;
-  buildTime: string;
-  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  specs: Spec[];
 }
 
 export const familyLabels: Record<Family, string> = {
-  miniature: "DIY Miniature",
-  other: "Other DIY",
+  objects: "3D Objects",
+  kits: "DIY Kits",
 };
 
+export const familyPaths: Record<Family, string> = {
+  objects: "/objects",
+  kits: "/kits",
+};
+
+export const familyBlurbs: Record<Family, string> = {
+  objects: "Sculptural, useful pieces — designed by us and 3D-printed in small batches.",
+  kits: "Everything in one box, and a few good hours of making ahead of you.",
+};
+
+/* palette rotation for placeholder tiles */
+const PINK: [string, string] = ["#ffd6e8", "#ff9ec9"];
+const ORANGE: [string, string] = ["#ffdcc4", "#ffab7a"];
+const YELLOW: [string, string] = ["#fff0c2", "#ffd772"];
+const LILAC: [string, string] = ["#e3dbff", "#b9a5f5"];
+const MINT: [string, string] = ["#d2f2e2", "#96dcb8"];
+const BLUE: [string, string] = ["#d4e6ff", "#9dc4f7"];
+
 export const categories: Category[] = [
-  { slug: "shops-cafes", name: "Shops & Cafés", family: "miniature", blurb: "Tiny storefronts and cosy cafés you build and light up.", tint: ["#ffd6e8", "#ff9ec9"] },
-  { slug: "houses", name: "Houses", family: "miniature", blurb: "Little homes, room by room.", tint: ["#ffdcc4", "#ffab7a"] },
-  { slug: "rooms-boxes", name: "Rooms & Boxes", family: "miniature", blurb: "Single-room scenes and keepsake boxes.", tint: ["#fff0c2", "#ffd772"] },
-  { slug: "seasonal", name: "Seasonal Scenes", family: "miniature", blurb: "Festive and seasonal miniatures.", tint: ["#e3dbff", "#b9a5f5"] },
-  { slug: "painting", name: "Painting", family: "other", blurb: "Paint-by-number and canvas kits.", tint: ["#d2f2e2", "#96dcb8"] },
-  { slug: "indian-art", name: "Indian Art", family: "other", blurb: "Madhubani, Warli and more.", tint: ["#ffd6e8", "#ff9ec9"] },
-  { slug: "candles", name: "Candles", family: "other", blurb: "Pour, scent and set your own.", tint: ["#fff0c2", "#ffd772"] },
-  { slug: "resin", name: "Resin", family: "other", blurb: "Coasters, keepsakes and jewellery.", tint: ["#d4e6ff", "#9dc4f7"] },
-  { slug: "clay", name: "Clay", family: "other", blurb: "Air-dry and polymer clay sets.", tint: ["#ffdcc4", "#ffab7a"] },
-  { slug: "jewellery", name: "Jewellery", family: "other", blurb: "Beads, wire and charms.", tint: ["#d2f2e2", "#96dcb8"] },
-  { slug: "embroidery", name: "Embroidery", family: "other", blurb: "Hoops, thread and patterns.", tint: ["#e3dbff", "#b9a5f5"] },
-  { slug: "decor", name: "Décor", family: "other", blurb: "Make-it-yourself home pieces.", tint: ["#e3dbff", "#b9a5f5"] },
-  { slug: "model-building", name: "Model Building", family: "other", blurb: "Mechanical and architectural models.", tint: ["#d2f2e2", "#96dcb8"] },
-  { slug: "festive", name: "Festive", family: "other", blurb: "Diwali, Christmas and celebration kits.", tint: ["#ffd6e8", "#ff9ec9"] },
+  // ── 3D Objects (hero family) ─────────────────────────────────────────────
+  { slug: "desk-vanity", name: "Desk & Vanity", family: "objects", blurb: "Organisers and trays that earn their desk space.", tint: PINK },
+  { slug: "frames", name: "Photo Frames", family: "objects", blurb: "Sculptural frames for the pictures worth showing.", tint: ORANGE },
+  { slug: "planters", name: "Planters & Vases", family: "objects", blurb: "Homes for your plants, in shapes that aren't shy.", tint: MINT },
+  { slug: "storage", name: "Storage & Trinkets", family: "objects", blurb: "Little boxes, trays and dishes for small treasures.", tint: LILAC },
+  { slug: "lighting", name: "Lamps & Lighting", family: "objects", blurb: "Soft light through sculpted shades.", tint: YELLOW },
+  { slug: "wall-decor", name: "Wall Decor", family: "objects", blurb: "Hooks, mirrors and pieces that lift a bare wall.", tint: BLUE },
+
+  // ── DIY Kits ─────────────────────────────────────────────────────────────
+  { slug: "miniature-kits", name: "Miniature Kits", family: "kits", blurb: "Tiny shops, homes and scenes you build and light up.", tint: PINK },
+  { slug: "painting", name: "Painting", family: "kits", blurb: "Paint-by-number and canvas kits.", tint: MINT },
+  { slug: "indian-art", name: "Indian Art", family: "kits", blurb: "Madhubani, Warli and more.", tint: ORANGE },
+  { slug: "candles", name: "Candles", family: "kits", blurb: "Pour, scent and set your own.", tint: YELLOW },
+  { slug: "resin", name: "Resin", family: "kits", blurb: "Coasters, keepsakes and jewellery.", tint: BLUE },
+  { slug: "clay", name: "Clay", family: "kits", blurb: "Air-dry and polymer clay sets.", tint: LILAC },
+  { slug: "jewellery", name: "Jewellery", family: "kits", blurb: "Beads, wire and charms.", tint: PINK },
+  { slug: "embroidery", name: "Embroidery", family: "kits", blurb: "Hoops, thread and patterns.", tint: MINT },
+  { slug: "festive", name: "Festive", family: "kits", blurb: "Diwali, Christmas and celebration kits.", tint: ORANGE },
 ];
 
-const D =
-  "A complete, self-contained kit — every laser-cut part, miniature detail, tool and a step-by-step illustrated manual arrive in one box. Made for slow, mindful building and a keepsake worth displaying.";
+const OBJ_DESC =
+  "Designed in our studio and 3D-printed in small batches, then hand-finished and checked before it ships. Made from durable plant-based PLA — sturdy enough for daily use, and recyclable at end of life.";
+const KIT_DESC =
+  "A complete, self-contained kit — every part, tool and a step-by-step illustrated manual arrive in one box. Made for slow, satisfying building and a keepsake worth displaying.";
+
+const objSpecs = (size: string, colour: string): Spec[] => [
+  { label: "Material", value: "PLA" },
+  { label: "Size", value: size },
+  { label: "Finish", value: colour },
+];
+const kitSpecs = (pieces: number, time: string, level: string): Spec[] => [
+  { label: "Pieces", value: String(pieces) },
+  { label: "Build time", value: time },
+  { label: "Level", value: level },
+];
 
 export const products: Product[] = [
-  { slug: "petals-and-posies", name: "Petals & Posies Flower Shop", price: 2499, compareAt: 2999, category: "shops-cafes", badge: "Best Seller", tint: ["#ffd6e8", "#ff9ec9"], blurb: "A sunlit corner florist with a striped awning.", description: D, pieces: 220, buildTime: "3–4 hours", difficulty: "Intermediate" },
-  { slug: "corner-coffee-house", name: "Corner Coffee House", price: 2699, category: "shops-cafes", badge: "New", tint: ["#ffdcc4", "#ffab7a"], blurb: "A warm little café with working lights.", description: D, pieces: 240, buildTime: "4 hours", difficulty: "Intermediate" },
-  { slug: "old-town-bookstore", name: "Old Town Bookstore", price: 2399, category: "shops-cafes", tint: ["#fff0c2", "#ffd772"], blurb: "Shelves of tiny books and a reading nook.", description: D, pieces: 210, buildTime: "3–4 hours", difficulty: "Intermediate" },
+  // ── 3D Objects ───────────────────────────────────────────────────────────
+  { slug: "petal-desk-organiser", name: "Petal Desk & Vanity Organiser", price: 1499, compareAt: 1990, category: "desk-vanity", badge: "Best Seller", tint: PINK, blurb: "A blooming organiser for brushes, pens and everything else.", description: OBJ_DESC, specs: objSpecs("18 × 18 × 9 cm", "Matte pink") },
+  { slug: "blossom-drawer-box", name: "Blossom Box with Drawer", price: 1999, category: "storage", tint: LILAC, blurb: "A soft-cornered box with a smooth pull-out drawer.", description: OBJ_DESC, specs: objSpecs("16 × 12 × 12 cm", "Matte lilac") },
+  { slug: "ripple-photo-frame", name: "Ripple Photo Frame", price: 1199, category: "frames", badge: "New", tint: ORANGE, blurb: "Wavy edges that make a plain photo look considered.", description: OBJ_DESC, specs: objSpecs("Fits 4 × 6 in", "Gloss orange") },
+  { slug: "wildflower-desk-tidy", name: "Wildflower Desk Tidy", price: 1299, category: "desk-vanity", tint: YELLOW, blurb: "Petal compartments for clips, cables and small chaos.", description: OBJ_DESC, specs: objSpecs("15 × 15 × 7 cm", "Matte butter") },
+  { slug: "wave-vase", name: "Wave Vase", price: 1899, category: "planters", tint: MINT, blurb: "A rippled vase that looks good even empty.", description: OBJ_DESC, specs: objSpecs("12 × 12 × 24 cm", "Matte mint") },
+  { slug: "bloom-planter", name: "Bloom Planter Pot", price: 999, category: "planters", tint: PINK, blurb: "A scalloped pot with a drainage tray built in.", description: OBJ_DESC, specs: objSpecs("14 × 14 × 13 cm", "Matte blush") },
+  { slug: "halo-table-lamp", name: "Halo Table Lamp", price: 2499, category: "lighting", badge: "Best Seller", tint: YELLOW, blurb: "A sculpted shade that throws a warm, even glow.", description: OBJ_DESC, specs: objSpecs("18 × 18 × 26 cm", "Warm white LED") },
+  { slug: "petal-wall-hooks", name: "Petal Wall Hook Set", price: 899, category: "wall-decor", tint: BLUE, blurb: "Three flower hooks for coats, bags and keys.", description: OBJ_DESC, specs: objSpecs("Set of 3 · 8 cm", "Gloss blue") },
+  { slug: "squiggle-trinket-tray", name: "Squiggle Trinket Tray", price: 749, compareAt: 999, category: "storage", badge: "Sale", tint: ORANGE, blurb: "A wiggly catch-all for rings, coins and odds.", description: OBJ_DESC, specs: objSpecs("20 × 12 × 3 cm", "Matte coral") },
+  { slug: "arch-frame-duo", name: "Arch Photo Frame Duo", price: 1599, category: "frames", tint: LILAC, blurb: "Two arched frames, made to sit side by side.", description: OBJ_DESC, specs: objSpecs("Fits 2 × 4 in", "Matte violet") },
+  { slug: "dahlia-wall-mirror", name: "Dahlia Wall Mirror", price: 2799, category: "wall-decor", badge: "New", tint: PINK, blurb: "Our namesake — a petal-framed mirror for a small wall.", description: OBJ_DESC, specs: objSpecs("32 cm diameter", "Matte magenta") },
+  { slug: "pebble-desk-riser", name: "Pebble Desk Riser", price: 1749, category: "desk-vanity", tint: MINT, blurb: "Lifts your screen; hides your clutter underneath.", description: OBJ_DESC, specs: objSpecs("30 × 22 × 9 cm", "Matte sage") },
 
-  { slug: "modern-luxury-house", name: "Modern Luxury House", price: 3299, category: "houses", badge: "New", tint: ["#ffdcc4", "#ffab7a"], blurb: "A two-storey modern home, fully furnished.", description: D, pieces: 320, buildTime: "5–6 hours", difficulty: "Advanced" },
-  { slug: "sunday-cottage", name: "Sunday Cottage", price: 2599, category: "houses", tint: ["#ffd6e8", "#ff9ec9"], blurb: "A cosy countryside cottage with a garden.", description: D, pieces: 260, buildTime: "4 hours", difficulty: "Intermediate" },
-
-  { slug: "cozy-book-nook", name: "Cozy Book Nook", price: 1899, category: "rooms-boxes", badge: "Best Seller", tint: ["#fff0c2", "#ffd772"], blurb: "A shelf-insert alley that glows from within.", description: D, pieces: 180, buildTime: "3 hours", difficulty: "Beginner" },
-  { slug: "artists-studio-box", name: "Artist’s Studio Box", price: 1999, category: "rooms-boxes", tint: ["#e3dbff", "#b9a5f5"], blurb: "A tiny studio scene in a keepsake box.", description: D, pieces: 190, buildTime: "3 hours", difficulty: "Beginner" },
-
-  { slug: "winter-wonderland", name: "Winter Wonderland Scene", price: 2199, category: "seasonal", badge: "New", tint: ["#e3dbff", "#b9a5f5"], blurb: "A snowy village that lights up warm.", description: D, pieces: 200, buildTime: "3–4 hours", difficulty: "Intermediate" },
-  { slug: "diwali-courtyard", name: "Diwali Courtyard", price: 2299, category: "seasonal", tint: ["#ffd6e8", "#ff9ec9"], blurb: "A festival courtyard with diyas aglow.", description: D, pieces: 210, buildTime: "3–4 hours", difficulty: "Intermediate" },
-
-  { slug: "coastal-canvas", name: "Coastal Sunrise Canvas", price: 899, category: "painting", tint: ["#d2f2e2", "#96dcb8"], blurb: "Paint-by-number on premium canvas.", description: D, pieces: 24, buildTime: "2–3 hours", difficulty: "Beginner" },
-  { slug: "madhubani-canvas", name: "Madhubani Canvas Kit", price: 999, category: "indian-art", badge: "New", tint: ["#d2f2e2", "#96dcb8"], blurb: "Traditional Madhubani, guided step by step.", description: D, pieces: 30, buildTime: "3 hours", difficulty: "Beginner" },
-  { slug: "warli-wall-set", name: "Warli Wall Art Set", price: 949, category: "indian-art", tint: ["#ffd6e8", "#ff9ec9"], blurb: "Two Warli pieces for a gallery wall.", description: D, pieces: 28, buildTime: "3 hours", difficulty: "Beginner" },
-
-  { slug: "sakura-candle-kit", name: "Sakura Candle-Making Kit", price: 799, compareAt: 1099, category: "candles", badge: "Sale", tint: ["#ffd6e8", "#ff9ec9"], blurb: "Pour three soy candles, cherry-blossom scent.", description: D, pieces: 12, buildTime: "1–2 hours", difficulty: "Beginner" },
-  { slug: "ocean-resin-coasters", name: "Ocean Resin Coaster Set", price: 1199, category: "resin", tint: ["#d4e6ff", "#9dc4f7"], blurb: "Make four ocean-wave resin coasters.", description: D, pieces: 20, buildTime: "2 hours + cure", difficulty: "Intermediate" },
-  { slug: "terrazzo-clay-trinket", name: "Terrazzo Clay Trinket Dishes", price: 849, category: "clay", tint: ["#ffdcc4", "#ffab7a"], blurb: "Air-dry clay dishes with a terrazzo finish.", description: D, pieces: 16, buildTime: "2 hours", difficulty: "Beginner" },
-  { slug: "beaded-charm-bracelets", name: "Beaded Charm Bracelet Kit", price: 699, category: "jewellery", tint: ["#d2f2e2", "#96dcb8"], blurb: "Design three bracelets, mix-and-match charms.", description: D, pieces: 60, buildTime: "1–2 hours", difficulty: "Beginner" },
-  { slug: "wildflower-hoop", name: "Wildflower Embroidery Hoop", price: 749, category: "embroidery", badge: "Best Seller", tint: ["#e3dbff", "#b9a5f5"], blurb: "A blooming hoop with pre-printed pattern.", description: D, pieces: 14, buildTime: "3–4 hours", difficulty: "Beginner" },
-  { slug: "macrame-wall-hanging", name: "Macramé Wall Hanging", price: 1049, category: "decor", tint: ["#e3dbff", "#b9a5f5"], blurb: "A boho wall piece with natural cotton cord.", description: D, pieces: 10, buildTime: "3 hours", difficulty: "Intermediate" },
-  { slug: "clockwork-orrery", name: "Clockwork Orrery Model", price: 1899, category: "model-building", badge: "New", tint: ["#d2f2e2", "#96dcb8"], blurb: "A moving mechanical solar-system model.", description: D, pieces: 150, buildTime: "4–5 hours", difficulty: "Advanced" },
-  { slug: "festive-lantern-set", name: "Festive Lantern Set", price: 999, category: "festive", tint: ["#ffd6e8", "#ff9ec9"], blurb: "Three glowing paper-and-wood lanterns.", description: D, pieces: 40, buildTime: "2 hours", difficulty: "Beginner" },
+  // ── DIY Kits ─────────────────────────────────────────────────────────────
+  { slug: "petals-and-posies", name: "Petals & Posies Flower Shop", price: 2499, compareAt: 2999, category: "miniature-kits", badge: "Best Seller", tint: PINK, blurb: "A sunlit corner florist with a striped awning.", description: KIT_DESC, specs: kitSpecs(220, "3–4 hours", "Intermediate") },
+  { slug: "corner-coffee-house", name: "Corner Coffee House", price: 2699, category: "miniature-kits", badge: "New", tint: ORANGE, blurb: "A warm little café with working lights.", description: KIT_DESC, specs: kitSpecs(240, "4 hours", "Intermediate") },
+  { slug: "cozy-book-nook", name: "Cozy Book Nook", price: 1899, category: "miniature-kits", tint: YELLOW, blurb: "A shelf-insert alley that glows from within.", description: KIT_DESC, specs: kitSpecs(180, "3 hours", "Beginner") },
+  { slug: "sakura-candle-kit", name: "Sakura Candle-Making Kit", price: 799, compareAt: 1099, category: "candles", badge: "Sale", tint: PINK, blurb: "Pour three soy candles, cherry-blossom scent.", description: KIT_DESC, specs: kitSpecs(12, "1–2 hours", "Beginner") },
+  { slug: "ocean-resin-coasters", name: "Ocean Resin Coaster Set", price: 1199, category: "resin", tint: BLUE, blurb: "Make four ocean-wave resin coasters.", description: KIT_DESC, specs: kitSpecs(20, "2 hours + cure", "Intermediate") },
+  { slug: "madhubani-canvas", name: "Madhubani Canvas Kit", price: 999, category: "indian-art", badge: "New", tint: ORANGE, blurb: "Traditional Madhubani, guided step by step.", description: KIT_DESC, specs: kitSpecs(30, "3 hours", "Beginner") },
+  { slug: "terrazzo-clay-trinket", name: "Terrazzo Clay Trinket Dishes", price: 849, category: "clay", tint: LILAC, blurb: "Air-dry clay dishes with a terrazzo finish.", description: KIT_DESC, specs: kitSpecs(16, "2 hours", "Beginner") },
+  { slug: "wildflower-hoop", name: "Wildflower Embroidery Hoop", price: 749, category: "embroidery", badge: "Best Seller", tint: MINT, blurb: "A blooming hoop with pre-printed pattern.", description: KIT_DESC, specs: kitSpecs(14, "3–4 hours", "Beginner") },
+  { slug: "beaded-charm-bracelets", name: "Beaded Charm Bracelet Kit", price: 699, category: "jewellery", tint: PINK, blurb: "Design three bracelets, mix-and-match charms.", description: KIT_DESC, specs: kitSpecs(60, "1–2 hours", "Beginner") },
+  { slug: "coastal-canvas", name: "Coastal Sunrise Canvas", price: 899, category: "painting", tint: MINT, blurb: "Paint-by-number on premium canvas.", description: KIT_DESC, specs: kitSpecs(24, "2–3 hours", "Beginner") },
+  { slug: "festive-lantern-set", name: "Festive Lantern Set", price: 999, category: "festive", tint: ORANGE, blurb: "Three glowing paper-and-wood lanterns.", description: KIT_DESC, specs: kitSpecs(40, "2 hours", "Beginner") },
 ];
 
 export const inr = (n: number) => "₹" + n.toLocaleString("en-IN");

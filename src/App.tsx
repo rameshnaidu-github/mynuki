@@ -8,6 +8,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Auth from "./pages/Auth";
+import AuthCallback from "./pages/AuthCallback";
 import Account from "./pages/Account";
 import Customize from "./pages/Customize";
 import Story from "./pages/Story";
@@ -51,6 +52,7 @@ export default function App() {
 
         <Route path="/login" element={<Auth mode="login" />} />
         <Route path="/register" element={<Auth mode="register" />} />
+        <Route path="/auth/callback" element={<AuthCallback />} />
         <Route
           path="/account"
           element={

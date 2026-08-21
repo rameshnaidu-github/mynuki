@@ -1,7 +1,13 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const anon = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+// Strip any stray non-printable / non-ASCII characters that can sneak in when a
+// key is pasted into a dashboard (e.g. a zero-width space). HTTP header values
+// must be Latin-1, so a hidden character in the anon key makes every Supabase
+// request throw "String contains non ISO-8859-1 code point".
+const clean = (v: string | undefined) => (v ?? "").replace(/[^\x21-\x7E]/g, "");
+
+const url = clean(import.meta.env.VITE_SUPABASE_URL as string | undefined);
+const anon = clean(import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined);
 
 /** True once real Supabase credentials are present in .env.local. */
 export const isSupabaseConfigured = Boolean(url && anon);

@@ -64,7 +64,7 @@ export default function Customize() {
   if (done) {
     return (
       <section className="max-w-xl mx-auto px-6 py-20 md:py-28 text-center">
-        <div className="mx-auto w-14 h-14 rounded-full bg-foresttint flex items-center justify-center text-forest">
+        <div className="mx-auto w-14 h-14 rounded-full bg-peach flex items-center justify-center text-flame">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
             <path d="M5 12l4 4 10-10" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -127,7 +127,7 @@ export default function Customize() {
           />
         </Field>
 
-        {error && <p role="alert" className="text-sm text-clay">{error}</p>}
+        {error && <p role="alert" className="text-sm text-berry">{error}</p>}
 
         <button type="submit" disabled={busy} className="btn-primary w-full disabled:opacity-60">
           {busy ? "Sending…" : "Send request"}

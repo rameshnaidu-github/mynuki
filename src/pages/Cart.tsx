@@ -13,7 +13,7 @@ export default function Cart() {
       <section className="max-w-2xl mx-auto px-6 py-24 text-center">
         <h1 className="text-4xl">Your cart is empty</h1>
         <p className="mt-3 text-inksoft font-light">
-          Little worlds are waiting to be built.
+          Good objects are waiting to be found.
         </p>
         <Link to="/shop" className="btn-primary mt-7">Browse the shop</Link>
       </section>
@@ -37,7 +37,7 @@ export default function Cart() {
               />
               <div className="flex-1 min-w-0">
                 <div className="flex justify-between gap-3">
-                  <Link to={`/product/${product.slug}`} className="font-medium text-ink hover:text-forest">
+                  <Link to={`/product/${product.slug}`} className="font-medium text-ink hover:text-flame">
                     {product.name}
                   </Link>
                   <span className="font-semibold tabular-nums shrink-0">{inr(lineTotal)}</span>
@@ -50,7 +50,7 @@ export default function Cart() {
                       type="button"
                       onClick={() => setQty(product.slug, qty - 1)}
                       aria-label={`Decrease ${product.name} quantity`}
-                      className="w-9 h-9 text-forest hover:bg-foresttint rounded-l-full"
+                      className="w-9 h-9 text-flame hover:bg-peach rounded-l-full"
                     >
                       −
                     </button>
@@ -59,7 +59,7 @@ export default function Cart() {
                       type="button"
                       onClick={() => setQty(product.slug, qty + 1)}
                       aria-label={`Increase ${product.name} quantity`}
-                      className="w-9 h-9 text-forest hover:bg-foresttint rounded-r-full"
+                      className="w-9 h-9 text-flame hover:bg-peach rounded-r-full"
                     >
                       +
                     </button>
@@ -67,7 +67,7 @@ export default function Cart() {
                   <button
                     type="button"
                     onClick={() => remove(product.slug)}
-                    className="text-sm text-muted hover:text-clay underline"
+                    className="text-sm text-muted hover:text-berry underline"
                   >
                     Remove
                   </button>
@@ -97,7 +97,7 @@ export default function Cart() {
             <span className="text-xl font-semibold tabular-nums">{inr(total)}</span>
           </div>
           <Link to="/checkout" className="btn-primary w-full mt-6">Proceed to checkout</Link>
-          <Link to="/shop" className="block text-center text-sm text-inksoft mt-3 hover:text-forest">
+          <Link to="/shop" className="block text-center text-sm text-inksoft mt-3 hover:text-flame">
             Continue shopping
           </Link>
         </aside>

@@ -1,4 +1,4 @@
-# MyNuki · Supabase setup
+# Dabble & Dahlia · Supabase setup
 
 One-time setup so auth (and later catalog/orders) works.
 
@@ -69,7 +69,7 @@ so orders work fine without it.
 ```bash
 # 1. Create a free Resend account, verify a sender/domain, get an API key.
 supabase secrets set RESEND_API_KEY=re_xxx \
-                     ORDER_EMAIL_FROM="MyNuki <orders@yourdomain.com>"
+                     ORDER_EMAIL_FROM="Dabble & Dahlia <orders@yourdomain.com>"
 # For quick testing, omit ORDER_EMAIL_FROM to use Resend's onboarding sender
 # (which can only email your own Resend account address).
 

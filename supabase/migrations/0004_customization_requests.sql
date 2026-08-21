@@ -1,4 +1,4 @@
--- MyNuki · customization_requests ("Make It Yours" quote form)
+-- Dabble & Dahlia · customization_requests ("Make It Yours" quote form)
 -- Run in Supabase → SQL Editor after the earlier migrations.
 
 create table if not exists public.customization_requests (

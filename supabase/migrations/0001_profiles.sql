@@ -1,4 +1,4 @@
--- MyNuki · profiles table
+-- Dabble & Dahlia · profiles table
 -- Run this in Supabase → SQL Editor after creating your project.
 
 create table if not exists public.profiles (

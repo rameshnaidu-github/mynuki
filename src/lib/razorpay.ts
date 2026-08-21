@@ -118,10 +118,10 @@ export async function openCheckout(args: OpenCheckoutArgs): Promise<void> {
     key,
     amount: Math.round(args.amountInr * 100),
     currency: "INR",
-    name: "MyNuki",
+    name: "Dabble & Dahlia",
     description: "DIY kit order",
     prefill: { name: args.name, email: args.email, contact: args.contact },
-    theme: { color: "#2e3d31" },
+    theme: { color: "#f4531f" },
     handler: (res) =>
       args.onSuccess({
         paymentId: res.razorpay_payment_id,

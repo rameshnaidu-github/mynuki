@@ -1,4 +1,4 @@
--- MyNuki · orders table
+-- Dabble & Dahlia · orders table
 -- Run this in Supabase → SQL Editor after 0001_profiles.sql.
 
 create table if not exists public.orders (

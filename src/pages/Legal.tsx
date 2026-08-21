@@ -20,7 +20,7 @@ export default function Legal() {
       <h1 className="text-4xl md:text-5xl mt-3">{doc.title}</h1>
       <p className="text-sm text-muted mt-2">Last updated {doc.updated}</p>
 
-      <div className="mt-4 text-xs bg-butter/70 text-forestdeep rounded-xl px-4 py-3">
+      <div className="mt-4 text-xs bg-peach/70 text-flamedeep rounded-xl px-4 py-3">
         Template — replace bracketed details with your business information and have it
         reviewed before you go live.
       </div>
@@ -45,7 +45,7 @@ export default function Legal() {
           <Link
             key={d.slug}
             to={`/policies/${d.slug}`}
-            className={d.slug === slug ? "text-forest font-medium" : "text-inksoft hover:text-forest"}
+            className={d.slug === slug ? "text-flame font-medium" : "text-inksoft hover:text-flame"}
           >
             {d.title}
           </Link>

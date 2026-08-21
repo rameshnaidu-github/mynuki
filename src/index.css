@@ -1,29 +1,33 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   MyNuki design tokens — matched to the Culla & Cloud (Soft) reference.
-   Exposed to Tailwind v4 as utilities: bg-cream, text-forest, font-serif, etc.
+   Dabble & Dahlia design tokens — bold, playful, maker-craft.
+   Orange logo + hot pink accents on warm paper, with black UI controls.
+   Exposed to Tailwind v4 as utilities: bg-flame, text-bloom, font-display, etc.
 --------------------------------------------------------------------------- */
 @theme {
-  --color-cream: #f4f0e8;
-  --color-paper2: #ebe6da;
-  --color-card: #fbf9f3;
-  --color-line: #e4ddce;
-  --color-ink: #2a2a24;
-  --color-inksoft: #615c51;
-  --color-muted: #918b7d;
-  --color-forest: #2e3d31;
-  --color-forestdeep: #243026;
-  --color-foresttint: #e7ebe2;
-  --color-sage: #8c9a86;
-  --color-sand: #c3b196;
-  --color-butter: #efe7c4;
-  --color-blush: #f1e8e2;
-  --color-mist: #e7e5df;
-  --color-clay: #c08466;
+  /* brand */
+  --color-flame: #f4531f;      /* orange — logo, hero block, primary brand */
+  --color-flamedeep: #d5410f;  /* orange pressed/hover */
+  --color-bloom: #ff3fa4;      /* hot pink — display type, footer */
+  --color-bloomdeep: #e02185;  /* pink pressed/hover */
+  --color-berry: #e5322b;      /* red — full-bleed story / FAQ bands */
 
-  --font-serif: "Fraunces", "Palatino Linotype", Palatino, Georgia, serif;
-  --font-sans: "Mulish", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  /* neutrals */
+  --color-ink: #141414;        /* text + buttons */
+  --color-inksoft: #4a4a4a;    /* secondary text */
+  --color-muted: #8a8580;      /* captions */
+  --color-paper: #fffbf7;      /* page ground (warm white) */
+  --color-card: #ffffff;       /* card face */
+  --color-line: #eae3dc;       /* hairline */
+
+  /* soft tints for section blocks */
+  --color-blush: #ffe4f0;      /* pink tint */
+  --color-peach: #ffe7d8;      /* orange tint */
+  --color-cloud: #f4f1ed;      /* neutral tint */
+
+  --font-display: "Fredoka", "Trebuchet MS", "Avenir Next", sans-serif;
+  --font-sans: "Nunito", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 @layer base {
@@ -31,7 +35,7 @@
     scroll-behavior: smooth;
   }
   body {
-    background-color: var(--color-cream);
+    background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-weight: 400;
@@ -39,82 +43,120 @@
     text-rendering: optimizeLegibility;
   }
   h1, h2, h3 {
-    font-family: var(--font-serif);
-    color: var(--color-forest);
+    font-family: var(--font-display);
     font-weight: 600;
-    line-height: 1.12;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
     text-wrap: balance;
+    color: var(--color-ink);
   }
   :focus-visible {
-    outline: 2px solid var(--color-forest);
+    outline: 3px solid var(--color-bloom);
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 }
 
 @layer components {
+  /* Primary control — solid black, like the reference's Add to Cart */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background-color: var(--color-forest);
-    color: #f4f0e8;
-    font-weight: 600;
-    font-size: 0.875rem;
-    letter-spacing: 0.01em;
-    padding: 0.75rem 1.5rem;
+    background-color: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.6rem;
     border-radius: 999px;
-    transition: background-color 0.18s ease, transform 0.18s ease;
+    transition: transform 0.15s ease, background-color 0.15s ease;
   }
   .btn-primary:hover {
-    background-color: var(--color-forestdeep);
-    transform: translateY(-1px);
+    background-color: #000;
+    transform: translateY(-2px);
   }
+
+  /* Brand control — orange */
+  .btn-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-flame);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+  }
+  .btn-brand:hover {
+    background-color: var(--color-flamedeep);
+    transform: translateY(-2px);
+  }
+
   .btn-outline {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border: 1px solid var(--color-forest);
-    color: var(--color-forest);
-    font-weight: 600;
-    font-size: 0.875rem;
-    padding: 0.7rem 1.4rem;
+    border: 2px solid var(--color-ink);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.5rem;
     border-radius: 999px;
-    transition: background-color 0.18s ease;
+    background: transparent;
+    transition: background-color 0.15s ease, color 0.15s ease;
   }
   .btn-outline:hover {
-    background-color: var(--color-foresttint);
+    background-color: var(--color-ink);
+    color: #fff;
   }
+
+  /* Slanted retro display, as in the reference's section headings */
+  .display-tilt {
+    font-family: var(--font-display);
+    font-weight: 600;
+    transform: rotate(-2deg);
+    transform-origin: left center;
+    display: inline-block;
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
   .input {
     width: 100%;
-    background-color: var(--color-cream);
-    border: 1px solid var(--color-line);
-    border-radius: 12px;
-    padding: 0.7rem 0.9rem;
+    background-color: #fff;
+    border: 2px solid var(--color-line);
+    border-radius: 14px;
+    padding: 0.75rem 0.95rem;
     font-size: 0.95rem;
     color: var(--color-ink);
     transition: border-color 0.15s ease;
   }
   .input:focus {
     outline: none;
-    border-color: var(--color-forest);
+    border-color: var(--color-bloom);
   }
-  .eyebrow {
-    font-size: 0.7rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--color-sage);
-  }
-  /* soft image placeholder — reads as an intentional frame until real photos land */
+
+  /* Product/scene placeholder — an intentional frame until real photos land */
   .ph {
     position: relative;
     overflow: hidden;
     background:
-      radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,0.5), transparent 60%),
-      linear-gradient(135deg, var(--ph-a, #e7e5df), var(--ph-b, #d9d3c4));
+      radial-gradient(120% 120% at 30% 20%, rgba(255, 255, 255, 0.55), transparent 60%),
+      linear-gradient(135deg, var(--ph-a, #ffe4f0), var(--ph-b, #ffd0c2));
   }
   .ph::after {
     content: attr(data-label);
@@ -125,9 +167,9 @@
     justify-content: center;
     text-align: center;
     padding: 1rem;
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: 0.95rem;
-    color: var(--color-forest);
-    opacity: 0.55;
+    color: var(--color-flame);
+    opacity: 0.65;
   }
 }

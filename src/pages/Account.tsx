@@ -51,7 +51,7 @@ export default function Account() {
           <p className="mt-3 text-muted">Loading…</p>
         ) : orders.length === 0 ? (
           <div className="mt-3 bg-card border border-line rounded-2xl p-6 text-inksoft font-light">
-            No orders yet. <Link to="/shop" className="text-forest underline">Start browsing →</Link>
+            No orders yet. <Link to="/shop" className="text-flame underline">Start browsing →</Link>
           </div>
         ) : (
           <ul className="mt-3 space-y-3">
@@ -67,7 +67,7 @@ export default function Account() {
                   {o.items.map((it) => `${it.name} ×${it.qty}`).join(", ")}
                 </div>
                 <div className="mt-2 flex justify-between items-baseline">
-                  <span className="text-xs uppercase tracking-wide text-forest bg-foresttint rounded-full px-2.5 py-0.5">{o.status}</span>
+                  <span className="text-xs uppercase tracking-wide text-flame bg-peach rounded-full px-2.5 py-0.5">{o.status}</span>
                   <span className="font-semibold tabular-nums">{inr(o.total_amount)}</span>
                 </div>
               </li>
@@ -87,7 +87,7 @@ export default function Account() {
           <ul className="mt-3 grid sm:grid-cols-2 gap-3">
             {wishlistProducts.map((p) => (
               <li key={p!.slug}>
-                <Link to={`/product/${p!.slug}`} className="flex items-center gap-3 bg-card border border-line rounded-2xl p-3 hover:border-forest">
+                <Link to={`/product/${p!.slug}`} className="flex items-center gap-3 bg-card border border-line rounded-2xl p-3 hover:border-flame">
                   <span
                     className="ph w-14 h-14 rounded-lg shrink-0"
                     data-label=""

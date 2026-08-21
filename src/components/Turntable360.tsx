@@ -13,7 +13,7 @@ interface Props {
  * - Without: a live CSS-3D demo cube so the rotate interaction works today;
  *   real turntable frames drop in with no API change.
  */
-export default function Turntable360({ frames, tint = ["#e7ebe2", "#d7ddd0"], label }: Props) {
+export default function Turntable360({ frames, tint = ["#ffd6e8", "#ffab7a"], label }: Props) {
   const hasFrames = !!frames && frames.length > 0;
   const [ry, setRy] = useState(24);
   const [rx, setRx] = useState(-14);
@@ -43,7 +43,7 @@ export default function Turntable360({ frames, tint = ["#e7ebe2", "#d7ddd0"], la
 
   const cursor = dragging ? "grabbing" : "grab";
   const hint = (
-    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs text-forest/70 bg-cream/80 rounded-full px-3 py-1 pointer-events-none">
+    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs text-flame/70 bg-paper/80 rounded-full px-3 py-1 pointer-events-none">
       ↔ Drag to rotate
     </div>
   );
@@ -75,7 +75,7 @@ export default function Turntable360({ frames, tint = ["#e7ebe2", "#d7ddd0"], la
   const face = (transform: string, shade: number, text: string) => (
     <div
       key={text}
-      className="absolute grid place-items-center font-serif text-forest/60 text-sm border border-line/60"
+      className="absolute grid place-items-center font-display text-flame/60 text-sm border border-line/60"
       style={{
         width: S,
         height: S,
@@ -90,8 +90,8 @@ export default function Turntable360({ frames, tint = ["#e7ebe2", "#d7ddd0"], la
 
   return (
     <div
-      className="relative aspect-square rounded-3xl border border-dashed border-sage overflow-hidden select-none touch-none grid place-items-center"
-      style={{ cursor, background: "radial-gradient(120% 120% at 30% 20%, #fbf9f3, #eef0e8)" }}
+      className="relative aspect-square rounded-3xl border border-dashed border-bloom overflow-hidden select-none touch-none grid place-items-center"
+      style={{ cursor, background: "radial-gradient(120% 120% at 30% 20%, #fffbf7, #ffeef5)" }}
       role="img"
       aria-label={`${label ?? "Product"} 360 degree preview — drag to rotate`}
       tabIndex={0}
@@ -120,7 +120,7 @@ export default function Turntable360({ frames, tint = ["#e7ebe2", "#d7ddd0"], la
         </div>
       </div>
       {hint}
-      <div className="absolute top-3 right-3 text-[10px] uppercase tracking-wide text-sage font-semibold bg-cream/80 rounded-full px-2 py-0.5 pointer-events-none">
+      <div className="absolute top-3 right-3 text-[10px] uppercase tracking-wide text-bloom font-semibold bg-paper/80 rounded-full px-2 py-0.5 pointer-events-none">
         360° demo
       </div>
     </div>

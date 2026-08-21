@@ -40,7 +40,7 @@ export default function Catalog({ family }: { family?: Family }) {
     ? family === "miniature"
       ? "Build and light your own tiny worlds — shops, homes and scenes."
       : "Paint, pour, mould and stitch — the wider craft of making."
-    : "Every MyNuki kit, in one place.";
+    : "Every Dabble & Dahlia kit, in one place.";
 
   function setParam(key: string, value?: string) {
     const next = new URLSearchParams(params);
@@ -55,9 +55,9 @@ export default function Catalog({ family }: { family?: Family }) {
     <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
       {/* breadcrumb */}
       <nav className="text-xs text-muted mb-4" aria-label="Breadcrumb">
-        <Link to="/" className="hover:text-forest">Home</Link>
+        <Link to="/" className="hover:text-flame">Home</Link>
         <span className="mx-1.5">/</span>
-        <Link to={basePath} className="hover:text-forest">
+        <Link to={basePath} className="hover:text-flame">
           {family ? familyLabels[family] : "Shop"}
         </Link>
         {activeCat && (
@@ -139,8 +139,8 @@ function Chip({
       aria-pressed={active}
       className={`text-sm px-4 py-2 rounded-full border transition-colors ${
         active
-          ? "bg-forest text-cream border-transparent"
-          : "bg-card text-inksoft border-line hover:border-forest hover:text-forest"
+          ? "bg-flame text-paper border-transparent"
+          : "bg-card text-inksoft border-line hover:border-flame hover:text-flame"
       }`}
     >
       {children}

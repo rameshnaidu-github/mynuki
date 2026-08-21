@@ -160,7 +160,7 @@ export default function Checkout() {
       <h1 className="text-4xl md:text-5xl">Checkout</h1>
 
       {!isRazorpayConfigured && (
-        <p className="mt-5 text-sm bg-butter/70 text-forestdeep rounded-xl px-4 py-3 max-w-2xl">
+        <p className="mt-5 text-sm bg-peach/70 text-flamedeep rounded-xl px-4 py-3 max-w-2xl">
           Demo mode — add your Razorpay test key to take real test payments. For now,
           placing an order records it without a payment step.
         </p>
@@ -218,7 +218,7 @@ export default function Checkout() {
             <span className="text-xl font-semibold tabular-nums">{inr(total)}</span>
           </div>
 
-          {error && <p role="alert" className="mt-4 text-sm text-clay">{error}</p>}
+          {error && <p role="alert" className="mt-4 text-sm text-berry">{error}</p>}
 
           <button type="submit" disabled={busy} className="btn-primary w-full mt-5 disabled:opacity-60">
             {busy ? "Processing…" : isRazorpayConfigured ? `Pay ${inr(total)}` : `Place order · ${inr(total)}`}

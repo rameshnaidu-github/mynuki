@@ -11,15 +11,15 @@ export default function Story() {
     <div>
       <section className="max-w-3xl mx-auto px-6 pt-16 md:pt-24 pb-8 text-center">
         <span className="eyebrow">Our Story</span>
-        <h1 className="text-4xl md:text-6xl mt-3">Little worlds, made by hand</h1>
+        <h1 className="text-4xl md:text-6xl mt-3">Objects worth making</h1>
         <p className="mt-6 text-inksoft font-light text-lg leading-relaxed">
-          MyNuki began with a simple pleasure — the quiet focus of making something small
+          Dabble & Dahlia began with a simple pleasure — the quiet focus of making something small
           and complete with your own two hands. A miniature shop that lights up. A candle
           you poured. A scene you built, piece by piece, on a slow afternoon.
         </p>
       </section>
 
-      <section className="bg-foresttint">
+      <section className="bg-peach">
         <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
           <div className="space-y-6 text-inksoft font-light leading-relaxed">
             <p>
@@ -29,7 +29,7 @@ export default function Story() {
               and India’s own craft traditions.
             </p>
             <p>
-              Everything we design starts from the same question: <em className="text-forest not-italic font-medium">will this be a joy to make?</em>
+              Everything we design starts from the same question: <em className="text-flame not-italic font-medium">will this be a joy to make?</em>
               We fuss over the fit of every part, the clarity of every step, and the little
               details that make a finished piece feel like yours.
             </p>
@@ -45,8 +45,8 @@ export default function Story() {
         <h2 className="text-3xl md:text-4xl text-center">Our gentle standard</h2>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {values.map((v) => (
-            <div key={v.title} className="bg-mist rounded-2xl p-7 text-center">
-              <div className="mx-auto w-10 h-10 rounded-full bg-cream flex items-center justify-center text-forest">
+            <div key={v.title} className="bg-cloud rounded-2xl p-7 text-center">
+              <div className="mx-auto w-10 h-10 rounded-full bg-paper flex items-center justify-center text-flame">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
                   <path d="M5 12l4 4 10-10" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>

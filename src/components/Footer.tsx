@@ -4,10 +4,10 @@ const columns = [
   {
     title: "Shop",
     links: [
+      { label: "Shop All", to: "/shop" },
       { label: "DIY Miniature", to: "/miniature" },
       { label: "Other DIY", to: "/other" },
       { label: "New Arrivals", to: "/shop" },
-      { label: "Shop All", to: "/shop" },
     ],
   },
   {
@@ -41,8 +41,8 @@ const columns = [
 
 function Social({ label, d }: { label: string; d: string }) {
   return (
-    <a href="#" aria-label={label} className="text-cream/80 hover:text-cream">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <a href="#" aria-label={label} className="text-white/85 hover:text-white transition-colors">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d={d} />
       </svg>
     </a>
@@ -51,13 +51,16 @@ function Social({ label, d }: { label: string; d: string }) {
 
 export default function Footer() {
   return (
-    <footer className="bg-forestdeep text-cream mt-4">
-      <div className="max-w-6xl mx-auto px-6 py-14">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(4,1fr)]">
+    <footer className="bg-bloom text-white mt-4">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(4,1fr)]">
           <div>
-            <div className="font-serif text-2xl font-semibold">MyNuki</div>
-            <p className="mt-3 text-sm text-cream/70 max-w-xs font-light">
-              Little worlds, made by hand. DIY miniature build-kits and the wider craft of making.
+            <div className="font-display text-[34px] leading-none font-semibold text-flame">
+              Dabble <span className="text-white">&amp;</span> Dahlia
+            </div>
+            <p className="mt-4 text-[15px] text-white/85 max-w-xs">
+              Objects worth making. Bold 3D-printed pieces and DIY kits, made in small
+              batches in India.
             </p>
             <div className="mt-5 flex gap-4">
               <Social label="Instagram" d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42-.6-.22-1-.48-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4Zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3Zm6.8-11.2a1.5 1.5 0 1 1-1.5-1.5 1.5 1.5 0 0 1 1.5 1.5Z" />
@@ -68,11 +71,13 @@ export default function Footer() {
 
           {columns.map((c) => (
             <div key={c.title}>
-              <div className="text-sm font-semibold mb-3">{c.title}</div>
-              <ul className="space-y-2 text-sm text-cream/70">
+              <div className="font-display text-base font-semibold mb-3">{c.title}</div>
+              <ul className="space-y-2 text-[15px] text-white/85">
                 {c.links.map((l) => (
                   <li key={l.label}>
-                    <Link to={l.to} className="hover:text-cream">{l.label}</Link>
+                    <Link to={l.to} className="hover:text-white transition-colors">
+                      {l.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -80,15 +85,15 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 pt-6 border-t border-cream/15 space-y-3">
-          <nav className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-cream/60" aria-label="Policies">
-            <Link to="/policies/terms" className="hover:text-cream">Terms</Link>
-            <Link to="/policies/privacy" className="hover:text-cream">Privacy</Link>
-            <Link to="/policies/refunds" className="hover:text-cream">Refunds &amp; Cancellation</Link>
-            <Link to="/policies/shipping" className="hover:text-cream">Shipping</Link>
+        <div className="mt-12 pt-6 border-t border-white/25 space-y-3">
+          <nav className="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-white/85" aria-label="Policies">
+            <Link to="/policies/terms" className="hover:text-white">Terms</Link>
+            <Link to="/policies/privacy" className="hover:text-white">Privacy</Link>
+            <Link to="/policies/refunds" className="hover:text-white">Refunds &amp; Cancellation</Link>
+            <Link to="/policies/shipping" className="hover:text-white">Shipping</Link>
           </nav>
-          <div className="flex flex-col sm:flex-row justify-between gap-2 text-xs text-cream/60">
-            <span>© {new Date().getFullYear()} MyNuki. Made by hand, in India.</span>
+          <div className="flex flex-col sm:flex-row justify-between gap-2 text-[13px] text-white/85">
+            <span>© {new Date().getFullYear()} Dabble &amp; Dahlia. Made by hand, in India.</span>
             <span>Secure checkout · Razorpay · INR</span>
           </div>
         </div>

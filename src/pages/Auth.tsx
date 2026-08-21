@@ -47,14 +47,14 @@ export default function Auth({ mode }: { mode: "login" | "register" }) {
   return (
     <section className="max-w-md mx-auto px-6 py-16 md:py-24">
       <div className="text-center">
-        <span className="eyebrow">{isRegister ? "Join MyNuki" : "Welcome back"}</span>
+        <span className="eyebrow">{isRegister ? "Join Dabble & Dahlia" : "Welcome back"}</span>
         <h1 className="text-4xl mt-3">
           {isRegister ? "Create your account" : "Log in"}
         </h1>
       </div>
 
       {!configured && (
-        <p className="mt-6 text-sm text-center bg-butter/70 text-forestdeep rounded-xl px-4 py-3">
+        <p className="mt-6 text-sm text-center bg-peach/70 text-flamedeep rounded-xl px-4 py-3">
           Preview mode — sign-in activates once Supabase keys are added.
         </p>
       )}
@@ -117,10 +117,10 @@ export default function Auth({ mode }: { mode: "login" | "register" }) {
           </Field>
 
           {error && (
-            <p role="alert" className="text-sm text-clay">{error}</p>
+            <p role="alert" className="text-sm text-berry">{error}</p>
           )}
           {notice && (
-            <p className="text-sm text-forest">{notice}</p>
+            <p className="text-sm text-flame">{notice}</p>
           )}
 
           <button type="submit" disabled={busy} className="btn-primary w-full disabled:opacity-60">
@@ -131,9 +131,9 @@ export default function Auth({ mode }: { mode: "login" | "register" }) {
 
       <p className="mt-6 text-center text-sm text-inksoft">
         {isRegister ? (
-          <>Already have an account? <Link to="/login" className="text-forest font-medium underline">Log in</Link></>
+          <>Already have an account? <Link to="/login" className="text-flame font-medium underline">Log in</Link></>
         ) : (
-          <>New to MyNuki? <Link to="/register" className="text-forest font-medium underline">Create an account</Link></>
+          <>New to Dabble & Dahlia? <Link to="/register" className="text-flame font-medium underline">Create an account</Link></>
         )}
       </p>
     </section>

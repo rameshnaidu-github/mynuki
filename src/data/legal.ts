@@ -1,4 +1,4 @@
-// Starter legal templates for MyNuki. These are NOT legal advice — replace the
+// Starter legal templates for Dabble & Dahlia. These are NOT legal advice — replace the
 // [bracketed] details with your real business information and have them reviewed
 // before launch. Razorpay activation checks that these pages are publicly live.
 
@@ -14,7 +14,7 @@ export interface LegalDoc {
   sections: LegalSection[];
 }
 
-const CONTACT = "hello@mynuki.example";
+const CONTACT = "hello@dabbleanddahlia.example";
 const BIZ = "[Your Registered Business Name]";
 const ADDR = "[Registered address, City, State, PIN]";
 
@@ -23,7 +23,7 @@ export const legalDocs: Record<string, LegalDoc> = {
     slug: "terms",
     title: "Terms & Conditions",
     updated: "August 2026",
-    intro: `These terms govern your use of the MyNuki website and your purchase of our products. By using the site or placing an order, you agree to them. MyNuki is operated by ${BIZ}, ${ADDR}.`,
+    intro: `These terms govern your use of the Dabble & Dahlia website and your purchase of our products. By using the site or placing an order, you agree to them. Dabble & Dahlia is operated by ${BIZ}, ${ADDR}.`,
     sections: [
       { h: "Products & orders", body: [
         "Our products are DIY craft and miniature build-kits. Product images are illustrative; small variation in colour and finish is normal for handmade items.",
@@ -36,7 +36,7 @@ export const legalDocs: Record<string, LegalDoc> = {
         "You agree not to misuse the site, attempt to disrupt it, or submit false information. Accounts are for your personal use.",
       ]},
       { h: "Liability", body: [
-        "Our kits include small parts and are intended for ages 14+ unless stated. To the extent permitted by law, MyNuki is not liable for indirect or incidental losses arising from use of the products or site.",
+        "Our kits include small parts and are intended for ages 14+ unless stated. To the extent permitted by law, Dabble & Dahlia is not liable for indirect or incidental losses arising from use of the products or site.",
       ]},
       { h: "Contact", body: [ `Questions about these terms? Email ${CONTACT}.` ]},
     ],
@@ -46,7 +46,7 @@ export const legalDocs: Record<string, LegalDoc> = {
     slug: "privacy",
     title: "Privacy Policy",
     updated: "August 2026",
-    intro: `This policy explains what personal data MyNuki (${BIZ}) collects and how we use it. We collect only what we need to run the shop.`,
+    intro: `This policy explains what personal data Dabble & Dahlia (${BIZ}) collects and how we use it. We collect only what we need to run the shop.`,
     sections: [
       { h: "What we collect", body: [
         "Account details (name, email) when you register; shipping details and order history when you buy; and any information you send us through forms.",
@@ -71,7 +71,7 @@ export const legalDocs: Record<string, LegalDoc> = {
     slug: "refunds",
     title: "Refund & Cancellation Policy",
     updated: "August 2026",
-    intro: "We want you to love making with MyNuki. Here's how cancellations and refunds work.",
+    intro: "We want you to love making with Dabble & Dahlia. Here's how cancellations and refunds work.",
     sections: [
       { h: "Cancellations", body: [
         "You can cancel an order before it is dispatched for a full refund — email us as soon as possible with your order number.",
@@ -92,7 +92,7 @@ export const legalDocs: Record<string, LegalDoc> = {
     slug: "shipping",
     title: "Shipping Policy",
     updated: "August 2026",
-    intro: "How and when your MyNuki order reaches you.",
+    intro: "How and when your Dabble & Dahlia order reaches you.",
     sections: [
       { h: "Where we ship", body: [ "We currently ship across India." ]},
       { h: "Dispatch & delivery", body: [

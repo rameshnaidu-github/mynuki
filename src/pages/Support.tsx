@@ -20,7 +20,7 @@ export default function Support() {
         <h2 className="text-2xl">Shipping</h2>
         <div className="mt-3 bg-card border border-line rounded-2xl p-6 text-inksoft font-light space-y-2">
           <p>We ship across India. Orders are dispatched within 2–3 business days and usually arrive within 4–7 days.</p>
-          <p>Shipping is a flat ₹99 — and <span className="text-forest font-medium">free on orders over ₹1,200</span>.</p>
+          <p>Shipping is a flat ₹99 — and <span className="text-flame font-medium">free on orders over ₹1,200</span>.</p>
         </div>
       </section>
 
@@ -38,7 +38,7 @@ export default function Support() {
             <details key={f.q} className="bg-card border border-line rounded-2xl p-5 group">
               <summary className="cursor-pointer font-medium text-ink list-none flex justify-between items-center gap-3">
                 {f.q}
-                <span className="text-sage transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                <span className="text-bloom transition-transform group-open:rotate-45 text-xl leading-none">+</span>
               </summary>
               <p className="mt-3 text-sm text-inksoft font-light">{f.a}</p>
             </details>
@@ -48,9 +48,9 @@ export default function Support() {
 
       <section id="contact" className="mt-8 scroll-mt-24">
         <h2 className="text-2xl">Contact</h2>
-        <div className="mt-3 bg-foresttint rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="mt-3 bg-peach rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4">
           <div className="text-inksoft font-light">
-            Still need a hand? Email <a href="mailto:hello@mynuki.example" className="text-forest font-medium">hello@mynuki.example</a> — or send us your idea.
+            Still need a hand? Email <a href="mailto:hello@dabbleanddahlia.example" className="text-flame font-medium">hello@dabbleanddahlia.example</a> — or send us your idea.
           </div>
           <Link to="/customize" className="btn-primary shrink-0">Make It Yours</Link>
         </div>

@@ -1,4 +1,4 @@
--- MyNuki · wishlists table
+-- Dabble & Dahlia · wishlists table
 -- Run in Supabase → SQL Editor after the earlier migrations.
 
 create table if not exists public.wishlists (

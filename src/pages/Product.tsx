@@ -6,9 +6,9 @@ import { useWishlist } from "../context/WishlistContext";
 import Turntable360 from "../components/Turntable360";
 
 const badgeStyle: Record<string, string> = {
-  "New": "bg-foresttint text-forest",
-  "Best Seller": "bg-forest text-cream",
-  "Sale": "bg-clay text-white",
+  "New": "bg-peach text-flame",
+  "Best Seller": "bg-flame text-paper",
+  "Sale": "bg-berry text-white",
 };
 
 export default function Product() {
@@ -44,11 +44,11 @@ export default function Product() {
     <div className="max-w-6xl mx-auto px-6 py-10 md:py-14">
       {/* breadcrumb */}
       <nav className="text-xs text-muted mb-6" aria-label="Breadcrumb">
-        <Link to="/" className="hover:text-forest">Home</Link>
+        <Link to="/" className="hover:text-flame">Home</Link>
         <span className="mx-1.5">/</span>
         {family && (
           <>
-            <Link to={family === "miniature" ? "/miniature" : "/other"} className="hover:text-forest">
+            <Link to={family === "miniature" ? "/miniature" : "/other"} className="hover:text-flame">
               {familyLabels[family]}
             </Link>
             <span className="mx-1.5">/</span>
@@ -56,7 +56,7 @@ export default function Product() {
         )}
         {cat && (
           <>
-            <Link to={`/shop?category=${cat.slug}`} className="hover:text-forest">{cat.name}</Link>
+            <Link to={`/shop?category=${cat.slug}`} className="hover:text-flame">{cat.name}</Link>
             <span className="mx-1.5">/</span>
           </>
         )}
@@ -90,7 +90,7 @@ export default function Product() {
                 type="button"
                 onClick={() => setView(i)}
                 aria-label={`View ${v}`}
-                className={`w-16 h-16 rounded-xl border overflow-hidden ${view === i ? "border-forest" : "border-line"} ${product.image && i === 0 ? "" : "ph"}`}
+                className={`w-16 h-16 rounded-xl border overflow-hidden ${view === i ? "border-flame" : "border-line"} ${product.image && i === 0 ? "" : "ph"}`}
                 data-label=""
                 style={{ ["--ph-a" as string]: product.tint[0], ["--ph-b" as string]: product.tint[1] }}
               >
@@ -102,8 +102,8 @@ export default function Product() {
             <button
               type="button"
               onClick={() => setView(4)}
-              className={`w-16 h-16 rounded-xl border text-[11px] font-semibold text-forest flex items-center justify-center ${
-                view === 4 ? "border-forest bg-foresttint" : "border-line bg-card"
+              className={`w-16 h-16 rounded-xl border text-[11px] font-semibold text-flame flex items-center justify-center ${
+                view === 4 ? "border-flame bg-peach" : "border-line bg-card"
               }`}
             >
               360°
@@ -142,7 +142,7 @@ export default function Product() {
                 type="button"
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
                 aria-label="Decrease quantity"
-                className="w-10 h-10 text-lg text-forest hover:bg-foresttint rounded-l-full"
+                className="w-10 h-10 text-lg text-flame hover:bg-peach rounded-l-full"
               >
                 −
               </button>
@@ -151,7 +151,7 @@ export default function Product() {
                 type="button"
                 onClick={() => setQty((q) => q + 1)}
                 aria-label="Increase quantity"
-                className="w-10 h-10 text-lg text-forest hover:bg-foresttint rounded-r-full"
+                className="w-10 h-10 text-lg text-flame hover:bg-peach rounded-r-full"
               >
                 +
               </button>
@@ -166,7 +166,7 @@ export default function Product() {
               onClick={() => toggle(product.slug)}
               aria-pressed={liked}
               aria-label={liked ? "Remove from wishlist" : "Save to wishlist"}
-              className="w-11 h-11 rounded-full border border-line flex items-center justify-center text-forest hover:bg-foresttint"
+              className="w-11 h-11 rounded-full border border-line flex items-center justify-center text-flame hover:bg-peach"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill={liked ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.7">
                 <path d="M12 20s-7-4.35-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.65 12 20 12 20Z" strokeLinejoin="round" />
@@ -181,9 +181,9 @@ export default function Product() {
           </div>
 
           {/* make it yours */}
-          <div className="mt-6 bg-foresttint rounded-2xl p-5 flex items-center justify-between gap-4">
+          <div className="mt-6 bg-peach rounded-2xl p-5 flex items-center justify-between gap-4">
             <div>
-              <div className="font-medium text-forest">Want it your way?</div>
+              <div className="font-medium text-flame">Want it your way?</div>
               <div className="text-sm text-inksoft font-light">Request a custom colourway or scene.</div>
             </div>
             <Link to="/customize" className="btn-outline shrink-0">Make It Yours</Link>

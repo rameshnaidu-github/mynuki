@@ -55,7 +55,7 @@ export default function AuthCallback() {
             const detail = [setErr.message, code && `(${code})`, status && `[${status}]`]
               .filter(Boolean)
               .join(" ");
-            console.error("[MyNuki auth] setSession failed:", setErr);
+            console.error("[Dabble & Dahlia auth] setSession failed:", setErr);
             setError(detail);
             return;
           }
@@ -71,7 +71,7 @@ export default function AuthCallback() {
           const { data, error: exErr } = await supabase.auth.exchangeCodeForSession(code);
           if (!active) return;
           if (exErr) {
-            console.error("[MyNuki auth] exchangeCodeForSession failed:", exErr);
+            console.error("[Dabble & Dahlia auth] exchangeCodeForSession failed:", exErr);
             setError(exErr.message);
             return;
           }
@@ -83,7 +83,7 @@ export default function AuthCallback() {
 
         setError("No session was returned in the sign-in link.");
       } catch (e) {
-        console.error("[MyNuki auth] callback exception:", e);
+        console.error("[Dabble & Dahlia auth] callback exception:", e);
         if (active) setError(e instanceof Error ? e.message : String(e));
       }
     }
@@ -99,7 +99,7 @@ export default function AuthCallback() {
       {error ? (
         <>
           <h1 className="text-3xl">Sign-in problem</h1>
-          <p className="mt-4 text-sm text-clay break-words bg-card border border-line rounded-xl px-4 py-3">
+          <p className="mt-4 text-sm text-berry break-words bg-card border border-line rounded-xl px-4 py-3">
             {error}
           </p>
           <Link to="/login" className="btn-primary mt-7">Back to log in</Link>
@@ -107,7 +107,7 @@ export default function AuthCallback() {
       ) : (
         <>
           <div
-            className="mx-auto w-8 h-8 rounded-full border-2 border-line border-t-forest animate-spin"
+            className="mx-auto w-8 h-8 rounded-full border-2 border-line border-t-flame animate-spin"
             role="status"
             aria-label="Completing sign-in"
           />

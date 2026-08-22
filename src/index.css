@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Dabble & Dahlia design tokens — bold, playful, maker-craft.
-   Orange logo + hot pink accents on warm paper, with black UI controls.
+   Dabble & Dahlia design tokens — editorial serif, bold warm colour.
+   Drawn from the logo (red serif, magenta) and the brand's orange/yellow/pink.
    Exposed to Tailwind v4 as utilities: bg-flame, text-bloom, font-display, etc.
 --------------------------------------------------------------------------- */
 @theme {
@@ -11,7 +11,7 @@
   --color-flamedeep: #d5410f;  /* orange pressed/hover */
   --color-bloom: #ff3fa4;      /* hot pink — display type, footer */
   --color-bloomdeep: #e02185;  /* pink pressed/hover */
-  --color-berry: #e5322b;      /* red — full-bleed story / FAQ bands */
+  --color-berry: #e01b22;      /* logo red — full-bleed story / FAQ bands */
 
   /* neutrals */
   --color-ink: #141414;        /* text + buttons */
@@ -25,9 +25,11 @@
   --color-blush: #ffe4f0;      /* pink tint */
   --color-peach: #ffe7d8;      /* orange tint */
   --color-cloud: #f4f1ed;      /* neutral tint */
+  --color-sun: #ffc93c;        /* yellow band */
+  --color-cream: #fff4e0;      /* warm cream on dark/colour */
 
-  --font-display: "Fredoka", "Trebuchet MS", "Avenir Next", sans-serif;
-  --font-sans: "Nunito", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "DM Serif Display", "Iowan Old Style", Georgia, serif;
+  --font-sans: "DM Sans", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
 @layer base {
@@ -44,9 +46,9 @@
   }
   h1, h2, h3 {
     font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: 0;
     text-wrap: balance;
     color: var(--color-ink);
   }
@@ -66,8 +68,9 @@
     gap: 0.5rem;
     background-color: var(--color-ink);
     color: #fff;
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-weight: 500;
+    letter-spacing: 0.02em;
     font-size: 0.95rem;
     padding: 0.8rem 1.6rem;
     border-radius: 999px;
@@ -86,8 +89,9 @@
     gap: 0.5rem;
     background-color: var(--color-flame);
     color: #fff;
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-weight: 500;
+    letter-spacing: 0.02em;
     font-size: 0.95rem;
     padding: 0.8rem 1.6rem;
     border-radius: 999px;
@@ -105,8 +109,9 @@
     gap: 0.5rem;
     border: 2px solid var(--color-ink);
     color: var(--color-ink);
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-weight: 500;
+    letter-spacing: 0.02em;
     font-size: 0.95rem;
     padding: 0.7rem 1.5rem;
     border-radius: 999px;
@@ -118,17 +123,17 @@
     color: #fff;
   }
 
-  /* Slanted retro display, as in the reference's section headings */
+  /* Signature heading treatment: italic editorial serif, as on the logo + hero */
   .display-tilt {
     font-family: var(--font-display);
-    font-weight: 600;
-    transform: rotate(-2deg);
-    transform-origin: left center;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0;
     display: inline-block;
   }
 
   .eyebrow {
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-size: 0.72rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;

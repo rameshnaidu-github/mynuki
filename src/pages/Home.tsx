@@ -27,24 +27,30 @@ const standards = [
 export default function Home() {
   return (
     <div>
-      {/* 1 · HERO — image with an offset orange block */}
+      {/* 1 · HERO — photo with an offset colour block (stacks on mobile) */}
       <section className="relative">
         <img
           src="/products/bloom-memo-board.jpg"
           alt="Bloom memo board styled on a wall"
-          className="w-full h-[460px] md:h-[600px] object-cover object-[70%_center]"
+          className="w-full h-[280px] sm:h-[420px] md:h-[600px] object-cover object-[65%_center]"
         />
-        <div className="absolute inset-0">
-          <div className="max-w-6xl mx-auto px-6 h-full flex items-center">
-            <div className="bg-flame rounded-[28px] p-8 md:p-11 max-w-md shadow-xl">
-              <h1 className="font-display text-[44px] md:text-[62px] leading-[0.95] font-semibold text-bloom">
-                Dabble<br />&amp; Dahlia
+        <div className="md:absolute md:inset-0">
+          <div className="max-w-6xl mx-auto px-5 sm:px-6 md:h-full flex items-center">
+            <div className="relative z-10 -mt-14 md:mt-0 bg-flame rounded-[26px] p-7 sm:p-9 md:p-11 max-w-md shadow-xl">
+              <span className="eyebrow text-cream/90">3D-printed homeware</span>
+              <h1 className="mt-3 text-[40px] sm:text-[50px] md:text-[62px] leading-[0.98] text-cream">
+                Design Your Own <span className="italic">World</span>
               </h1>
-              <p className="mt-5 text-white/95 text-[16px] md:text-[17px] leading-relaxed">
-                Bold 3D-printed objects and DIY kits for people who like their homes
-                a little louder. Designed and made in small batches.
+              <p className="mt-4 text-cream/95 text-[15.5px] md:text-[17px] leading-relaxed">
+                Sculptural objects for the desk, the wall and the dressing table —
+                drawn, printed and finished by hand in small batches.
               </p>
-              <Link to="/shop" className="btn-primary mt-7">Shop the collection</Link>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link to="/shop" className="btn-primary">Shop the collection</Link>
+                <Link to="/customize" className="btn-outline !border-cream !text-cream hover:!bg-cream hover:!text-flame">
+                  Make it yours
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -53,7 +59,7 @@ export default function Home() {
       {/* 2 · FEATURED PRODUCTS */}
       <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="display-tilt text-[38px] md:text-[46px] text-flame">Loved by makers</h2>
+          <h2 className="display-tilt text-[36px] md:text-[46px] text-flame">Loved by makers</h2>
           <Link to="/shop" className="btn-outline shrink-0">Shop all</Link>
         </div>
         <div className="mt-9 grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-9">
@@ -66,7 +72,7 @@ export default function Home() {
       {/* 3 · OUR STORY — full-bleed red band */}
       <section className="bg-berry text-white">
         <div className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-          <h2 className="display-tilt text-[38px] md:text-[46px] text-bloom">Our story</h2>
+          <h2 className="display-tilt text-[36px] md:text-[46px] text-sun">Our story</h2>
           <div className="mt-7 grid md:grid-cols-2 gap-8 text-[16px] leading-relaxed text-white/95">
             <p>
               Dabble &amp; Dahlia began on a kitchen table with one small 3D printer and
@@ -90,7 +96,7 @@ export default function Home() {
 
       {/* 4 · SHOP BY CATEGORY */}
       <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <h2 className="display-tilt text-[38px] md:text-[46px] text-bloom">Shop by category</h2>
+        <h2 className="display-tilt text-[36px] md:text-[46px] text-berry">Shop by category</h2>
         <div className="mt-9 grid grid-cols-2 md:grid-cols-4 gap-5">
           {featuredCats.map((c) => (
             <Link key={c.slug} to={`/shop?category=${c.slug}`} className="group block">
@@ -128,7 +134,7 @@ export default function Home() {
 
       {/* 6 · WHY */}
       <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <h2 className="display-tilt text-[38px] md:text-[46px] text-flame">Why Dabble &amp; Dahlia</h2>
+        <h2 className="display-tilt text-[36px] md:text-[46px] text-berry">Why Dabble &amp; Dahlia</h2>
         <div className="mt-9 grid gap-5 md:grid-cols-3">
           {standards.map((s) => (
             <div key={s.title} className={`${s.tint} rounded-[22px] p-7`}>

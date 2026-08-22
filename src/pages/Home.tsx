@@ -35,20 +35,13 @@ export default function Home() {
   return (
     <div>
       {/* 1 · HERO */}
-      <section className="relative min-h-[420px] md:min-h-[560px] flex items-center overflow-hidden">
-        {/* Painterly stand-in — drop a file at /public/hero.jpg and swap the div for an <img> */}
-        <div
-          className="absolute inset-0"
-          aria-hidden="true"
-          style={{
-            background:
-              "radial-gradient(60% 50% at 78% 22%, #ffd75e 0%, rgba(255,215,94,0) 55%)," +
-              "radial-gradient(45% 40% at 20% 78%, #2f7d63 0%, rgba(47,125,99,0) 60%)," +
-              "radial-gradient(70% 60% at 30% 20%, #3f74b8 0%, rgba(63,116,184,0) 60%)," +
-              "linear-gradient(160deg, #16406f 0%, #2a6ea8 40%, #4d8f73 72%, #1d5340 100%)",
-          }}
+      <section className="relative min-h-[440px] md:min-h-[620px] flex items-center overflow-hidden">
+        <img
+          src="/hero-art.jpg"
+          alt="A miniature house set in a painted, Van Gogh-style landscape, captioned: God sends us pieces of art so that we may see ourselves in them"
+          className="absolute inset-0 w-full h-full object-cover object-[72%_top]"
         />
-        <div className="relative max-w-6xl mx-auto w-full px-5 sm:px-6 py-10 md:py-14 grid md:grid-cols-2 gap-8 items-center">
+        <div className="relative max-w-6xl mx-auto w-full px-5 sm:px-6 py-10 md:py-14 flex items-center">
           {/* framed orange card */}
           <div className="bg-flame border-2 border-cream/70 p-7 sm:p-9 max-w-sm">
             <h1 className="font-display italic text-cream text-[38px] sm:text-[46px] leading-[1.06]">
@@ -66,12 +59,6 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* quote */}
-          <div className="text-right">
-            <p className="font-display italic text-cream text-[26px] sm:text-[32px] leading-[1.3] max-w-md ml-auto">
-              God sends us pieces of art so that we may see ourselves in them
-            </p>
-          </div>
         </div>
       </section>
 

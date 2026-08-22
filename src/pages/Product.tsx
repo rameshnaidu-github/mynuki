@@ -34,7 +34,8 @@ export default function Product() {
   const liked = has(product.slug);
   // With a real photo we show just that shot (+ the 360 tab); the extra
   // view slots only exist for products still on placeholder art.
-  const views = product.image ? ["Front"] : ["Front", "Angle", "Detail", "Contents"];
+  const gallery = product.images ?? (product.image ? [product.image] : []);
+  const views = gallery.length ? gallery : ["Front", "Angle", "Detail", "Contents"];
 
   function handleAdd() {
     add(product!.slug, qty);
@@ -69,9 +70,9 @@ export default function Product() {
         {/* gallery */}
         <div>
           {view < views.length ? (
-            product.image && view === 0 ? (
-              <div className="aspect-square rounded-3xl border border-line overflow-hidden">
-                <img src={product.image} alt={`${product.name} — front`} className="w-full h-full object-cover" />
+            gallery.length ? (
+              <div className="aspect-square rounded-3xl border border-line overflow-hidden bg-white">
+                <img src={gallery[view]} alt={`${product.name} — view ${view + 1}`} className="w-full h-full object-cover" />
               </div>
             ) : (
               <div
@@ -91,13 +92,13 @@ export default function Product() {
                 key={v}
                 type="button"
                 onClick={() => setView(i)}
-                aria-label={`View ${v}`}
-                className={`w-16 h-16 rounded-xl border overflow-hidden ${view === i ? "border-flame" : "border-line"} ${product.image && i === 0 ? "" : "ph"}`}
+                aria-label={`View ${i + 1}`}
+                className={`w-16 h-16 rounded-xl border overflow-hidden ${view === i ? "border-flame" : "border-line"} ${gallery.length ? "bg-white" : "ph"}`}
                 data-label=""
                 style={{ ["--ph-a" as string]: product.tint[0], ["--ph-b" as string]: product.tint[1] }}
               >
-                {product.image && i === 0 && (
-                  <img src={product.image} alt="" className="w-full h-full object-cover" />
+                {gallery.length > 0 && (
+                  <img src={gallery[i]} alt="" className="w-full h-full object-cover" />
                 )}
               </button>
             ))}

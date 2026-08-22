@@ -1,176 +1,223 @@
+import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { categories, products } from "../data/catalog";
+import { products } from "../data/catalog";
 import ProductCard from "../components/ProductCard";
+import { supabase } from "../lib/supabase";
 
-const featuredCats = ["desk-office", "vanity-storage", "wall", "frames"]
-  .map((s) => categories.find((c) => c.slug === s)!)
-  .filter(Boolean);
+const featured = products.slice(0, 8);
 
-const standards = [
-  {
-    title: "Designed, then made",
-    body: "Every piece starts as a drawing and ends on a print bed in our studio. Small batches, tuned by hand.",
-    tint: "bg-blush",
-  },
-  {
-    title: "Colour you can't ignore",
-    body: "We don't do beige. Each object is finished in shades picked to lift the corner of a room.",
-    tint: "bg-peach",
-  },
-  {
-    title: "Built to be used",
-    body: "Sturdy, practical and repairable — objects meant for daily life, not a display shelf.",
-    tint: "bg-cloud",
-  },
+const faqs = [
+  { q: "How long does an order take?", a: "Every piece is printed to order, so allow 2–3 working days before dispatch, then 4–7 days in transit." },
+  { q: "Can I choose my own colours?", a: "Yes — that is the whole idea. Send us the piece and the palette and we'll quote you before you pay." },
+  { q: "What are the pieces made from?", a: "Plant-based PLA, printed in small batches and finished by hand in our studio." },
+  { q: "Do you take returns?", a: "Unopened pieces can come back within 7 days. If something arrives damaged we'll replace it, no fuss." },
 ];
 
 export default function Home() {
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [form, setForm] = useState({ first: "", last: "", email: "", message: "" });
+
+  async function onContact(e: FormEvent) {
+    e.preventDefault();
+    setSending(true);
+    if (supabase) {
+      await supabase.from("customization_requests").insert({
+        name: `${form.first} ${form.last}`.trim(),
+        email: form.email,
+        details: form.message,
+      });
+    }
+    setSending(false);
+    setSent(true);
+  }
+
   return (
     <div>
-      {/* 1 · HERO — photo with an offset colour block (stacks on mobile) */}
-      <section className="relative">
-        <img
-          src="/products/bloom-memo-board.jpg"
-          alt="Bloom memo board styled on a wall"
-          className="w-full h-[280px] sm:h-[420px] md:h-[600px] object-cover object-[65%_center]"
+      {/* 1 · HERO */}
+      <section className="relative min-h-[420px] md:min-h-[560px] flex items-center overflow-hidden">
+        {/* Painterly stand-in — drop a file at /public/hero.jpg and swap the div for an <img> */}
+        <div
+          className="absolute inset-0"
+          aria-hidden="true"
+          style={{
+            background:
+              "radial-gradient(60% 50% at 78% 22%, #ffd75e 0%, rgba(255,215,94,0) 55%)," +
+              "radial-gradient(45% 40% at 20% 78%, #2f7d63 0%, rgba(47,125,99,0) 60%)," +
+              "radial-gradient(70% 60% at 30% 20%, #3f74b8 0%, rgba(63,116,184,0) 60%)," +
+              "linear-gradient(160deg, #16406f 0%, #2a6ea8 40%, #4d8f73 72%, #1d5340 100%)",
+          }}
         />
-        <div className="md:absolute md:inset-0">
-          <div className="max-w-6xl mx-auto px-5 sm:px-6 md:h-full flex items-center">
-            <div className="relative z-10 -mt-14 md:mt-0 bg-flame rounded-[26px] p-7 sm:p-9 md:p-11 max-w-md shadow-xl">
-              <span className="eyebrow text-cream/90">3D-printed homeware</span>
-              <h1 className="mt-3 text-[40px] sm:text-[50px] md:text-[62px] leading-[0.98] text-cream">
-                Design Your Own <span className="italic">World</span>
-              </h1>
-              <p className="mt-4 text-cream/95 text-[15.5px] md:text-[17px] leading-relaxed">
-                Sculptural objects for the desk, the wall and the dressing table —
-                drawn, printed and finished by hand in small batches.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link to="/shop" className="btn-primary">Shop the collection</Link>
-                <Link to="/customize" className="btn-outline !border-cream !text-cream hover:!bg-cream hover:!text-flame">
-                  Make it yours
-                </Link>
-              </div>
-            </div>
+        <div className="relative max-w-6xl mx-auto w-full px-5 sm:px-6 py-10 md:py-14 grid md:grid-cols-2 gap-8 items-center">
+          {/* framed orange card */}
+          <div className="bg-flame border-2 border-cream/70 p-7 sm:p-9 max-w-sm">
+            <h1 className="font-display italic text-cream text-[38px] sm:text-[46px] leading-[1.06]">
+              Dabble<br />And<br />Dahlia
+            </h1>
+            <p className="mt-4 text-cream/90 text-[13px] leading-relaxed">
+              Sculptural, 3D-printed objects and DIY kits for the desk, the wall and the
+              dressing table — designed and printed in small batches.
+            </p>
+            <Link
+              to="/shop"
+              className="inline-block mt-6 bg-cream text-flame text-[13px] px-6 py-2.5 hover:bg-white transition-colors"
+            >
+              Shop now
+            </Link>
+          </div>
+
+          {/* quote */}
+          <div className="text-right">
+            <p className="font-display italic text-cream text-[26px] sm:text-[32px] leading-[1.3] max-w-md ml-auto">
+              God sends us pieces of art so that we may see ourselves in them
+            </p>
           </div>
         </div>
       </section>
 
-      {/* 2 · FEATURED PRODUCTS */}
-      <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 className="display-tilt text-[36px] md:text-[46px] text-flame">Loved by makers</h2>
-          <Link to="/shop" className="btn-outline shrink-0">Shop all</Link>
-        </div>
-        <div className="mt-9 grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-9">
-          {products.slice(0, 4).map((p) => (
-            <ProductCard key={p.slug} p={p} showAddToCart />
-          ))}
-        </div>
-      </section>
-
-      {/* 3 · OUR STORY — full-bleed red band */}
-      <section className="bg-berry text-white">
-        <div className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-          <h2 className="display-tilt text-[36px] md:text-[46px] text-sun">Our story</h2>
-          <div className="mt-7 grid md:grid-cols-2 gap-8 text-[16px] leading-relaxed text-white/95">
-            <p>
-              Dabble &amp; Dahlia began on a kitchen table with one small 3D printer and
-              a stubborn idea: the everyday objects around us should be a bit more fun.
-              A desk organiser worth looking at. A frame that makes you smile.
-            </p>
-            <p>
-              We design each piece ourselves, print it in small batches, and finish it by
-              hand. Alongside our objects we make DIY kits, so you can have the pleasure
-              of building something yourself — and keep it when you're done.
-            </p>
-          </div>
+      {/* 2 · YELLOW BAND */}
+      <section className="bg-sun">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 py-6 flex items-center justify-between gap-4">
+          <h2 className="font-display italic text-flame text-[26px] sm:text-[32px]">Loved by Makers</h2>
           <Link
-            to="/story"
-            className="inline-flex items-center gap-2 mt-8 bg-white text-berry font-display font-medium text-[15px] px-6 py-3 rounded-full hover:bg-blush transition-colors"
+            to="/shop"
+            className="bg-flame text-white text-[12.5px] px-6 py-2.5 rounded-full hover:bg-flamedeep transition-colors shrink-0"
           >
-            Learn more
+            Order Now
           </Link>
         </div>
       </section>
 
-      {/* 4 · SHOP BY CATEGORY */}
-      <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <h2 className="display-tilt text-[36px] md:text-[46px] text-berry">Shop by category</h2>
-        <div className="mt-9 grid grid-cols-2 md:grid-cols-4 gap-5">
-          {featuredCats.map((c) => (
-            <Link key={c.slug} to={`/shop?category=${c.slug}`} className="group block">
-              <div
-                className={`aspect-[4/5] rounded-[22px] border-2 border-line group-hover:border-flame transition-colors overflow-hidden ${c.image ? "" : "ph"}`}
-                data-label={c.image ? undefined : c.name}
-                style={{ ["--ph-a" as string]: c.tint[0], ["--ph-b" as string]: c.tint[1] }}
-              >
-                {c.image && (
-                  <img src={c.image} alt={c.name} loading="lazy" className="w-full h-full object-cover" />
-                )}
+      {/* 3 · ALL PRODUCTS */}
+      <section className="bg-sun/95 pb-10">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6">
+          <h3 className="text-[15px] font-semibold text-ink pb-4">All Products</h3>
+          <div className="flex gap-4 overflow-x-auto pb-3 -mx-1 px-1 snap-x">
+            {featured.map((p) => (
+              <div key={p.slug} className="w-[210px] sm:w-[240px] shrink-0 snap-start">
+                <ProductCard p={p} showAddToCart />
               </div>
-              <div className="mt-3 text-center font-display text-[16px] font-medium text-ink group-hover:text-flame transition-colors">
-                {c.name}
-              </div>
-            </Link>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* 5 · MAKE IT YOURS */}
-      <section className="bg-peach">
-        <div className="max-w-3xl mx-auto px-6 py-16 md:py-20 text-center">
-          <span className="eyebrow text-flame">Make it yours</span>
-          <h2 className="text-[34px] md:text-[44px] mt-3">
-            Want it in your colours? We take custom orders.
-          </h2>
-          <p className="mt-4 text-inksoft text-[16px]">
-            Tell us the piece, the palette and the occasion — we'll design it, print it and
-            send you a quote before you pay a rupee.
-          </p>
-          <Link to="/customize" className="btn-brand mt-7">Start a request</Link>
-        </div>
-      </section>
-
-      {/* 6 · WHY */}
-      <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <h2 className="display-tilt text-[36px] md:text-[46px] text-berry">Why Dabble &amp; Dahlia</h2>
-        <div className="mt-9 grid gap-5 md:grid-cols-3">
-          {standards.map((s) => (
-            <div key={s.title} className={`${s.tint} rounded-[22px] p-7`}>
-              <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-flame">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <path d="M5 12l4 4 10-10" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <h3 className="text-[21px] mt-4">{s.title}</h3>
-              <p className="mt-2 text-[15px] text-inksoft leading-relaxed">{s.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 7 · NEWSLETTER */}
-      <section className="bg-ink text-white">
-        <div className="max-w-2xl mx-auto px-6 py-16 md:py-20 text-center">
-          <h2 className="text-[34px] md:text-[44px] text-bloom">Join the studio list</h2>
-          <p className="mt-3 text-white/80 text-[16px]">
-            New drops, restocks and the occasional behind-the-scenes misprint.
-          </p>
-          <form
-            className="mt-7 flex flex-col sm:flex-row gap-3 justify-center"
-            onSubmit={(e) => e.preventDefault()}
+      {/* 4 · OUR STORY — gradient band */}
+      <section
+        className="py-16 md:py-20"
+        style={{
+          background:
+            "linear-gradient(100deg, #ffeaf3 0%, #ff6fb0 32%, #ff7a2f 68%, #ffd84a 100%)",
+        }}
+      >
+        <div className="max-w-6xl mx-auto px-5 sm:px-6">
+          <h2 className="font-display italic text-white text-[30px] md:text-[38px]">Our Story</h2>
+          <div className="mt-5 grid md:grid-cols-2 gap-8 text-white/95 text-[15px] leading-relaxed max-w-4xl">
+            <p>
+              Dabble &amp; Dahlia started on a kitchen table with one small printer and a
+              stubborn idea: the everyday things around us should be a little more fun to
+              look at.
+            </p>
+            <p>
+              We draw each piece ourselves, print it in small batches and finish it by hand
+              — so the object on your desk was made for you, not stamped out by the
+              thousand.
+            </p>
+          </div>
+          <Link
+            to="/story"
+            className="inline-block mt-8 border border-white text-white text-[13px] px-7 py-2.5 rounded-full hover:bg-white hover:text-flame transition-colors"
           >
-            <label htmlFor="nl-email" className="sr-only">Email address</label>
-            <input
-              id="nl-email"
-              type="email"
-              required
-              placeholder="Enter your email"
-              className="rounded-full px-5 py-3 text-ink bg-white w-full sm:w-72 outline-none border-2 border-transparent focus:border-bloom"
-            />
-            <button type="submit" className="btn-brand">Subscribe</button>
-          </form>
+            Learn More
+          </Link>
+        </div>
+      </section>
+
+      {/* 5 · GALLERY */}
+      <section className="bg-white py-16 md:py-20">
+        <div className="max-w-5xl mx-auto px-5 sm:px-6 grid md:grid-cols-2 gap-x-10 gap-y-12 items-center">
+          <img src="/products/petal-vanity-organiser.jpg" alt="Petal Vanity Organiser on a dresser" className="w-full aspect-[4/3] object-cover" />
+          <div>
+            <div className="font-display italic text-bloom text-[22px]">Made to be used</div>
+            <p className="mt-2 text-[14px] text-inksoft leading-relaxed">
+              Drawers that actually slide, trays that hold what you own. Sculptural, but
+              built for a real desk.
+            </p>
+          </div>
+
+          <div className="md:order-4">
+            <div className="font-display italic text-bloom text-[22px]">Colour, first</div>
+            <p className="mt-2 text-[14px] text-inksoft leading-relaxed">
+              We pick shades that lift a corner of a room. Nothing beige, nothing you have
+              seen a hundred times before.
+            </p>
+          </div>
+          <img src="/products/wave-magazine-holder.jpg" alt="Wave Magazine Holder holding magazines" className="w-full aspect-[4/3] object-cover md:order-3" />
+
+          <img src="/products/bloom-memo-board.jpg" alt="Bloom Memo Board styled on a wall" className="w-full aspect-[4/3] object-cover" />
+          <div>
+            <div className="font-display italic text-bloom text-[22px]">Yours, if you want it</div>
+            <p className="mt-2 text-[14px] text-inksoft leading-relaxed">
+              Every piece can be made in your palette. Tell us what you have in mind and
+              we'll quote you before you pay a rupee.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6 · FAQ — red band */}
+      <section className="bg-berry text-white py-16 md:py-20">
+        <div className="max-w-5xl mx-auto px-5 sm:px-6">
+          <h2 className="font-display italic text-[30px] md:text-[38px] text-white">FAQs</h2>
+          <div className="mt-7 grid md:grid-cols-2 gap-x-10 gap-y-7">
+            {faqs.map((f) => (
+              <div key={f.q}>
+                <div className="text-[15px] font-semibold">{f.q}</div>
+                <p className="mt-1.5 text-[14px] text-white/90 leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7 · CONTACT */}
+      <section className="bg-white py-16 md:py-20">
+        <div className="max-w-2xl mx-auto px-5 sm:px-6">
+          <h2 className="font-display italic text-bloom text-[30px] md:text-[38px]">Contact Us</h2>
+          {sent ? (
+            <p className="mt-6 text-[15px] text-inksoft">
+              Thank you — your message is with us. We'll reply by email shortly.
+            </p>
+          ) : (
+            <form onSubmit={onContact} className="mt-7 space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <label className="block">
+                  <span className="block text-[12.5px] text-bloom mb-1">First name</span>
+                  <input required value={form.first} onChange={(e) => setForm({ ...form, first: e.target.value })}
+                    className="w-full border-0 border-b border-bloom/50 focus:border-bloom outline-none py-1.5 text-[14px] bg-transparent" />
+                </label>
+                <label className="block">
+                  <span className="block text-[12.5px] text-bloom mb-1">Last name</span>
+                  <input value={form.last} onChange={(e) => setForm({ ...form, last: e.target.value })}
+                    className="w-full border-0 border-b border-bloom/50 focus:border-bloom outline-none py-1.5 text-[14px] bg-transparent" />
+                </label>
+              </div>
+              <label className="block">
+                <span className="block text-[12.5px] text-bloom mb-1">Email *</span>
+                <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className="w-full border-0 border-b border-bloom/50 focus:border-bloom outline-none py-1.5 text-[14px] bg-transparent" />
+              </label>
+              <label className="block">
+                <span className="block text-[12.5px] text-bloom mb-1">Write a message</span>
+                <textarea required rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="w-full border-0 border-b border-bloom/50 focus:border-bloom outline-none py-1.5 text-[14px] bg-transparent resize-y" />
+              </label>
+              <button type="submit" disabled={sending}
+                className="border border-bloom text-bloom text-[13px] px-8 py-2 rounded-full hover:bg-bloom hover:text-white transition-colors disabled:opacity-60">
+                {sending ? "Sending…" : "Submit"}
+              </button>
+            </form>
+          )}
         </div>
       </section>
     </div>

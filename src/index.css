@@ -7,17 +7,17 @@
 --------------------------------------------------------------------------- */
 @theme {
   /* brand */
-  --color-flame: #f4531f;      /* orange — logo, hero block, primary brand */
-  --color-flamedeep: #d5410f;  /* orange pressed/hover */
-  --color-bloom: #ff3fa4;      /* hot pink — display type, footer */
+  --color-flame: #f47a1e;      /* tangerine — header bar, hero card, headings */
+  --color-flamedeep: #dd6a12;  /* tangerine pressed/hover */
+  --color-bloom: #ff35a5;      /* hot pink — footer, contact heading */
   --color-bloomdeep: #e02185;  /* pink pressed/hover */
-  --color-berry: #e01b22;      /* logo red — full-bleed story / FAQ bands */
+  --color-berry: #ee2b22;      /* red band */
 
   /* neutrals */
   --color-ink: #141414;        /* text + buttons */
   --color-inksoft: #4a4a4a;    /* secondary text */
   --color-muted: #8a8580;      /* captions */
-  --color-paper: #fffbf7;      /* page ground (warm white) */
+  --color-paper: #ffffff;      /* page ground */
   --color-card: #ffffff;       /* card face */
   --color-line: #eae3dc;       /* hairline */
 
@@ -25,8 +25,8 @@
   --color-blush: #ffe4f0;      /* pink tint */
   --color-peach: #ffe7d8;      /* orange tint */
   --color-cloud: #f4f1ed;      /* neutral tint */
-  --color-sun: #ffc93c;        /* yellow band */
-  --color-cream: #fff4e0;      /* warm cream on dark/colour */
+  --color-sun: #ffd94a;        /* yellow band */
+  --color-cream: #fbebc6;      /* cream display type on orange */
 
   --font-display: "DM Serif Display", "Iowan Old Style", Georgia, serif;
   --font-sans: "DM Sans", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;

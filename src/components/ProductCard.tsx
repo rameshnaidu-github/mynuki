@@ -4,12 +4,6 @@ import { inr, type Product } from "../data/catalog";
 import { useWishlist } from "../context/WishlistContext";
 import { useCart } from "../context/CartContext";
 
-const badgeStyle: Record<string, string> = {
-  "New": "bg-bloom text-white",
-  "Best Seller": "bg-ink text-white",
-  "Sale": "bg-berry text-white",
-};
-
 export default function ProductCard({
   p,
   showAddToCart = false,
@@ -19,32 +13,33 @@ export default function ProductCard({
 }) {
   const { has, toggle } = useWishlist();
   const { add } = useCart();
+  const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const liked = has(p.slug);
 
   function handleAdd() {
-    add(p.slug, 1);
+    add(p.slug, qty);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1600);
   }
 
   return (
-    <div className="group relative flex flex-col h-full">
+    <div className="group relative flex flex-col h-full bg-white border border-line">
       <button
         type="button"
         onClick={() => toggle(p.slug)}
         aria-pressed={liked}
         aria-label={liked ? `Remove ${p.name} from wishlist` : `Save ${p.name} to wishlist`}
-        className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-bloom hover:bg-white transition-colors shadow-sm"
+        className="absolute top-2.5 right-2.5 z-10 w-9 h-9 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-bloom hover:bg-white transition-colors"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill={liked ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill={liked ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">
           <path d="M12 20s-7-4.35-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.65 12 20 12 20Z" strokeLinejoin="round" />
         </svg>
       </button>
 
       <Link to={`/product/${p.slug}`} className="block">
         <div
-          className={`relative aspect-square rounded-[22px] border-2 border-line overflow-hidden group-hover:border-flame transition-colors ${p.image ? "" : "ph"}`}
+          className={`relative aspect-square overflow-hidden ${p.image ? "" : "ph"}`}
           data-label={p.image ? undefined : p.name}
           style={{ ["--ph-a" as string]: p.tint[0], ["--ph-b" as string]: p.tint[1] }}
         >
@@ -52,32 +47,47 @@ export default function ProductCard({
             <img src={p.image} alt={p.name} loading="lazy" className="w-full h-full object-cover" />
           )}
           {p.badge && (
-            <span
-              className={`absolute top-3 left-3 font-display text-[11.5px] font-semibold px-3 py-1 rounded-full ${badgeStyle[p.badge]}`}
-            >
+            <span className="absolute top-2.5 left-2.5 bg-ink text-white text-[10.5px] font-semibold tracking-wide px-2.5 py-1">
               {p.badge}
             </span>
           )}
         </div>
-        <div className="mt-3">
-          <div className="font-display text-[15.5px] font-medium text-ink group-hover:text-flame transition-colors leading-snug">
-            {p.name}
-          </div>
-          <div className="mt-1 text-[15px] tabular-nums">
-            <span className="font-semibold text-ink">{inr(p.price)}</span>
-            {p.compareAt && (
-              <span className="ml-2 text-muted line-through">{inr(p.compareAt)}</span>
-            )}
+        <div className="px-3 pt-3">
+          <div className="text-[13.5px] text-flame leading-snug">{p.name}</div>
+          <div className="mt-1 text-[13px] tabular-nums flex items-center gap-2">
+            {p.compareAt && <span className="text-muted line-through">{inr(p.compareAt)}</span>}
+            <span className="text-berry font-medium">{inr(p.price)}</span>
           </div>
         </div>
       </Link>
 
       {showAddToCart && (
-        <div className="mt-auto pt-3">
+        <div className="mt-auto px-3 pb-3 pt-3">
+          <div className="flex items-center justify-between border border-line px-2 h-9 mb-2">
+            <span className="text-[13px] tabular-nums px-1">{qty}</span>
+            <span className="flex flex-col">
+              <button
+                type="button"
+                onClick={() => setQty((q) => q + 1)}
+                aria-label={`Increase ${p.name} quantity`}
+                className="h-4 px-1 text-[9px] leading-none text-inksoft hover:text-ink"
+              >
+                ▲
+              </button>
+              <button
+                type="button"
+                onClick={() => setQty((q) => Math.max(1, q - 1))}
+                aria-label={`Decrease ${p.name} quantity`}
+                className="h-4 px-1 text-[9px] leading-none text-inksoft hover:text-ink"
+              >
+                ▼
+              </button>
+            </span>
+          </div>
           <button
             type="button"
             onClick={handleAdd}
-            className="btn-primary w-full !rounded-xl"
+            className="w-full bg-ink text-white text-[13px] tracking-wide h-10 hover:bg-black transition-colors"
           >
             {added ? "Added ✓" : "Add to Cart"}
           </button>

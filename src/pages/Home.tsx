@@ -4,7 +4,17 @@ import { products } from "../data/catalog";
 import ProductCard from "../components/ProductCard";
 import { supabase } from "../lib/supabase";
 
-const featured = products.slice(0, 8);
+// Ordered as on the storefront: the apartment leads, then the objects.
+const FEATURED_ORDER = [
+  "purple-door-apartment",
+  "petal-vanity-organiser",
+  "armchair-trinket-stand",
+  "wavy-photo-frame",
+];
+const featured = [
+  ...FEATURED_ORDER.map((s) => products.find((p) => p.slug === s)).filter(Boolean),
+  ...products.filter((p) => !FEATURED_ORDER.includes(p.slug)),
+].slice(0, 8) as typeof products;
 
 const faqs = [
   { q: "How long does an order take?", a: "Every piece is printed to order, so allow 2–3 working days before dispatch, then 4–7 days in transit." },
@@ -34,31 +44,42 @@ export default function Home() {
 
   return (
     <div>
-      {/* 1 · HERO */}
-      <section className="relative min-h-[440px] md:min-h-[620px] flex items-center overflow-hidden">
+      {/* 1 · HERO — artwork with a semi-transparent orange card over it */}
+      <section className="relative">
         <img
           src="/hero-art.jpg"
           alt="A miniature house set in a painted, Van Gogh-style landscape, captioned: God sends us pieces of art so that we may see ourselves in them"
-          className="absolute inset-0 w-full h-full object-cover object-[72%_top]"
+          className="w-full h-[520px] sm:h-[680px] md:h-[820px] object-cover object-[72%_top]"
         />
-        <div className="relative max-w-6xl mx-auto w-full px-5 sm:px-6 py-10 md:py-14 flex items-center">
-          {/* framed orange card */}
-          <div className="bg-flame border-2 border-cream/70 p-7 sm:p-9 max-w-sm">
-            <h1 className="font-display italic text-cream text-[38px] sm:text-[46px] leading-[1.06]">
-              Dabble<br />And<br />Dahlia
-            </h1>
-            <p className="mt-4 text-cream/90 text-[13px] leading-relaxed">
-              Sculptural, 3D-printed objects and DIY kits for the desk, the wall and the
-              dressing table — designed and printed in small batches.
-            </p>
-            <Link
-              to="/shop"
-              className="inline-block mt-6 bg-cream text-flame text-[13px] px-6 py-2.5 hover:bg-white transition-colors"
-            >
-              Shop now
-            </Link>
-          </div>
 
+        <div className="absolute inset-0">
+          <div className="max-w-[1352px] mx-auto h-full px-[5.5%] flex items-center">
+            <div
+              className="w-[74%] sm:w-[52%] md:w-[41%] max-w-[545px] md:aspect-[545/742]
+                         bg-heroblock/[0.88] border-[3px] border-gold
+                         px-[9%] py-[8%] flex flex-col justify-center gap-[10%]"
+            >
+              <h1 className="font-display italic font-normal text-gold text-center leading-[1.04]
+                             text-[clamp(40px,6.3vw,88px)]">
+                Dabble<br />And<br />Dahlia
+              </h1>
+
+              <div>
+                <p className="text-violet text-[clamp(12px,1.15vw,15px)] leading-[1.55]">
+                  Sculptural 3D-printed objects and DIY miniature kits, designed and made
+                  in small batches. Build a little world of your own — and keep it.
+                </p>
+                <Link
+                  to="/shop"
+                  className="inline-block mt-[9%] bg-gold text-royal font-display italic
+                             text-[clamp(15px,1.5vw,21px)] px-[1.6em] py-[0.42em] rounded-full
+                             hover:brightness-105 transition"
+                >
+                  Shop now
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -78,7 +99,7 @@ export default function Home() {
       {/* 3 · ALL PRODUCTS */}
       <section className="bg-sun/95 pb-10">
         <div className="max-w-6xl mx-auto px-5 sm:px-6">
-          <h3 className="text-[15px] font-semibold text-ink pb-4">All Products</h3>
+          <h3 className="font-display italic text-[22px] text-ink pb-4">All Products</h3>
           <div className="flex gap-4 overflow-x-auto pb-3 -mx-1 px-1 snap-x">
             {featured.map((p) => (
               <div key={p.slug} className="w-[210px] sm:w-[240px] shrink-0 snap-start">

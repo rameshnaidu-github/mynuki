@@ -53,10 +53,10 @@ export default function ProductCard({
           )}
         </div>
         <div className="px-3 pt-3">
-          <div className="text-[13.5px] text-flame leading-snug">{p.name}</div>
-          <div className="mt-1 text-[13px] tabular-nums flex items-center gap-2">
-            {p.compareAt && <span className="text-muted line-through">{inr(p.compareAt)}</span>}
-            <span className="text-berry font-medium">{inr(p.price)}</span>
+          <div className="font-display italic text-[15px] text-flame leading-snug">{p.name}</div>
+          <div className="mt-1 font-display italic text-[14px] tabular-nums flex items-center gap-2">
+            {p.compareAt && <span className="text-flame/80 line-through">{inr(p.compareAt)}</span>}
+            <span className="text-berry">{inr(p.price)}</span>
           </div>
         </div>
       </Link>

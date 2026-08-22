@@ -7,7 +7,7 @@
 --------------------------------------------------------------------------- */
 @theme {
   /* brand */
-  --color-flame: #f47a1e;      /* tangerine — header bar, hero card, headings */
+  --color-flame: #e8622a;      /* product names, section headings */
   --color-flamedeep: #dd6a12;  /* tangerine pressed/hover */
   --color-bloom: #ff35a5;      /* hot pink — footer, contact heading */
   --color-bloomdeep: #e02185;  /* pink pressed/hover */
@@ -25,7 +25,12 @@
   --color-blush: #ffe4f0;      /* pink tint */
   --color-peach: #ffe7d8;      /* orange tint */
   --color-cloud: #f4f1ed;      /* neutral tint */
-  --color-sun: #ffd94a;        /* yellow band */
+  --color-sun: #f8df63;        /* products band yellow */
+  --color-navbar: #e3855a;     /* coral nav bar */
+  --color-heroblock: #e2622f;  /* hero card base (used semi-transparent) */
+  --color-gold: #f5de8b;       /* card border, display type, button fill */
+  --color-violet: #b565d8;     /* hero body copy */
+  --color-royal: #3b6fd4;      /* Shop now label */
   --color-cream: #fbebc6;      /* cream display type on orange */
 
   --font-display: "DM Serif Display", "Iowan Old Style", Georgia, serif;

@@ -80,9 +80,9 @@ const objSpecs = (size: string, colour: string): Spec[] => [
 
 export const products: Product[] = [
   // ── 3D Objects — real range, photographed ────────────────────────────────
-  { slug: "petal-vanity-organiser", name: "Petal Vanity Organiser", price: 2499, category: "vanity-storage", badge: "Best Seller", tint: LILAC, image: "/products/petal-vanity-organiser.jpg", blurb: "A flower-topped tower with two wavy drawers and a brush well.", description: OBJ_DESC, specs: objSpecs("16 × 16 × 14 cm", "Lilac · pink · blue") },
+  { slug: "petal-vanity-organiser", name: "PetalSort: Desk & Vanity Organizer", price: 1999, compareAt: 2499, category: "vanity-storage", badge: "Sale", tint: LILAC, image: "/products/petal-vanity-organiser.jpg", blurb: "A flower-topped tower with two wavy drawers and a brush well.", description: OBJ_DESC, specs: objSpecs("16 × 16 × 14 cm", "Lilac · pink · blue") },
   { slug: "pebble-drawer-organiser", name: "Pebble Five-Drawer Organiser", price: 2799, category: "vanity-storage", tint: PINK, image: "/products/pebble-drawer-organiser.jpg", blurb: "Five pebble-shaped drawers in a soft pink shell.", description: OBJ_DESC, specs: objSpecs("22 × 20 × 9 cm", "Pink · multi drawers") },
-  { slug: "armchair-trinket-stand", name: "Armchair Trinket Stand", price: 1799, category: "vanity-storage", tint: PINK, image: "/products/armchair-trinket-stand.jpg", blurb: "A tiny armchair for your rings, with a drawer underneath.", description: OBJ_DESC, specs: objSpecs("13 × 12 × 17 cm", "Pink · mint drawer") },
+  { slug: "armchair-trinket-stand", name: "DeskNest with Drawer", price: 1699, compareAt: 1999, category: "vanity-storage", tint: PINK, image: "/products/armchair-trinket-stand.jpg", blurb: "A tiny armchair for your rings, with a drawer underneath.", description: OBJ_DESC, specs: objSpecs("13 × 12 × 17 cm", "Pink · mint drawer") },
   { slug: "bloom-memo-board", name: "Bloom Memo Board with Shelf", price: 2399, category: "wall", badge: "New", tint: PINK, image: "/products/bloom-memo-board.jpg", blurb: "A wavy pin board with flower magnets and a floating shelf.", description: OBJ_DESC, specs: objSpecs("34 × 40 cm", "Pink · mint shelf") },
   { slug: "bloom-wall-hooks", name: "Bloom Cloud Wall Hooks", price: 1499, category: "wall", tint: BLUE, image: "/products/bloom-wall-hooks.jpg", blurb: "Four flower hooks on a cloud — for coats, bags and keys.", description: OBJ_DESC, specs: objSpecs("38 × 18 cm · 4 hooks", "Cobalt · multi flowers") },
   { slug: "wavy-photo-frame", name: "Wavy Bloom Photo Frame", price: 1199, category: "frames", badge: "New", tint: ORANGE, image: "/products/wavy-photo-frame.jpg", blurb: "Layered wavy borders and two flowers, for a 4 × 6 print.", description: OBJ_DESC, specs: objSpecs("Fits 4 × 6 in", "Purple · blue · pink") },
@@ -92,7 +92,7 @@ export const products: Product[] = [
   { slug: "wave-zip-pouch", name: "Wave Zip Pouch", price: 1149, compareAt: 1499, category: "desk-office", badge: "Sale", tint: LILAC, image: "/products/wave-zip-pouch.jpg", blurb: "A ribbed, rounded case with a flower zip pull.", description: OBJ_DESC, specs: objSpecs("21 × 9 × 7 cm", "Pink · purple · blue") },
 
   // ── DIY Kits ─────────────────────────────────────────────────────────────
-  { slug: "purple-door-apartment", name: "The Purple Door Apartment", price: 1499, compareAt: 4999, category: "miniature-kits", badge: "New", tint: LILAC,
+  { slug: "purple-door-apartment", name: "Purple Door Apartment", price: 3499, compareAt: 4999, category: "miniature-kits", badge: "New", tint: LILAC,
     image: "/products/purple-door-apartment.jpg",
     images: [
       "/products/purple-door-apartment.jpg",
@@ -106,7 +106,8 @@ export const products: Product[] = [
     specs: [{ label: "Scale", value: "1:12" }, { label: "Level", value: "Moderate" }, { label: "Ages", value: "14+" }] },
 ];
 
-export const inr = (n: number) => "₹" + n.toLocaleString("en-IN");
+export const inr = (n: number) =>
+  "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));
 

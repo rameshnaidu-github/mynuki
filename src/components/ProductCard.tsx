@@ -24,7 +24,7 @@ export default function ProductCard({
   }
 
   return (
-    <div className="group relative flex flex-col h-full bg-white border border-line">
+    <div className="group relative flex flex-col h-full bg-white border border-line rounded-2xl overflow-hidden">
       <button
         type="button"
         onClick={() => toggle(p.slug)}
@@ -47,7 +47,7 @@ export default function ProductCard({
             <img src={p.image} alt={p.name} loading="lazy" className="w-full h-full object-cover" />
           )}
           {p.badge && (
-            <span className="absolute top-2.5 left-2.5 bg-ink text-white text-[10.5px] font-semibold tracking-wide px-2.5 py-1">
+            <span className="absolute top-2.5 left-2.5 bg-ink text-white text-[10.5px] font-semibold tracking-wide px-3 py-1 rounded-full">
               {p.badge}
             </span>
           )}
@@ -63,7 +63,7 @@ export default function ProductCard({
 
       {showAddToCart && (
         <div className="mt-auto px-3 pb-3 pt-3">
-          <div className="flex items-center justify-between border border-line mb-2">
+          <div className="flex items-center justify-between border border-line rounded-full mb-2">
             <button
               type="button"
               onClick={() => setQty((q) => Math.max(1, q - 1))}
@@ -86,7 +86,7 @@ export default function ProductCard({
           <button
             type="button"
             onClick={handleAdd}
-            className="w-full bg-ink text-white text-[13px] tracking-wide h-10 hover:bg-black transition-colors"
+            className="w-full bg-ink text-white text-[13px] tracking-wide h-10 rounded-full hover:bg-black transition-colors"
           >
             {added ? "Added ✓" : "Add to Cart"}
           </button>

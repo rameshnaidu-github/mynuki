@@ -46,8 +46,8 @@ export default function Header() {
             </svg>
           </button>
 
-          <Link to="/" className="lg:hidden font-display italic text-[19px] text-gold leading-none">
-            Dabble &amp; Dahlia
+          <Link to="/" aria-label="Dabble &amp; Dahlia — home" className="shrink-0 flex items-center">
+            <img src="/logo.svg" alt="Dabble &amp; Dahlia" className="h-9 sm:h-10 w-auto" />
           </Link>
 
           {/* centred nav (desktop) */}

@@ -29,7 +29,7 @@ export default function Home() {
           <div className="max-w-[1352px] mx-auto h-full px-[5.5%] flex items-center">
             <div
               className="w-[74%] sm:w-[52%] md:w-[41%] max-w-[545px] md:aspect-[545/742]
-                         bg-heroblock/[0.88] border-[3px] border-gold
+                         bg-heroblock/[0.88] border-[3px] border-gold rounded-[22px]
                          px-[9%] py-[8%] flex flex-col justify-center gap-[10%]"
             >
               <h1 className="font-display italic font-normal text-gold text-center leading-[1.04]
@@ -120,7 +120,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-5 sm:px-6">
           <div className="grid sm:grid-cols-3 gap-6">
             <figure>
-              <img src="/products/petal-vanity-organiser.jpg" alt="Petal vanity organiser on a dresser" className="w-full aspect-[4/3] object-cover" />
+              <img src="/products/petal-vanity-organiser.jpg" alt="Petal vanity organiser on a dresser" className="w-full aspect-[4/3] object-cover rounded-2xl" />
               <figcaption className="mt-3">
                 <span className="font-display italic text-bloom text-[19px]">Made to be used</span>
                 <p className="mt-1 text-[14px] text-inksoft leading-relaxed">
@@ -129,7 +129,7 @@ export default function Home() {
               </figcaption>
             </figure>
             <figure>
-              <img src="/products/bloom-memo-board.jpg" alt="Bloom memo board styled on a wall" className="w-full aspect-[4/3] object-cover" />
+              <img src="/products/bloom-memo-board.jpg" alt="Bloom memo board styled on a wall" className="w-full aspect-[4/3] object-cover rounded-2xl" />
               <figcaption className="mt-3">
                 <span className="font-display italic text-bloom text-[19px]">Yours, if you want it</span>
                 <p className="mt-1 text-[14px] text-inksoft leading-relaxed">
@@ -138,7 +138,7 @@ export default function Home() {
               </figcaption>
             </figure>
             <figure>
-              <img src="/products/wave-magazine-holder.jpg" alt="Wave magazine holder filled with magazines" className="w-full aspect-[4/3] object-cover" />
+              <img src="/products/wave-magazine-holder.jpg" alt="Wave magazine holder filled with magazines" className="w-full aspect-[4/3] object-cover rounded-2xl" />
               <figcaption className="mt-3">
                 <span className="font-display italic text-bloom text-[19px]">Colour, first</span>
                 <p className="mt-1 text-[14px] text-inksoft leading-relaxed">

@@ -15,7 +15,7 @@ export default function PageBand({
   eyebrow,
   title,
   blurb,
-  tone = "coral",
+  tone = "sun",
 }: {
   eyebrow?: string;
   title: string;
@@ -24,11 +24,11 @@ export default function PageBand({
 }) {
   return (
     <section className={`${tones[tone]}`}>
-      <div className="max-w-6xl mx-auto px-5 sm:px-6 py-10 md:py-14">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 py-7 md:py-9">
         {eyebrow && (
           <span className="eyebrow opacity-90">{eyebrow}</span>
         )}
-        <h1 className="font-display italic text-[34px] md:text-[46px] leading-[1.08] mt-2 text-current">
+        <h1 className="font-display italic text-[30px] md:text-[38px] leading-[1.08] mt-2 text-current">
           {title}
         </h1>
         {blurb && (

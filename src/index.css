@@ -26,8 +26,8 @@
   --color-peach: #ffe7d8;      /* orange tint */
   --color-cloud: #f4f1ed;      /* neutral tint */
   --color-sun: #f8df63;        /* products band yellow */
-  --color-navbar: #b34a20;     /* coral nav bar (deep enough for legible links) */
-  --color-heroblock: #ad3d16;  /* hero card base (used semi-transparent) */
+  --color-navbar: #e3855a;     /* coral nav bar, as per the reference */
+  --color-heroblock: #e2622f;  /* hero card base, as per the reference */
   --color-gold: #f5de8b;       /* card border, display type, button fill */
   --color-babypink: #ffd9e2;   /* hero body copy */
   --color-royal: #2c55ad;      /* Shop now label (AA on gold) */

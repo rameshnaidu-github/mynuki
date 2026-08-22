@@ -1,8 +1,6 @@
-import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { products } from "../data/catalog";
 import ProductCard from "../components/ProductCard";
-import { supabase } from "../lib/supabase";
 
 // Ordered as on the storefront: the apartment leads, then the objects.
 const FEATURED_ORDER = [
@@ -16,32 +14,7 @@ const featured = [
   ...products.filter((p) => !FEATURED_ORDER.includes(p.slug)),
 ].slice(0, 8) as typeof products;
 
-const faqs = [
-  { q: "How long does an order take?", a: "Every piece is printed to order, so allow 2–3 working days before dispatch, then 4–7 days in transit." },
-  { q: "Can I choose my own colours?", a: "Yes — that is the whole idea. Send us the piece and the palette and we'll quote you before you pay." },
-  { q: "What are the pieces made from?", a: "Plant-based PLA, printed in small batches and finished by hand in our studio." },
-  { q: "Do you take returns?", a: "Unopened pieces can come back within 7 days. If something arrives damaged we'll replace it, no fuss." },
-];
-
 export default function Home() {
-  const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [form, setForm] = useState({ first: "", last: "", email: "", message: "" });
-
-  async function onContact(e: FormEvent) {
-    e.preventDefault();
-    setSending(true);
-    if (supabase) {
-      await supabase.from("customization_requests").insert({
-        name: `${form.first} ${form.last}`.trim(),
-        email: form.email,
-        details: form.message,
-      });
-    }
-    setSending(false);
-    setSent(true);
-  }
-
   return (
     <div>
       {/* 1 · HERO — artwork with a semi-transparent orange card over it */}
@@ -65,9 +38,10 @@ export default function Home() {
               </h1>
 
               <div>
-                <p className="text-babypink text-[clamp(14px,1.25vw,16px)] leading-[1.6]">
-                  Sculptural 3D-printed objects and DIY miniature kits, designed and made
-                  in small batches. Build a little world of your own — and keep it.
+                <p className="text-babypink font-medium text-[clamp(14px,1.3vw,17px)] leading-[1.6]">
+                  Colour-drenched homeware and build-it-yourself miniature worlds. Every
+                  piece is designed in our studio, 3D-printed to order and finished by
+                  hand — so what lands on your desk is yours alone.
                 </p>
                 <Link
                   to="/shop"
@@ -176,61 +150,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 · FAQ — red band */}
-      <section className="bg-berry text-white py-16 md:py-20">
-        <div className="max-w-5xl mx-auto px-5 sm:px-6">
-          <h2 className="font-display italic text-[30px] md:text-[38px] text-white">FAQs</h2>
-          <div className="mt-7 grid md:grid-cols-2 gap-x-10 gap-y-7">
-            {faqs.map((f) => (
-              <div key={f.q}>
-                <div className="text-[15px] font-semibold">{f.q}</div>
-                <p className="mt-1.5 text-[14px] text-white/90 leading-relaxed">{f.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7 · CONTACT */}
-      <section className="bg-white py-16 md:py-20">
-        <div className="max-w-2xl mx-auto px-5 sm:px-6">
-          <h2 className="font-display italic text-bloom text-[30px] md:text-[38px]">Contact Us</h2>
-          {sent ? (
-            <p className="mt-6 text-[15px] text-inksoft">
-              Thank you — your message is with us. We'll reply by email shortly.
-            </p>
-          ) : (
-            <form onSubmit={onContact} className="mt-7 space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <label className="block">
-                  <span className="block text-[12.5px] text-bloom mb-1">First name</span>
-                  <input required value={form.first} onChange={(e) => setForm({ ...form, first: e.target.value })}
-                    className="w-full border-0 border-b border-bloom/50 focus:border-bloom outline-none py-1.5 text-[14px] bg-transparent" />
-                </label>
-                <label className="block">
-                  <span className="block text-[12.5px] text-bloom mb-1">Last name</span>
-                  <input value={form.last} onChange={(e) => setForm({ ...form, last: e.target.value })}
-                    className="w-full border-0 border-b border-bloom/50 focus:border-bloom outline-none py-1.5 text-[14px] bg-transparent" />
-                </label>
-              </div>
-              <label className="block">
-                <span className="block text-[12.5px] text-bloom mb-1">Email *</span>
-                <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full border-0 border-b border-bloom/50 focus:border-bloom outline-none py-1.5 text-[14px] bg-transparent" />
-              </label>
-              <label className="block">
-                <span className="block text-[12.5px] text-bloom mb-1">Write a message</span>
-                <textarea required rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full border-0 border-b border-bloom/50 focus:border-bloom outline-none py-1.5 text-[14px] bg-transparent resize-y" />
-              </label>
-              <button type="submit" disabled={sending}
-                className="border border-bloom text-bloom text-[13px] px-8 py-2 rounded-full hover:bg-bloom hover:text-white transition-colors disabled:opacity-60">
-                {sending ? "Sending…" : "Submit"}
-              </button>
-            </form>
-          )}
-        </div>
-      </section>
     </div>
   );
 }

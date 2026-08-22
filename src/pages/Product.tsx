@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { getProduct, getCategory, inr, familyLabels, familyPaths } from "../data/catalog";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
-import Turntable360 from "../components/Turntable360";
 
 const badgeStyle: Record<string, string> = {
   "New": "bg-peach text-flame",
@@ -69,23 +68,15 @@ export default function Product() {
       <div className="grid lg:grid-cols-2 gap-10">
         {/* gallery */}
         <div>
-          {view < views.length ? (
-            gallery.length ? (
+          {gallery.length ? (
               <div className="aspect-square rounded-3xl border border-line overflow-hidden bg-white">
                 <img src={gallery[view]} alt={`${product.name} — view ${view + 1}`} className="w-full h-full object-cover" />
               </div>
-            ) : (
-              <div
-                className="ph aspect-square rounded-3xl border border-line"
-                data-label={`${product.name} — ${views[view]}`}
-                style={{ ["--ph-a" as string]: product.tint[0], ["--ph-b" as string]: product.tint[1] }}
-              />
-            )
           ) : (
-            <Turntable360
-              label={product.name}
-              tint={product.tint}
-              frames={gallery.length >= 3 ? gallery : undefined}
+            <div
+              className="ph aspect-square rounded-3xl border border-line"
+              data-label={`${product.name} — ${views[view]}`}
+              style={{ ["--ph-a" as string]: product.tint[0], ["--ph-b" as string]: product.tint[1] }}
             />
           )}
 
@@ -106,15 +97,6 @@ export default function Product() {
                 )}
               </button>
             ))}
-            <button
-              type="button"
-              onClick={() => setView(views.length)}
-              className={`w-16 h-16 rounded-xl border text-[11px] font-semibold text-flame flex items-center justify-center ${
-                view === views.length ? "border-flame bg-peach" : "border-line bg-card"
-              }`}
-            >
-              360°
-            </button>
           </div>
         </div>
 

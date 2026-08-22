@@ -142,33 +142,36 @@ export default function Home() {
       </section>
 
       {/* 5 · GALLERY */}
-      <section className="bg-white py-16 md:py-20">
-        <div className="max-w-5xl mx-auto px-5 sm:px-6 grid md:grid-cols-2 gap-x-10 gap-y-12 items-center">
-          <img src="/products/petal-vanity-organiser.jpg" alt="Petal Vanity Organiser on a dresser" className="w-full aspect-[4/3] object-cover" />
-          <div>
-            <div className="font-display italic text-bloom text-[22px]">Made to be used</div>
-            <p className="mt-2 text-[14px] text-inksoft leading-relaxed">
-              Drawers that actually slide, trays that hold what you own. Sculptural, but
-              built for a real desk.
-            </p>
-          </div>
-
-          <div className="md:order-4">
-            <div className="font-display italic text-bloom text-[22px]">Colour, first</div>
-            <p className="mt-2 text-[14px] text-inksoft leading-relaxed">
-              We pick shades that lift a corner of a room. Nothing beige, nothing you have
-              seen a hundred times before.
-            </p>
-          </div>
-          <img src="/products/wave-magazine-holder.jpg" alt="Wave Magazine Holder holding magazines" className="w-full aspect-[4/3] object-cover md:order-3" />
-
-          <img src="/products/bloom-memo-board.jpg" alt="Bloom Memo Board styled on a wall" className="w-full aspect-[4/3] object-cover" />
-          <div>
-            <div className="font-display italic text-bloom text-[22px]">Yours, if you want it</div>
-            <p className="mt-2 text-[14px] text-inksoft leading-relaxed">
-              Every piece can be made in your palette. Tell us what you have in mind and
-              we'll quote you before you pay a rupee.
-            </p>
+      <section className="bg-white py-14 md:py-16">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6">
+          <div className="grid sm:grid-cols-3 gap-6">
+            <figure>
+              <img src="/products/petal-vanity-organiser.jpg" alt="Petal vanity organiser on a dresser" className="w-full aspect-[4/3] object-cover" />
+              <figcaption className="mt-3">
+                <span className="font-display italic text-bloom text-[19px]">Made to be used</span>
+                <p className="mt-1 text-[14px] text-inksoft leading-relaxed">
+                  Drawers that actually slide, trays that hold what you own.
+                </p>
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="/products/bloom-memo-board.jpg" alt="Bloom memo board styled on a wall" className="w-full aspect-[4/3] object-cover" />
+              <figcaption className="mt-3">
+                <span className="font-display italic text-bloom text-[19px]">Yours, if you want it</span>
+                <p className="mt-1 text-[14px] text-inksoft leading-relaxed">
+                  Every piece can be made in your palette — we quote before you pay.
+                </p>
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="/products/wave-magazine-holder.jpg" alt="Wave magazine holder filled with magazines" className="w-full aspect-[4/3] object-cover" />
+              <figcaption className="mt-3">
+                <span className="font-display italic text-bloom text-[19px]">Colour, first</span>
+                <p className="mt-1 text-[14px] text-inksoft leading-relaxed">
+                  Shades picked to lift a corner of a room. Nothing beige.
+                </p>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>

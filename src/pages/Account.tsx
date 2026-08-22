@@ -89,10 +89,14 @@ export default function Account() {
               <li key={p!.slug}>
                 <Link to={`/product/${p!.slug}`} className="flex items-center gap-3 bg-card border border-line rounded-2xl p-3 hover:border-flame">
                   <span
-                    className="ph w-14 h-14 rounded-lg shrink-0"
+                    className={`w-14 h-14 rounded-lg shrink-0 overflow-hidden block ${p!.image ? "" : "ph"}`}
                     data-label=""
                     style={{ ["--ph-a" as string]: p!.tint[0], ["--ph-b" as string]: p!.tint[1] }}
-                  />
+                  >
+                    {p!.image && (
+                      <img src={p!.image} alt="" className="w-full h-full object-cover" />
+                    )}
+                  </span>
                   <span className="min-w-0">
                     <span className="block text-sm font-medium text-ink truncate">{p!.name}</span>
                     <span className="block text-sm text-inksoft tabular-nums">{inr(p!.price)}</span>

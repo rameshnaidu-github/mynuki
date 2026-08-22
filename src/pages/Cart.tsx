@@ -31,10 +31,14 @@ export default function Cart() {
             <li key={product.slug} className="py-5 flex gap-4">
               <Link
                 to={`/product/${product.slug}`}
-                className="ph w-24 h-24 rounded-xl border border-line shrink-0"
+                className={`w-24 h-24 rounded-xl border border-line shrink-0 overflow-hidden block ${product.image ? "" : "ph"}`}
                 data-label=""
                 style={{ ["--ph-a" as string]: product.tint[0], ["--ph-b" as string]: product.tint[1] }}
-              />
+              >
+                {product.image && (
+                  <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                )}
+              </Link>
               <div className="flex-1 min-w-0">
                 <div className="flex justify-between gap-3">
                   <Link to={`/product/${product.slug}`} className="font-medium text-ink hover:text-flame">

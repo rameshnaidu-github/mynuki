@@ -15,7 +15,9 @@ export default function ProductCard({
   const { add } = useCart();
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
   const liked = has(p.slug);
+  const showImage = Boolean(p.image) && !imgFailed;
 
   function handleAdd() {
     add(p.slug, qty);
@@ -39,12 +41,18 @@ export default function ProductCard({
 
       <Link to={`/product/${p.slug}`} className="block">
         <div
-          className={`relative aspect-square overflow-hidden ${p.image ? "" : "ph"}`}
-          data-label={p.image ? undefined : p.name}
+          className={`relative aspect-square overflow-hidden ${showImage ? "" : "ph"}`}
+          data-label={showImage ? undefined : p.name}
           style={{ ["--ph-a" as string]: p.tint[0], ["--ph-b" as string]: p.tint[1] }}
         >
-          {p.image && (
-            <img src={p.image} alt={p.name} loading="lazy" className="w-full h-full object-cover" />
+          {showImage && (
+            <img
+              src={p.image}
+              alt={p.name}
+              loading="lazy"
+              onError={() => setImgFailed(true)}
+              className="w-full h-full object-cover"
+            />
           )}
           {p.badge && (
             <span className="absolute top-2.5 left-2.5 bg-ink text-white text-[10.5px] font-semibold tracking-wide px-3 py-1 rounded-full">

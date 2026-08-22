@@ -107,6 +107,18 @@ export const products: Product[] = [
 
 
   // ── DIY Kits ─────────────────────────────────────────────────────────────
+  { slug: "the-office-kit", name: "The Office Series – DIY Miniature Kit", price: 2999, compareAt: 3999, category: "miniature-kits", badge: "Best Seller", tint: MINT,
+    image: "/products/the-office-kit.jpg",
+    images: [
+      "/products/the-office-kit.jpg",
+      "/products/the-office-kit-night.jpg",
+      "/products/the-office-kit-size.jpg",
+      "/products/the-office-kit-box.jpg",
+      "/products/the-office-kit-parts.jpg",
+    ],
+    blurb: "Recreate the Dunder Mifflin Scranton office exterior — a tribute to your favourite workplace.",
+    description: "Everything arrives in one box: precision laser-cut eco-friendly MDF, window glazing, the Scranton Business Park sign, tree and shrub landscaping, gravel and stone, warm LED lighting with wiring and a battery box, tools, and a step-by-step instruction manual. The finished model measures 24 × 18 × 11.5 cm (9.45 × 7.1 × 4.5 in).",
+    specs: [{ label: "Pieces", value: "280" }, { label: "Level", value: "Moderate" }, { label: "Ages", value: "14+" }] },
   { slug: "purple-door-apartment", name: "Purple Door Apartment", price: 3499, compareAt: 4999, category: "miniature-kits", badge: "New", tint: LILAC,
     image: "/products/purple-door-apartment.jpg",
     images: [

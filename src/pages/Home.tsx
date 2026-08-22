@@ -17,18 +17,18 @@ const featured = [
 export default function Home() {
   return (
     <div>
-      {/* 1 · HERO — artwork with a semi-transparent orange card over it */}
-      <section className="relative">
+      {/* 1 · HERO — fills the screen below the nav, so nothing else shows until you scroll */}
+      <section className="relative h-[calc(100svh-52px)] min-h-[560px] overflow-hidden">
         <img
           src="/hero-art.jpg"
           alt="A miniature house set in a painted, Van Gogh-style landscape, captioned: God sends us pieces of art so that we may see ourselves in them"
-          className="w-full h-[520px] sm:h-[680px] md:h-[820px] object-cover object-[72%_top]"
+          className="absolute inset-0 w-full h-full object-cover object-[72%_top]"
         />
 
         <div className="absolute inset-0">
           <div className="max-w-[1352px] mx-auto h-full px-[5.5%] flex items-center">
             <div
-              className="w-[74%] sm:w-[52%] md:w-[41%] max-w-[545px] md:aspect-[545/742]
+              className="w-[74%] sm:w-[52%] md:w-[41%] max-w-[545px] md:aspect-[545/742] max-h-[calc(100svh-120px)]
                          bg-heroblock/[0.88] border-[3px] border-gold rounded-[22px]
                          px-[9%] py-[8%] flex flex-col justify-center gap-[10%]"
             >

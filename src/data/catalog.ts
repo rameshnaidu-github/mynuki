@@ -107,6 +107,18 @@ export const products: Product[] = [
 
 
   // ── DIY Kits ─────────────────────────────────────────────────────────────
+  { slug: "fallingwater-kit", name: "Fallingwater House – DIY Miniature Kit", price: 2499, compareAt: 3999, category: "miniature-kits", badge: "Sale", tint: MINT,
+    image: "/products/fallingwater-kit.jpg",
+    images: [
+      "/products/fallingwater-kit.jpg",
+      "/products/fallingwater-kit-night.jpg",
+      "/products/fallingwater-kit-box.jpg",
+      "/products/fallingwater-kit-parts.jpg",
+      "/products/fallingwater-kit-sheets.jpg",
+    ],
+    blurb: "Build an architectural masterpiece in miniature — a relaxing, rewarding evening's work.",
+    description: "Eight laser-cut sheets of 3 mm MDF (210 × 148 mm) assemble by tab and slot into the cantilevered terraces and stone chimney. The kit includes window frames and railings, moulded acrylic for the waterfall and pool, rocks, pebbles and moss, trees and shrubs, a USB LED light string so the model glows after dark, a brass nameplate and a full illustrated assembly manual.",
+    specs: [{ label: "Pieces", value: "290" }, { label: "Level", value: "Advanced" }, { label: "Ages", value: "14+" }] },
   { slug: "the-office-kit", name: "The Office Series – DIY Miniature Kit", price: 2999, compareAt: 3999, category: "miniature-kits", badge: "Best Seller", tint: MINT,
     image: "/products/the-office-kit.jpg",
     images: [

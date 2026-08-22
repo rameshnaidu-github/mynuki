@@ -49,7 +49,7 @@ export default function Support() {
         <h2 className="text-2xl">Contact</h2>
         <div className="mt-3 bg-peach rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4">
           <div className="text-inksoft font-light">
-            Still need a hand? Email <a href="mailto:hello@dabbleanddahlia.example" className="text-flame font-medium">hello@dabbleanddahlia.example</a> — or send us your idea.
+            Still need a hand? Email <a href="mailto:hello@dabbledanddahlia.online" className="text-flame font-medium">hello@dabbledanddahlia.online</a> — or send us your idea.
           </div>
           <Link to="/customize" className="btn-primary shrink-0">Make It Yours</Link>
         </div>

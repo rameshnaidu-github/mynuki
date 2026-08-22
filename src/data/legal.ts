@@ -1,6 +1,5 @@
-// Policy copy for Dabble & Dahlia. NOT legal advice: have these reviewed, and add
-// these reviewed before taking live payments — Razorpay checks these pages
-// during activation.
+// Policy copy for Dabble & Dahlia. NOT legal advice — have these reviewed before
+// taking live payments. Razorpay checks these pages during activation.
 
 export interface LegalSection {
   h: string;

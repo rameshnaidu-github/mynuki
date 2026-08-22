@@ -16,14 +16,9 @@ export default function Legal() {
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-14 md:py-20">
-      <span className="eyebrow">Policies</span>
-      <h1 className="text-4xl md:text-5xl mt-3">{doc.title}</h1>
+      <span className="eyebrow text-flame">Policies</span>
+      <h1 className="font-display italic text-flame text-[34px] md:text-[42px] mt-2">{doc.title}</h1>
       <p className="text-sm text-muted mt-2">Last updated {doc.updated}</p>
-
-      <div className="mt-4 text-xs bg-peach/70 text-flamedeep rounded-xl px-4 py-3">
-        Template — replace bracketed details with your business information and have it
-        reviewed before you go live.
-      </div>
 
       <p className="mt-8 text-inksoft font-light leading-relaxed">{doc.intro}</p>
 

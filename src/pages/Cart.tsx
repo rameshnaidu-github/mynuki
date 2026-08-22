@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PageBand from "../components/PageBand";
 import { useCart } from "../context/CartContext";
 import { inr } from "../data/catalog";
 import { buildLines, summarize, SHIPPING_FREE_OVER } from "../lib/cart";
@@ -21,8 +22,9 @@ export default function Cart() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
-      <h1 className="text-4xl md:text-5xl">Your cart</h1>
+    <div>
+      <PageBand title="Your cart" />
+      <div className="max-w-5xl mx-auto px-6 py-10">
 
       <div className="mt-10 grid lg:grid-cols-[1fr_320px] gap-10 items-start">
         {/* line items */}
@@ -105,6 +107,7 @@ export default function Cart() {
             Continue shopping
           </Link>
         </aside>
+      </div>
       </div>
     </div>
   );

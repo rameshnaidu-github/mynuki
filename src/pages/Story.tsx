@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PageBand from "../components/PageBand";
 
 const values = [
   { title: "Made to be made", body: "Every kit is designed for the pleasure of building it — clear steps, forgiving fit, and a few quiet hours well spent." },
@@ -9,9 +10,8 @@ const values = [
 export default function Story() {
   return (
     <div>
-      <section className="max-w-3xl mx-auto px-6 pt-16 md:pt-24 pb-8 text-center">
-        <span className="eyebrow">Our Story</span>
-        <h1 className="text-4xl md:text-6xl mt-3">Objects worth making</h1>
+      <PageBand eyebrow="Our Story" title="Design Your Own World" />
+      <section className="max-w-3xl mx-auto px-6 pt-12 pb-8 text-center">
         <p className="mt-6 text-inksoft font-light text-lg leading-relaxed">
           Dabble & Dahlia began with a simple pleasure — the quiet focus of making something small
           and complete with your own two hands. A miniature shop that lights up. A candle

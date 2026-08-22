@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PageBand from "../components/PageBand";
 
 const faqs = [
   { q: "Do I need any tools or experience?", a: "No experience needed — each kit includes the tools and glue you need, plus an illustrated step-by-step manual. Most kits are beginner-friendly; the product page notes the level." },
@@ -9,12 +10,10 @@ const faqs = [
 
 export default function Support() {
   return (
-    <div className="max-w-3xl mx-auto px-6 py-14 md:py-20">
-      <header className="text-center">
-        <span className="eyebrow">Help &amp; Support</span>
-        <h1 className="text-4xl md:text-5xl mt-3">We’re here to help</h1>
-        <p className="mt-4 text-inksoft font-light">Shipping, returns and the questions we hear most.</p>
-      </header>
+    <div>
+      <PageBand eyebrow="Help & Support" title="We’re here to help" blurb="Shipping, returns and the questions we hear most." tone="sun" />
+      <div className="max-w-3xl mx-auto px-6 py-12">
+
 
       <section id="shipping" className="mt-12 scroll-mt-24">
         <h2 className="text-2xl">Shipping</h2>
@@ -55,6 +54,7 @@ export default function Support() {
           <Link to="/customize" className="btn-primary shrink-0">Make It Yours</Link>
         </div>
       </section>
+      </div>
     </div>
   );
 }

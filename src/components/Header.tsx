@@ -60,7 +60,7 @@ export default function Header() {
                   end={n.end}
                   className={({ isActive }) =>
                     `font-display italic text-[17px] transition-colors ${
-                      isActive ? "text-white" : "text-gold hover:text-white"
+                      isActive ? "text-white" : "text-cream hover:text-white"
                     }`
                   }
                 >

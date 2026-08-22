@@ -82,7 +82,11 @@ export default function Product() {
               />
             )
           ) : (
-            <Turntable360 label={product.name} tint={product.tint} />
+            <Turntable360
+              label={product.name}
+              tint={product.tint}
+              frames={gallery.length >= 3 ? gallery : undefined}
+            />
           )}
 
           {/* thumbnails + 360 tab */}

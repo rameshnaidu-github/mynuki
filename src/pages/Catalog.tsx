@@ -13,6 +13,7 @@ import {
   type SortKey,
 } from "../data/catalog";
 import ProductCard from "../components/ProductCard";
+import PageBand from "../components/PageBand";
 
 const sortOptions: { value: SortKey; label: string }[] = [
   { value: "featured", label: "Featured" },
@@ -25,14 +26,21 @@ export default function Catalog({ family }: { family?: Family }) {
   const [params, setParams] = useSearchParams();
   const activeCategory = params.get("category") ?? undefined;
   const sort = (params.get("sort") as SortKey) || "featured";
+  const query = params.get("q") ?? "";
 
   // Categories to offer as filter chips.
   const chipCats = family ? categoriesInFamily(family) : categories;
 
   const results = useMemo(() => {
-    const list = filterProducts({ family, category: activeCategory });
+    let list = filterProducts({ family, category: activeCategory });
+    const q = query.trim().toLowerCase();
+    if (q) {
+      list = list.filter((p) =>
+        (p.name + " " + p.blurb).toLowerCase().includes(q)
+      );
+    }
     return sortProducts(list, sort);
-  }, [family, activeCategory, sort]);
+  }, [family, activeCategory, sort, query]);
 
   const activeCat = activeCategory ? getCategory(activeCategory) : undefined;
   const title = activeCat ? activeCat.name : family ? familyLabels[family] : "Shop All";
@@ -52,7 +60,13 @@ export default function Catalog({ family }: { family?: Family }) {
   const basePath = family ? familyPaths[family] : "/shop";
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
+    <div>
+      <PageBand
+        eyebrow={family ? familyLabels[family] : "Shop"}
+        title={title}
+        blurb={blurb}
+      />
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 pb-14 pt-8">
       {/* breadcrumb */}
       <nav className="text-xs text-muted mb-4" aria-label="Breadcrumb">
         <Link to="/" className="hover:text-flame">Home</Link>
@@ -68,14 +82,24 @@ export default function Catalog({ family }: { family?: Family }) {
         )}
       </nav>
 
-      <header>
-        <span className="eyebrow">{family ? familyLabels[family] : "Shop"}</span>
-        <h1 className="text-4xl md:text-5xl mt-2">{title}</h1>
-        <p className="mt-3 text-inksoft font-light max-w-2xl">{blurb}</p>
-      </header>
+      {/* search */}
+      <label className="block relative max-w-md">
+        <span className="sr-only">Search products</span>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+             className="absolute left-3 top-1/2 -translate-y-1/2 text-muted">
+          <circle cx="11" cy="11" r="7" /><path d="M20 20l-3.2-3.2" strokeLinecap="round" />
+        </svg>
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setParam("q", e.target.value || undefined)}
+          placeholder="Search products"
+          className="input !pl-10"
+        />
+      </label>
 
       {/* category chips */}
-      <div className="mt-8 flex flex-wrap gap-2">
+      <div className="mt-6 flex flex-wrap gap-2">
         <Chip active={!activeCategory} onClick={() => setParam("category", undefined)}>
           All
         </Chip>
@@ -113,12 +137,24 @@ export default function Catalog({ family }: { family?: Family }) {
       {results.length > 0 ? (
         <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8">
           {results.map((p) => (
-            <ProductCard key={p.slug} p={p} />
+            <ProductCard key={p.slug} p={p} showAddToCart />
           ))}
         </div>
       ) : (
-        <p className="mt-16 text-center text-inksoft">Nothing here yet — check back soon.</p>
+        <div className="mt-16 text-center text-inksoft">
+          {query ? (
+            <>
+              <p>No products match “{query}”.</p>
+              <button type="button" onClick={() => setParam("q", undefined)} className="btn-outline mt-4">
+                Clear search
+              </button>
+            </>
+          ) : (
+            <p>Nothing here yet — check back soon.</p>
+          )}
+        </div>
       )}
+      </div>
     </div>
   );
 }

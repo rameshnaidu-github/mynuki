@@ -65,7 +65,7 @@ export default function Home() {
               </h1>
 
               <div>
-                <p className="text-violet text-[clamp(12px,1.15vw,15px)] leading-[1.55]">
+                <p className="text-babypink text-[clamp(14px,1.25vw,16px)] leading-[1.6]">
                   Sculptural 3D-printed objects and DIY miniature kits, designed and made
                   in small batches. Build a little world of your own — and keep it.
                 </p>
@@ -86,7 +86,7 @@ export default function Home() {
       {/* 2 · YELLOW BAND */}
       <section className="bg-sun">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 py-6 flex items-center justify-between gap-4">
-          <h2 className="font-display italic text-flame text-[26px] sm:text-[32px]">Loved by Makers</h2>
+          <h2 className="font-display italic text-[#a83c12] text-[26px] sm:text-[32px]">Loved by Makers</h2>
           <Link
             to="/shop"
             className="bg-flame text-white text-[12.5px] px-6 py-2.5 rounded-full hover:bg-flamedeep transition-colors shrink-0"

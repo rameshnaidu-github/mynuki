@@ -7,17 +7,17 @@
 --------------------------------------------------------------------------- */
 @theme {
   /* brand */
-  --color-flame: #e8622a;      /* product names, section headings */
+  --color-flame: #c24a18;      /* product names, section headings (AA on white) */
   --color-flamedeep: #dd6a12;  /* tangerine pressed/hover */
   --color-bloom: #ff35a5;      /* hot pink — footer, contact heading */
   --color-bloomdeep: #e02185;  /* pink pressed/hover */
-  --color-berry: #ee2b22;      /* red band */
+  --color-berry: #d01f16;      /* sale price + red band (AA on white) */
 
   /* neutrals */
   --color-ink: #141414;        /* text + buttons */
   --color-inksoft: #4a4a4a;    /* secondary text */
   --color-muted: #8a8580;      /* captions */
-  --color-paper: #ffffff;      /* page ground */
+  --color-paper: #fffaf4;      /* warm page ground */
   --color-card: #ffffff;       /* card face */
   --color-line: #eae3dc;       /* hairline */
 
@@ -26,12 +26,12 @@
   --color-peach: #ffe7d8;      /* orange tint */
   --color-cloud: #f4f1ed;      /* neutral tint */
   --color-sun: #f8df63;        /* products band yellow */
-  --color-navbar: #e3855a;     /* coral nav bar */
-  --color-heroblock: #e2622f;  /* hero card base (used semi-transparent) */
+  --color-navbar: #b34a20;     /* coral nav bar (deep enough for legible links) */
+  --color-heroblock: #ad3d16;  /* hero card base (used semi-transparent) */
   --color-gold: #f5de8b;       /* card border, display type, button fill */
-  --color-violet: #b565d8;     /* hero body copy */
-  --color-royal: #3b6fd4;      /* Shop now label */
-  --color-cream: #fbebc6;      /* cream display type on orange */
+  --color-babypink: #ffd9e2;   /* hero body copy */
+  --color-royal: #2c55ad;      /* Shop now label (AA on gold) */
+  --color-cream: #fff4e0;      /* cream display type / nav links */
 
   --font-display: "DM Serif Display", "Iowan Old Style", Georgia, serif;
   --font-sans: "DM Sans", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;

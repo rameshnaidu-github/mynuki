@@ -63,26 +63,25 @@ export default function ProductCard({
 
       {showAddToCart && (
         <div className="mt-auto px-3 pb-3 pt-3">
-          <div className="flex items-center justify-between border border-line px-2 h-9 mb-2">
-            <span className="text-[13px] tabular-nums px-1">{qty}</span>
-            <span className="flex flex-col">
-              <button
-                type="button"
-                onClick={() => setQty((q) => q + 1)}
-                aria-label={`Increase ${p.name} quantity`}
-                className="h-4 px-1 text-[9px] leading-none text-inksoft hover:text-ink"
-              >
-                ▲
-              </button>
-              <button
-                type="button"
-                onClick={() => setQty((q) => Math.max(1, q - 1))}
-                aria-label={`Decrease ${p.name} quantity`}
-                className="h-4 px-1 text-[9px] leading-none text-inksoft hover:text-ink"
-              >
-                ▼
-              </button>
-            </span>
+          <div className="flex items-center justify-between border border-line mb-2">
+            <button
+              type="button"
+              onClick={() => setQty((q) => Math.max(1, q - 1))}
+              aria-label={`Decrease ${p.name} quantity`}
+              className="w-11 h-11 flex items-center justify-center text-[18px] leading-none text-inksoft hover:text-ink disabled:opacity-40"
+              disabled={qty <= 1}
+            >
+              −
+            </button>
+            <span className="text-[14px] tabular-nums" aria-live="polite">{qty}</span>
+            <button
+              type="button"
+              onClick={() => setQty((q) => q + 1)}
+              aria-label={`Increase ${p.name} quantity`}
+              className="w-11 h-11 flex items-center justify-center text-[18px] leading-none text-inksoft hover:text-ink"
+            >
+              +
+            </button>
           </div>
           <button
             type="button"

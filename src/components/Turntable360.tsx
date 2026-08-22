@@ -43,8 +43,8 @@ export default function Turntable360({ frames, tint = ["#ffd6e8", "#ffab7a"], la
 
   const cursor = dragging ? "grabbing" : "grab";
   const hint = (
-    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs text-flame/70 bg-paper/80 rounded-full px-3 py-1 pointer-events-none">
-      ↔ Drag to rotate
+    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs text-flame bg-paper/90 rounded-full px-3 py-1 pointer-events-none">
+      {hasFrames ? "↔ Drag to flip through views" : "↔ Drag to rotate"}
     </div>
   );
 

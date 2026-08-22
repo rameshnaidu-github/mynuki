@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
+import PageBand from "../components/PageBand";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { categories } from "../data/catalog";
@@ -79,15 +80,10 @@ export default function Customize() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-14 md:py-20">
-      <div className="text-center">
-        <span className="eyebrow">Make It Yours</span>
-        <h1 className="text-4xl md:text-5xl mt-3">Request a custom kit</h1>
-        <p className="mt-4 text-inksoft font-light max-w-lg mx-auto">
-          Tell us what you have in mind — a colourway, a scene, a personal detail — and
-          we’ll put together a bespoke build and quote you back.
-        </p>
-      </div>
+    <div>
+      <PageBand eyebrow="Make It Yours" title="Request a custom piece" blurb="Tell us the piece, the palette and the occasion — we’ll design it, print it and quote you before you pay." />
+      <div className="max-w-2xl mx-auto px-6 py-12">
+
 
       <form onSubmit={onSubmit} className="mt-10 bg-card border border-line rounded-2xl p-7 space-y-5">
         <div className="grid sm:grid-cols-2 gap-5">
@@ -134,6 +130,7 @@ export default function Customize() {
         </button>
         <p className="text-xs text-muted text-center">No payment now — we’ll email you a quote first.</p>
       </form>
+      </div>
     </div>
   );
 }

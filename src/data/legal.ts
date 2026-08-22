@@ -1,6 +1,6 @@
-// Starter legal templates for Dabble & Dahlia. These are NOT legal advice — replace the
-// [bracketed] details with your real business information and have them reviewed
-// before launch. Razorpay activation checks that these pages are publicly live.
+// Policy copy for Dabble & Dahlia. NOT legal advice: have these reviewed, and add
+// the registered entity name and address before taking live payments — Razorpay
+// checks these pages during activation.
 
 export interface LegalSection {
   h: string;
@@ -14,19 +14,17 @@ export interface LegalDoc {
   sections: LegalSection[];
 }
 
-const CONTACT = "hello@dabbleanddahlia.example";
-const BIZ = "[Your Registered Business Name]";
-const ADDR = "[Registered address, City, State, PIN]";
+const CONTACT = "hello@dabbleanddahlia.com";
 
 export const legalDocs: Record<string, LegalDoc> = {
   terms: {
     slug: "terms",
     title: "Terms & Conditions",
     updated: "August 2026",
-    intro: `These terms govern your use of the Dabble & Dahlia website and your purchase of our products. By using the site or placing an order, you agree to them. Dabble & Dahlia is operated by ${BIZ}, ${ADDR}.`,
+    intro: `These terms govern your use of the Dabble & Dahlia website and your purchase of our products. By using the site or placing an order, you agree to them.`,
     sections: [
       { h: "Products & orders", body: [
-        "Our products are DIY craft and miniature build-kits. Product images are illustrative; small variation in colour and finish is normal for handmade items.",
+        "We sell 3D-printed homeware and DIY miniature kits. Product images are illustrative; small variation in colour and finish is normal for pieces printed and finished by hand.",
         "An order is confirmed only after successful payment. We may decline or cancel an order (with a full refund) if an item is unavailable or a pricing error occurs.",
       ]},
       { h: "Pricing & payment", body: [
@@ -36,7 +34,7 @@ export const legalDocs: Record<string, LegalDoc> = {
         "You agree not to misuse the site, attempt to disrupt it, or submit false information. Accounts are for your personal use.",
       ]},
       { h: "Liability", body: [
-        "Our kits include small parts and are intended for ages 14+ unless stated. To the extent permitted by law, Dabble & Dahlia is not liable for indirect or incidental losses arising from use of the products or site.",
+        "Our kits include small parts and are intended for ages 14+ unless stated otherwise on the product page. To the extent permitted by law, Dabble & Dahlia is not liable for indirect or incidental losses arising from use of the products or site.",
       ]},
       { h: "Contact", body: [ `Questions about these terms? Email ${CONTACT}.` ]},
     ],
@@ -46,7 +44,7 @@ export const legalDocs: Record<string, LegalDoc> = {
     slug: "privacy",
     title: "Privacy Policy",
     updated: "August 2026",
-    intro: `This policy explains what personal data Dabble & Dahlia (${BIZ}) collects and how we use it. We collect only what we need to run the shop.`,
+    intro: `This policy explains what personal data Dabble & Dahlia collects and how we use it. We collect only what we need to run the shop.`,
     sections: [
       { h: "What we collect", body: [
         "Account details (name, email) when you register; shipping details and order history when you buy; and any information you send us through forms.",
@@ -77,10 +75,10 @@ export const legalDocs: Record<string, LegalDoc> = {
         "You can cancel an order before it is dispatched for a full refund — email us as soon as possible with your order number.",
       ]},
       { h: "Returns", body: [
-        "Unopened kits can be returned within 7 days of delivery for a full refund. For hygiene and quality reasons, opened or partially built kits are not returnable unless faulty.",
+        "Unopened items can be returned within 7 days of delivery for a full refund. Because each piece is printed to order, opened or partially built kits are not returnable unless faulty.",
       ]},
       { h: "Damaged or missing parts", body: [
-        `If a kit arrives damaged or with a missing part, email ${CONTACT} within 7 days with your order number and a photo, and we'll send a replacement or refund.`,
+        `If an order arrives damaged or with a part missing, email ${CONTACT} within 7 days with your order number and a photo, and we'll send a replacement or refund.`,
       ]},
       { h: "Refund timing", body: [
         "Approved refunds are issued to your original payment method via Razorpay, typically within 5–7 business days.",

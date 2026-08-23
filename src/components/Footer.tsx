@@ -6,7 +6,7 @@ const columns = [
     links: [
       { label: "Shop All", to: "/shop" },
       { label: "3D Objects", to: "/objects" },
-      { label: "DIY Kits", to: "/kits" },
+      { label: "DIY Miniature Kits", to: "/kits" },
       { label: "New Arrivals", to: "/shop" },
     ],
   },

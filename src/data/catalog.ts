@@ -38,7 +38,7 @@ export interface Product {
 
 export const familyLabels: Record<Family, string> = {
   objects: "3D Objects",
-  kits: "DIY Kits",
+  kits: "DIY Miniature Kits",
 };
 
 export const familyPaths: Record<Family, string> = {

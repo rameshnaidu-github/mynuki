@@ -60,7 +60,13 @@ export default function Home() {
       </section>
 
       {/* 2 · SHOP BY FAMILY */}
-      <section className="bg-paper py-12 md:py-16">
+      <section
+        className="py-12 md:py-16"
+        style={{
+          background:
+            "linear-gradient(100deg, #fff4f9 0%, #ffdfee 32%, #ffe2d2 68%, #fff1cc 100%)",
+        }}
+      >
         <div className="max-w-6xl mx-auto px-5 sm:px-6">
           <h2 className="font-display italic text-flame text-[28px] md:text-[34px] text-center">
             Two ways to make a world
@@ -107,8 +113,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3 · YELLOW BAND */}
-      <section className="bg-sun">
+      {/* 3 · LOVED BY MAKERS + ALL PRODUCTS — one unbroken mid-tone band */}
+      <section
+        className="pb-10"
+        style={{
+          background:
+            "linear-gradient(100deg, #ffe6f2 0%, #ffc6de 32%, #ffcdae 68%, #ffe6a2 100%)",
+        }}
+      >
         <div className="max-w-6xl mx-auto px-5 sm:px-6 py-6 flex items-center justify-between gap-4">
           <h2 className="font-display italic text-[#a83c12] text-[26px] sm:text-[32px]">Loved by Makers</h2>
           <Link
@@ -118,10 +130,7 @@ export default function Home() {
             Order Now
           </Link>
         </div>
-      </section>
 
-      {/* 4 · ALL PRODUCTS */}
-      <section className="bg-sun/95 pb-10">
         <div className="max-w-6xl mx-auto px-5 sm:px-6">
           <h3 className="font-display italic text-[22px] text-ink pb-4">All Products</h3>
           <div className="flex gap-4 overflow-x-auto pb-3 -mx-1 px-1 snap-x">

@@ -62,7 +62,8 @@ export default function Catalog({ family }: { family?: Family }) {
   return (
     <div>
       <PageBand
-        eyebrow={family ? familyLabels[family] : "Shop"}
+        // the family already reads as the title, so only show it above a category
+        eyebrow={activeCat && family ? familyLabels[family] : "Shop"}
         title={title}
         blurb={blurb}
       />

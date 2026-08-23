@@ -136,7 +136,7 @@ export default function Catalog({ family }: { family?: Family }) {
 
       {/* grid */}
       {results.length > 0 ? (
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8">
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-8">
           {results.map((p) => (
             <ProductCard key={p.slug} p={p} showAddToCart />
           ))}

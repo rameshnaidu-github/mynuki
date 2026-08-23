@@ -128,6 +128,26 @@ export const products: Product[] = [
   { slug: "coral-bloom-floor-lamp", name: "Coral Bloom – Sculptural Floor Lamp", price: 3499, compareAt: 3999, category: "lighting", tint: PINK, image: "/products/coral-bloom-floor-lamp.jpg", blurb: "A floor-standing coral form, lit from inside at every opening.", description: LAMP_DESC, specs: lampSpecs("Magenta · coral · cobalt", "Floor lamp") },
 
   // ── DIY Kits ─────────────────────────────────────────────────────────────
+  { slug: "a-frame-house", name: "A-Frame House", price: 4499, category: "miniature-kits", badge: "New", tint: YELLOW,
+    image: "/products/a-frame-house.jpg",
+    images: [
+      "/products/a-frame-house.jpg",
+      "/products/a-frame-house-lit.jpg",
+      "/products/a-frame-house-contents.jpg",
+      "/products/a-frame-house-box.jpg",
+      "/products/a-frame-house-parts.jpg",
+    ],
+    blurb: "An alpine cabin under one great glass gable — two floors, a loft ladder, a balcony and warm light through every window.",
+    description: "Our largest and most involved kit. The whole front of the cabin is glazed, so everything you build inside stays on show: a ground floor with sofa, dining table and kitchen run, a ladder up to a loft bedroom, a railed balcony, and shelves you fill with tiny books and frames. Everything arrives in one box — precision laser-cut MDF, clear glazing, cladding strips, the full furniture set, textiles and plants, a warm LED string with battery box, tools, glue and a step-by-step guide. The finished cabin measures 21.5 × 27.5 × 28.5 cm.",
+    specs: [
+      { label: "Pieces", value: "450" },
+      { label: "Finished size", value: "21.5 × 27.5 × 28.5 cm" },
+      { label: "Material", value: "Laser-cut MDF" },
+      { label: "Build time", value: "10–14 hours" },
+      { label: "Lighting", value: "Warm LED string" },
+      { label: "Level", value: "Advanced" },
+      { label: "Ages", value: "14+" },
+    ] },
   { slug: "fallingwater-kit", name: "Fallingwater House – DIY Miniature Kit", price: 2499, compareAt: 3999, category: "miniature-kits", badge: "Sale", tint: MINT,
     image: "/products/fallingwater-kit.jpg",
     images: [
@@ -204,6 +224,22 @@ export const products: Product[] = [
       { label: "Level", value: "Moderate" },
       { label: "Ages", value: "14+" },
     ] },
+  { slug: "scallop-file-holder", name: "Scallop Stack – Magazine & File Holder", price: 1499, category: "desk-office", badge: "New", tint: PINK, image: "/products/scallop-file-holder.jpg", blurb: "Cloud-topped walls in two heights, so the magazines lean instead of slump.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Pink · orange bloom" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "cloud-key-rack", name: "Cloud Nine – Wall Key Rack", price: 999, category: "wall", badge: "New", tint: ORANGE, image: "/products/cloud-key-rack.jpg", blurb: "An orange cloud with three fat pegs — keys, a tote, the dog lead.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Orange · pink · green · cream" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "dome-jewellery-tower", name: "Domecap – Round Jewellery Tower", price: 1899, category: "vanity-storage", badge: "New", tint: PINK, image: "/products/dome-jewellery-tower.jpg", blurb: "A scalloped pink dome lifts off three deep round drawers.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Pink dome · orange body" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "ripple-vanity-tray", name: "Ripple – Ribbed Vanity Tray", price: 1299, category: "vanity-storage", badge: "New", tint: MINT, image: "/products/ripple-vanity-tray.jpg", blurb: "A wavy ribbed dish on four pink feet, for scent and everyday small things.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Green · pink feet" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "pegboard-shelf-set", name: "Pegplay – Pegboard & Shelf Set", price: 1699, category: "wall", badge: "New", tint: BLUE, image: "/products/pegboard-shelf-set.jpg", blurb: "A deep blue board, a handful of colour-pop pegs and one little shelf.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Navy · multicolour pegs" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "cordwave-pencil-case", name: "Cordwave – Zip Pencil Case", price: 1099, category: "desk-office", badge: "New", tint: LILAC, image: "/products/cordwave-pencil-case.jpg", blurb: "A corduroy-ribbed shell with a chunky orange zip and a flower pull.", description: OBJ_DESC, specs: [{ label: "Material", value: "Flexible TPU" }, { label: "Finish", value: "Lilac · orange zip" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "peony-jewellery-box", name: "Peony Keep – Flower Jewellery Box", price: 1799, category: "vanity-storage", badge: "New", tint: PINK, image: "/products/peony-jewellery-box.jpg", blurb: "A full peony blooms across the lid; the whole flower lifts to open.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Pink · rose · lilac clasp" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "ruffle-photo-frame", name: "Ruffle – 4 × 6 Photo Frame", price: 1199, category: "frames", badge: "New", tint: LILAC, image: "/products/ruffle-photo-frame.jpg", blurb: "Pearly lilac petals ruffle out around a slim gold inner edge.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Fits", value: "4 × 6 in photo" }, { label: "Finish", value: "Lilac pearl · gold" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "poppy-photo-frame", name: "Poppy – Flower Photo Frame", price: 1199, category: "frames", badge: "New", tint: PINK, image: "/products/poppy-photo-frame.jpg", blurb: "An open poppy in blush pink, with the photo set into its centre.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Fits", value: "4 × 6 in photo" }, { label: "Finish", value: "Blush pink · gold" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "shell-photo-frame", name: "Shell – Oval Photo Frame", price: 1349, category: "frames", badge: "New", tint: LILAC, image: "/products/shell-photo-frame.jpg", blurb: "Overlapping shell petals shift from peach to violet, gold-lined.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Fits", value: "4 × 6 in photo" }, { label: "Finish", value: "Peach · violet · gold" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "tulip-photo-frame", name: "Tulip Field – 4 × 6 Photo Frame", price: 1249, category: "frames", badge: "New", tint: YELLOW, image: "/products/tulip-photo-frame.jpg", blurb: "A soft cream surround with tulips growing up both sides.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Fits", value: "4 × 6 in photo" }, { label: "Finish", value: "Cream · pink · sage" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "daisy-photo-frame", name: "Daisy Chain – 4 × 6 Photo Frame", price: 1299, category: "frames", badge: "New", tint: YELLOW, image: "/products/daisy-photo-frame.jpg", blurb: "Dozens of little daisies crowd the whole border, each centre gilded.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Fits", value: "4 × 6 in photo" }, { label: "Finish", value: "White · gold centres" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "petal-jewellery-box", name: "Petal Vault – Swivel Jewellery Box", price: 2199, category: "vanity-storage", badge: "New", tint: PINK, image: "/products/petal-jewellery-box.jpg", blurb: "Four petal trays swing out from under a sculpted rose lid.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Pink · peach · sage · lilac" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "archway-drawer-cabinet", name: "Archway – Five-Drawer Cabinet", price: 2499, category: "vanity-storage", badge: "New", tint: BLUE, image: "/products/archway-drawer-cabinet.jpg", blurb: "An arched cobalt case holding five drawers, no two the same colour.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Cobalt · magenta · orange · green" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "wavelet-drawer-organiser", name: "Wavelet – Three-Drawer Organiser", price: 1999, category: "vanity-storage", badge: "New", tint: PINK, image: "/products/wavelet-drawer-organiser.jpg", blurb: "A soft wavy silhouette with three drawers and flower knobs.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Pink · orange · lilac" }, { label: "Made", value: "Printed to order" }] },
+  { slug: "cactus-drawer-tower", name: "Cactus Stack – Three-Drawer Tower", price: 1899, category: "vanity-storage", badge: "New", tint: MINT, image: "/products/cactus-drawer-tower.jpg", blurb: "A little cactus in three stacked drawers, flowering at the top.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Pink · sage · apricot" }, { label: "Made", value: "Printed to order" }] },
 ];
 
 export const inr = (n: number) =>

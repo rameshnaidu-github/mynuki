@@ -139,7 +139,14 @@ export const products: Product[] = [
     ],
     blurb: "Build an architectural masterpiece in miniature — a relaxing, rewarding evening's work.",
     description: "Eight laser-cut sheets of 3 mm MDF (210 × 148 mm) assemble by tab and slot into the cantilevered terraces and stone chimney. The kit includes window frames and railings, moulded acrylic for the waterfall and pool, rocks, pebbles and moss, trees and shrubs, a USB LED light string so the model glows after dark, a brass nameplate and a full illustrated assembly manual.",
-    specs: [{ label: "Pieces", value: "290" }, { label: "Level", value: "Advanced" }, { label: "Ages", value: "14+" }] },
+    specs: [
+      { label: "Pieces", value: "290" },
+      { label: "Finished size", value: "28 × 22 × 17 cm" },
+      { label: "Build time", value: "5–6 hours" },
+      { label: "Sheets", value: "8 × 3 mm MDF" },
+      { label: "Level", value: "Advanced" },
+      { label: "Ages", value: "14+" },
+    ] },
   { slug: "the-office-kit", name: "The Office Series – DIY Miniature Kit", price: 2999, compareAt: 3999, category: "miniature-kits", badge: "Best Seller", tint: MINT,
     image: "/products/the-office-kit.jpg",
     images: [
@@ -151,7 +158,14 @@ export const products: Product[] = [
     ],
     blurb: "Recreate the Dunder Mifflin Scranton office exterior — a tribute to your favourite workplace.",
     description: "Everything arrives in one box: precision laser-cut eco-friendly MDF, window glazing, the Scranton Business Park sign, tree and shrub landscaping, gravel and stone, warm LED lighting with wiring and a battery box, tools, and a step-by-step instruction manual. The finished model measures 24 × 18 × 11.5 cm (9.45 × 7.1 × 4.5 in).",
-    specs: [{ label: "Pieces", value: "280" }, { label: "Level", value: "Moderate" }, { label: "Ages", value: "14+" }] },
+    specs: [
+      { label: "Pieces", value: "280" },
+      { label: "Finished size", value: "24 × 18 × 11.5 cm" },
+      { label: "Build time", value: "4–5 hours" },
+      { label: "Lighting", value: "Warm LED" },
+      { label: "Level", value: "Moderate" },
+      { label: "Ages", value: "14+" },
+    ] },
   { slug: "purple-door-apartment", name: "Purple Door Apartment", price: 3499, compareAt: 4999, category: "miniature-kits", badge: "New", tint: LILAC,
     image: "/products/purple-door-apartment.jpg",
     images: [
@@ -163,7 +177,14 @@ export const products: Product[] = [
     ],
     blurb: "A cozy city apartment filled with charm, colour and beautiful details — yours to build.",
     description: "Precision laser-cut from eco-friendly MDF, with warm LED lighting, furniture and décor included, and a step-by-step assembly guide. The kitchen, the living room, the purple door and every little detail arrive in one box.",
-    specs: [{ label: "Scale", value: "1:12" }, { label: "Level", value: "Moderate" }, { label: "Ages", value: "14+" }] },
+    specs: [
+      { label: "Pieces", value: "200" },
+      { label: "Finished size", value: "23 × 18 × 20 cm" },
+      { label: "Build time", value: "3–4 hours" },
+      { label: "Scale", value: "1:12" },
+      { label: "Level", value: "Moderate" },
+      { label: "Ages", value: "14+" },
+    ] },
 ];
 
 export const inr = (n: number) =>

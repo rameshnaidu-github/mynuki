@@ -1,8 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { useReveal } from "../lib/reveal";
 import Header from "./Header";
 import Footer from "./Footer";
 
 export default function Layout() {
+  const { pathname } = useLocation();
+  useReveal(pathname);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

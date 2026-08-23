@@ -26,7 +26,7 @@ export default function ProductCard({
   }
 
   return (
-    <div className="group relative flex flex-col h-full bg-white border border-line rounded-2xl overflow-hidden">
+    <div className="group card-lift relative flex flex-col h-full bg-white border border-line rounded-2xl overflow-hidden">
       <button
         type="button"
         onClick={() => toggle(p.slug)}
@@ -51,7 +51,7 @@ export default function ProductCard({
               alt={p.name}
               loading="lazy"
               onError={() => setImgFailed(true)}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover card-zoom"
             />
           )}
           {p.badge && (

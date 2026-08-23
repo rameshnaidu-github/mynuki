@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { products } from "../data/catalog";
 import ProductCard from "../components/ProductCard";
@@ -15,6 +16,28 @@ const featured = [
 ].slice(0, 8) as typeof products;
 
 export default function Home() {
+  const railRef = useRef<HTMLDivElement>(null);
+  const [canLeft, setCanLeft] = useState(false);
+  const [canRight, setCanRight] = useState(true);
+
+  const updateArrows = useCallback(() => {
+    const el = railRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 4);
+    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  }, []);
+
+  useEffect(updateArrows, [updateArrows]);
+
+  function scrollRail(dir: 1 | -1) {
+    const el = railRef.current;
+    if (!el) return;
+    // move by whole cards so the rail always lands on a card edge
+    const card = el.firstElementChild as HTMLElement | null;
+    const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir * step * 2, behavior: "smooth" });
+  }
+
   return (
     <div>
       {/* 1 · HERO — fills the screen below the nav, so nothing else shows until you scroll */}
@@ -71,16 +94,16 @@ export default function Home() {
         {/* 2 · SHOP BY FAMILY */}
         <section className="py-12 md:py-16">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
-            <h2 className="font-display italic text-flame text-[28px] md:text-[34px]">
+            <h2 data-reveal className="font-display italic text-flame text-[28px] md:text-[34px]">
               Two ways to make a world
             </h2>
             <div className="mt-8 grid sm:grid-cols-2 gap-5 md:gap-7">
-              <Link to="/kits" className="group block">
+              <Link to="/kits" data-reveal className="group block">
                 <div className="relative overflow-hidden rounded-[22px] border-2 border-line group-hover:border-flame transition-colors">
                   <img
                     src="/products/purple-door-apartment.jpg"
                     alt="The Purple Door Apartment miniature room box"
-                    className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="w-full aspect-[16/10] object-cover card-zoom"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
@@ -94,12 +117,12 @@ export default function Home() {
                 </div>
               </Link>
 
-              <Link to="/objects" className="group block">
+              <Link to="/objects" data-reveal style={{ ["--reveal-delay" as string]: "90ms" }} className="group block">
                 <div className="relative overflow-hidden rounded-[22px] border-2 border-line group-hover:border-flame transition-colors">
                   <img
                     src="/products/dabble-dock.jpg"
                     alt="Dabble Dock desk and vanity organiser"
-                    className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="w-full aspect-[16/10] object-cover card-zoom"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
@@ -116,21 +139,46 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3 · LOVED BY MAKERS + ALL PRODUCTS — one unbroken mid-tone band */}
-        <section className="pb-10">
-          <div className="max-w-6xl mx-auto px-5 sm:px-6 py-6 flex items-center justify-between gap-4">
-            <h2 className="font-display italic text-[#a83c12] text-[26px] sm:text-[32px]">Loved by Makers</h2>
-            <Link
-              to="/shop"
-              className="bg-flame text-white text-[12.5px] px-6 py-2.5 rounded-full hover:bg-flamedeep transition-colors shrink-0"
-            >
-              Order Now
-            </Link>
-          </div>
-
+        {/* 3 · ALL PRODUCTS — horizontally scrolled rail with arrows */}
+        <section className="pb-12 pt-4">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
-            <h3 className="font-display italic text-[22px] text-ink pb-4">All Products</h3>
-            <div className="flex gap-4 overflow-x-auto pb-3 -mx-1 px-1 snap-x">
+            <div className="flex items-end justify-between gap-4 pb-4">
+              <h2 data-reveal className="font-display italic text-[28px] md:text-[34px] text-flame">All Products</h2>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => scrollRail(-1)}
+                  aria-label="Scroll products left"
+                  className="w-10 h-10 rounded-full border-2 border-ink text-ink grid place-items-center
+                             hover:bg-ink hover:text-white transition-colors disabled:opacity-30
+                             disabled:hover:bg-transparent disabled:hover:text-ink"
+                  disabled={!canLeft}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 6l-6 6 6 6" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollRail(1)}
+                  aria-label="Scroll products right"
+                  className="w-10 h-10 rounded-full border-2 border-ink text-ink grid place-items-center
+                             hover:bg-ink hover:text-white transition-colors disabled:opacity-30
+                             disabled:hover:bg-transparent disabled:hover:text-ink"
+                  disabled={!canRight}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div
+              ref={railRef}
+              onScroll={updateArrows}
+              className="flex gap-4 overflow-x-auto pb-3 -mx-1 px-1 snap-x scroll-smooth"
+            >
               {featured.map((p) => (
                 <div key={p.slug} className="w-[210px] sm:w-[240px] shrink-0 snap-start">
                   <ProductCard p={p} showAddToCart />
@@ -143,7 +191,7 @@ export default function Home() {
         {/* 5 · OUR STORY — gradient band */}
         <section className="py-16 md:py-20">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
-            <h2 className="font-display italic text-flame text-[32px] md:text-[40px]">Our Story</h2>
+            <h2 data-reveal className="font-display italic text-flame text-[32px] md:text-[40px]">Our Story</h2>
             <div className="mt-5 grid md:grid-cols-2 gap-8 text-inksoft text-[15px] leading-relaxed max-w-4xl">
               <p>
                 Dabble &amp; Dahlia started on a kitchen table with one small printer and a
@@ -169,7 +217,7 @@ export default function Home() {
         <section className="py-14 md:py-16">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <div className="grid sm:grid-cols-3 gap-6">
-              <figure>
+              <figure data-reveal>
                 <img src="/products/petal-vanity-organiser.jpg" alt="Petal vanity organiser on a dresser" className="w-full aspect-[4/3] object-cover rounded-2xl" />
                 <figcaption className="mt-3">
                   <span className="font-display italic text-bloom text-[19px]">Made to be used</span>
@@ -178,7 +226,7 @@ export default function Home() {
                   </p>
                 </figcaption>
               </figure>
-              <figure>
+              <figure data-reveal style={{ ["--reveal-delay" as string]: "90ms" }}>
                 <img src="/products/bloom-memo-board.jpg" alt="Bloom memo board styled on a wall" className="w-full aspect-[4/3] object-cover rounded-2xl" />
                 <figcaption className="mt-3">
                   <span className="font-display italic text-bloom text-[19px]">Yours, if you want it</span>
@@ -187,7 +235,7 @@ export default function Home() {
                   </p>
                 </figcaption>
               </figure>
-              <figure>
+              <figure data-reveal style={{ ["--reveal-delay" as string]: "180ms" }}>
                 <img src="/products/wave-magazine-holder.jpg" alt="Wave magazine holder filled with magazines" className="w-full aspect-[4/3] object-cover rounded-2xl" />
                 <figcaption className="mt-3">
                   <span className="font-display italic text-bloom text-[19px]">Colour, first</span>

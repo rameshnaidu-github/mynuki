@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getProduct, getCategory, inr, familyLabels, familyPaths } from "../data/catalog";
+import ImageLightbox from "../components/ImageLightbox";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 
@@ -18,6 +19,7 @@ export default function Product() {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const [view, setView] = useState(0);
+  const [zoomOpen, setZoomOpen] = useState(false);
 
   if (!product) {
     return (
@@ -69,9 +71,24 @@ export default function Product() {
         {/* gallery */}
         <div>
           {gallery.length ? (
-              <div className="aspect-square rounded-3xl border border-line overflow-hidden bg-white">
-                <img src={gallery[view]} alt={`${product.name} — view ${view + 1}`} className="w-full h-full object-cover" />
-              </div>
+            <button
+              type="button"
+              onClick={() => setZoomOpen(true)}
+              aria-label={`Enlarge ${product.name}`}
+              className="group relative block w-full aspect-square rounded-3xl border border-line overflow-hidden bg-white cursor-zoom-in"
+            >
+              <img
+                src={gallery[view]}
+                alt={`${product.name} — view ${view + 1}`}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              />
+              <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-ink/70 text-white text-[12px] px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <circle cx="11" cy="11" r="7" /><path d="M20 20l-3.2-3.2M11 8v6M8 11h6" />
+                </svg>
+                Click to enlarge
+              </span>
+            </button>
           ) : (
             <div
               className="ph aspect-square rounded-3xl border border-line"
@@ -179,6 +196,16 @@ export default function Product() {
           </div>
         </div>
       </div>
+
+      {zoomOpen && gallery.length > 0 && (
+        <ImageLightbox
+          images={gallery}
+          index={view}
+          alt={product.name}
+          onIndexChange={setView}
+          onClose={() => setZoomOpen(false)}
+        />
+      )}
     </div>
   );
 }

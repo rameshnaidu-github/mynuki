@@ -43,21 +43,71 @@ export default function Home() {
                   piece is designed in our studio, 3D-printed to order and finished by
                   hand — so what lands on your desk is yours alone.
                 </p>
-                <Link
-                  to="/shop"
-                  className="inline-block mt-[9%] bg-gold text-royal font-display italic
-                             text-[clamp(15px,1.5vw,21px)] px-[1.6em] py-[0.42em] rounded-full
-                             hover:brightness-105 transition"
-                >
-                  Shop now
-                </Link>
+                <div className="mt-[9%] text-center">
+                  <Link
+                    to="/shop"
+                    className="inline-block bg-gold text-royal font-display italic
+                               text-[clamp(15px,1.5vw,21px)] px-[1.6em] py-[0.42em] rounded-full
+                               hover:brightness-105 transition"
+                  >
+                    Shop now
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2 · YELLOW BAND */}
+      {/* 2 · SHOP BY FAMILY */}
+      <section className="bg-paper py-12 md:py-16">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6">
+          <h2 className="font-display italic text-flame text-[28px] md:text-[34px] text-center">
+            Two ways to make a world
+          </h2>
+          <div className="mt-8 grid sm:grid-cols-2 gap-5 md:gap-7">
+            <Link to="/kits" className="group block">
+              <div className="relative overflow-hidden rounded-[22px] border-2 border-line group-hover:border-flame transition-colors">
+                <img
+                  src="/products/purple-door-apartment.jpg"
+                  alt="The Purple Door Apartment miniature room box"
+                  className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+                  <span className="font-display italic text-cream text-[26px] md:text-[32px] leading-none">
+                    DIY Miniature
+                  </span>
+                  <p className="mt-1.5 text-[14px] text-cream/90">
+                    Room boxes and little worlds you build yourself, lights and all.
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            <Link to="/objects" className="group block">
+              <div className="relative overflow-hidden rounded-[22px] border-2 border-line group-hover:border-flame transition-colors">
+                <img
+                  src="/products/dabble-dock.jpg"
+                  alt="Dabble Dock desk and vanity organiser"
+                  className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+                  <span className="font-display italic text-cream text-[26px] md:text-[32px] leading-none">
+                    3D Objects
+                  </span>
+                  <p className="mt-1.5 text-[14px] text-cream/90">
+                    Sculptural pieces for the desk, the wall and the dressing table.
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 3 · YELLOW BAND */}
       <section className="bg-sun">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 py-6 flex items-center justify-between gap-4">
           <h2 className="font-display italic text-[#a83c12] text-[26px] sm:text-[32px]">Loved by Makers</h2>
@@ -70,7 +120,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3 · ALL PRODUCTS */}
+      {/* 4 · ALL PRODUCTS */}
       <section className="bg-sun/95 pb-10">
         <div className="max-w-6xl mx-auto px-5 sm:px-6">
           <h3 className="font-display italic text-[22px] text-ink pb-4">All Products</h3>
@@ -84,7 +134,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4 · OUR STORY — gradient band */}
+      {/* 5 · OUR STORY — gradient band */}
       <section
         className="py-16 md:py-20"
         style={{
@@ -115,8 +165,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5 · GALLERY */}
-      <section className="bg-white py-14 md:py-16">
+      {/* 6 · GALLERY — continues the Our Story gradient, lightened */}
+      <section
+        className="py-14 md:py-16"
+        style={{
+          background:
+            "linear-gradient(100deg, #fff7fb 0%, #ffe7f1 32%, #ffece0 68%, #fff7e3 100%)",
+        }}
+      >
         <div className="max-w-6xl mx-auto px-5 sm:px-6">
           <div className="grid sm:grid-cols-3 gap-6">
             <figure>

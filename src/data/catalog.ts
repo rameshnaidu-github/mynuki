@@ -181,7 +181,6 @@ export const products: Product[] = [
       { label: "Pieces", value: "200" },
       { label: "Finished size", value: "23 × 18 × 20 cm" },
       { label: "Build time", value: "3–4 hours" },
-      { label: "Scale", value: "1:12" },
       { label: "Level", value: "Moderate" },
       { label: "Ages", value: "14+" },
     ] },

@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-40 bg-navbar">
-        <div className="max-w-6xl mx-auto px-5 sm:px-6 h-[52px] flex items-center justify-between gap-3">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 h-[60px] flex items-center justify-between gap-3">
           {/* mobile menu button */}
           <button
             type="button"
@@ -54,12 +54,12 @@ export default function Header() {
           <nav className="hidden lg:flex items-center mx-auto" aria-label="Primary">
             {nav.map((n, i) => (
               <span key={n.to} className="flex items-center">
-                {i > 0 && <span aria-hidden="true" className="w-px h-4 bg-gold/60 mx-5" />}
+                {i > 0 && <span aria-hidden="true" className="w-px h-5 bg-gold/60 mx-6" />}
                 <NavLink
                   to={n.to}
                   end={n.end}
                   className={({ isActive }) =>
-                    `font-display italic text-[17px] transition-colors ${
+                    `font-display italic text-[20px] transition-colors ${
                       isActive ? "text-white" : "text-cream hover:text-white"
                     }`
                   }
@@ -75,9 +75,9 @@ export default function Header() {
             <Link
               to={user ? "/account" : "/login"}
               aria-label={user ? "Account" : "Log in"}
-              className="w-10 h-10 flex items-center justify-center text-gold hover:text-white"
+              className="w-11 h-11 flex items-center justify-center text-gold hover:text-white"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+              <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                 <circle cx="12" cy="8" r="3.4" />
                 <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" strokeLinecap="round" />
               </svg>
@@ -85,9 +85,9 @@ export default function Header() {
             <Link
               to="/cart"
               aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
-              className="relative w-10 h-10 flex items-center justify-center text-gold hover:text-white"
+              className="relative w-11 h-11 flex items-center justify-center text-gold hover:text-white"
             >
-              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                 <path d="M6 7h13l-1.2 9.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z" strokeLinejoin="round" />
                 <path d="M9 7a3 3 0 0 1 6 0" strokeLinecap="round" />
               </svg>
@@ -108,7 +108,7 @@ export default function Header() {
                   key={n.to}
                   to={n.to}
                   end={n.end}
-                  className="py-3.5 font-display italic text-[18px] text-gold border-b border-gold/30 last:border-0"
+                  className="py-3.5 font-display italic text-[20px] text-gold border-b border-gold/30 last:border-0"
                 >
                   {n.label}
                 </NavLink>

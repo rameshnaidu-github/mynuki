@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { inr, type Product } from "../data/catalog";
-import { useWishlist } from "../context/WishlistContext";
+import WishlistButton from "./WishlistButton";
 import { useCart } from "../context/CartContext";
 
 export default function ProductCard({
@@ -11,12 +11,10 @@ export default function ProductCard({
   p: Product;
   showAddToCart?: boolean;
 }) {
-  const { has, toggle } = useWishlist();
   const { add } = useCart();
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const [imgFailed, setImgFailed] = useState(false);
-  const liked = has(p.slug);
   const showImage = Boolean(p.image) && !imgFailed;
 
   function handleAdd() {
@@ -27,17 +25,11 @@ export default function ProductCard({
 
   return (
     <div className="group card-lift relative flex flex-col h-full bg-white border border-line rounded-2xl overflow-hidden">
-      <button
-        type="button"
-        onClick={() => toggle(p.slug)}
-        aria-pressed={liked}
-        aria-label={liked ? `Remove ${p.name} from wishlist` : `Save ${p.name} to wishlist`}
+      <WishlistButton
+        slug={p.slug}
+        name={p.name}
         className="absolute top-2.5 right-2.5 z-10 w-9 h-9 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-bloom hover:bg-white transition-colors"
-      >
-        <svg width="17" height="17" viewBox="0 0 24 24" fill={liked ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">
-          <path d="M12 20s-7-4.35-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.65 12 20 12 20Z" strokeLinejoin="round" />
-        </svg>
-      </button>
+      />
 
       <Link to={`/product/${p.slug}`} className="block">
         <div

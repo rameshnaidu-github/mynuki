@@ -8,15 +8,7 @@ const columns = [
       { label: "3D Objects", to: "/objects" },
       { label: "DIY Miniature Kits", to: "/kits" },
       { label: "New Arrivals", to: "/shop" },
-    ],
-  },
-  {
-    title: "Make",
-    links: [
       { label: "Make It Yours", to: "/customize" },
-      { label: "Gifting", to: "/customize" },
-      { label: "How It Works", to: "/story" },
-      { label: "Our Standard", to: "/story" },
     ],
   },
   {
@@ -24,7 +16,6 @@ const columns = [
     links: [
       { label: "Our Story", to: "/story" },
       { label: "Contact", to: "/support#contact" },
-      { label: "FAQ", to: "/support#faq" },
       { label: "Track Order", to: "/account" },
     ],
   },
@@ -32,7 +23,6 @@ const columns = [
     title: "Help",
     links: [
       { label: "Shipping", to: "/support#shipping" },
-      { label: "Returns", to: "/support#returns" },
       { label: "Support", to: "/support" },
       { label: "My Account", to: "/account" },
     ],
@@ -53,7 +43,7 @@ export default function Footer() {
   return (
     <footer className="bg-bloom text-white mt-4">
       <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(4,1fr)]">
+        <div className="grid gap-10 md:grid-cols-[1.6fr_repeat(3,1fr)]">
           <div>
             <div className="font-display italic text-[32px] leading-none text-cream">
               Dabble &amp; Dahlia

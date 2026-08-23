@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { getProduct, getCategory, inr, familyLabels, familyPaths } from "../data/catalog";
 import ImageLightbox from "../components/ImageLightbox";
 import { useCart } from "../context/CartContext";
-import { useWishlist } from "../context/WishlistContext";
+import WishlistButton from "../components/WishlistButton";
 
 const badgeStyle: Record<string, string> = {
   "New": "bg-peach text-flame",
@@ -15,7 +15,6 @@ export default function Product() {
   const { slug = "" } = useParams();
   const product = getProduct(slug);
   const { add } = useCart();
-  const { has, toggle } = useWishlist();
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const [view, setView] = useState(0);
@@ -32,7 +31,6 @@ export default function Product() {
 
   const cat = getCategory(product.category);
   const family = cat?.family;
-  const liked = has(product.slug);
   // With a real photo we show just that shot (+ the 360 tab); the extra
   // view slots only exist for products still on placeholder art.
   const gallery = product.images ?? (product.image ? [product.image] : []);
@@ -167,17 +165,12 @@ export default function Product() {
               {added ? "Added ✓" : "Add to cart"}
             </button>
 
-            <button
-              type="button"
-              onClick={() => toggle(product.slug)}
-              aria-pressed={liked}
-              aria-label={liked ? "Remove from wishlist" : "Save to wishlist"}
+            <WishlistButton
+              slug={product.slug}
+              name={product.name}
+              size={20}
               className="w-11 h-11 rounded-full border border-line flex items-center justify-center text-flame hover:bg-peach"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill={liked ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.7">
-                <path d="M12 20s-7-4.35-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.65 12 20 12 20Z" strokeLinejoin="round" />
-              </svg>
-            </button>
+            />
           </div>
 
           {/* description */}

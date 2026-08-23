@@ -75,6 +75,15 @@ export const categories: Category[] = [
 const OBJ_DESC =
   "Designed in our studio and 3D-printed in small batches, then hand-finished and checked before it ships. Made from durable plant-based PLA — sturdy enough for daily use, and recyclable at end of life.";
 
+const LAMP_DESC =
+  "Designed in our studio and 3D-printed in small batches, then hand-finished and wired before it ships. The shade is printed in translucent plant-based PLA so the light spreads evenly rather than glaring, and it arrives with a warm LED and an inline switch.";
+
+const lampSpecs = (finish: string, kind = "Table lamp"): Spec[] => [
+  { label: "Material", value: "PLA" },
+  { label: "Finish", value: finish },
+  { label: "Type", value: kind },
+];
+
 const objSpecs = (size: string, colour: string): Spec[] => [
   { label: "Material", value: "PLA" },
   { label: "Size", value: size },
@@ -105,6 +114,18 @@ export const products: Product[] = [
   { slug: "vanity-garden", name: "Vanity Garden – Makeup & Jewellery Organizer", price: 2499, compareAt: 2899, category: "vanity-storage", badge: "Best Seller", tint: ORANGE, image: "/products/vanity-garden.jpg", blurb: "Trays, pots and a ring holder that group into one garden.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Finish", value: "Cream · coral · mint" }, { label: "Made", value: "Printed to order" }] },
   { slug: "desk-sidekicks", name: "Desk Sidekicks – 3-Piece Desk Organizer Set", price: 1999, compareAt: 2399, category: "desk-office", badge: "New", tint: MINT, image: "/products/desk-sidekicks.jpg", blurb: "A phone stand, a pen pot and a drawer box that match.", description: OBJ_DESC, specs: [{ label: "Material", value: "PLA" }, { label: "Set", value: "3 pieces" }, { label: "Made", value: "Printed to order" }] },
 
+
+  // ── Lamps — third range ──────────────────────────────────────────────────
+  { slug: "ribbon-twist-lamp", name: "Ribbon Twist – Table Lamp", price: 2999, compareAt: 3599, category: "lighting", badge: "New", tint: PINK, image: "/products/ribbon-twist-lamp.jpg", blurb: "A ribbon of colour curled into a base, under a scalloped shade.", description: LAMP_DESC, specs: lampSpecs("Pink · coral · violet") },
+  { slug: "tulip-glow-lamp", name: "Tulip Glow – Petal Table Lamp", price: 3299, compareAt: 3899, category: "lighting", badge: "Best Seller", tint: PINK, image: "/products/tulip-glow-lamp.jpg", blurb: "Open petals around a warm bulb, on a soft green stem.", description: LAMP_DESC, specs: lampSpecs("Pink · orange · sage") },
+  { slug: "toadstool-lamp", name: "Toadstool – Scalloped Table Lamp", price: 3499, compareAt: 3999, category: "lighting", badge: "Best Seller", tint: PINK, image: "/products/toadstool-lamp.jpg", blurb: "A scalloped pink cap on a ribbed, bobbled orange stem.", description: LAMP_DESC, specs: lampSpecs("Pink cap · orange stem") },
+  { slug: "pebble-stack-lamp", name: "Pebble Stack – Orb Table Lamp", price: 3199, compareAt: 3799, category: "lighting", badge: "New", tint: BLUE, image: "/products/pebble-stack-lamp.jpg", blurb: "Balanced pebbles in six colours, topped with a glowing orb.", description: LAMP_DESC, specs: lampSpecs("Lilac · blue · lime · pink") },
+  { slug: "cloudbloom-lamp", name: "Cloudbloom – Panel Table Lamp", price: 2999, compareAt: 3599, category: "lighting", badge: "Sale", tint: LILAC, image: "/products/cloudbloom-lamp.jpg", blurb: "Layered cloud petals throwing a soft panel of light.", description: LAMP_DESC, specs: lampSpecs("Orange · pink · violet") },
+  { slug: "lily-trumpet-lamp", name: "Lily Trumpet – Stem Table Lamp", price: 3399, compareAt: 3999, category: "lighting", badge: "New", tint: PINK, image: "/products/lily-trumpet-lamp.jpg", blurb: "A trumpet bloom on a long curved stem, light pooling upward.", description: LAMP_DESC, specs: lampSpecs("Pink · cobalt · sage") },
+  { slug: "loop-de-loop-lamp", name: "Loop de Loop – Sculptural Lamp", price: 3799, compareAt: 4499, category: "lighting", badge: "New", tint: PINK, image: "/products/loop-de-loop-lamp.jpg", blurb: "One continuous loop with the light running through its centre.", description: LAMP_DESC, specs: lampSpecs("Magenta · lilac") },
+  { slug: "daisy-days-lamp", name: "Daisy Days – Flower Table Lamp", price: 2799, compareAt: 3299, category: "lighting", badge: "Sale", tint: ORANGE, image: "/products/daisy-days-lamp.jpg", blurb: "A single daisy on a leaning green stem, rooted in a pink puddle.", description: LAMP_DESC, specs: lampSpecs("Orange · green · pink") },
+  { slug: "duneglow-lamp", name: "Duneglow – Ribbed Table Lamp", price: 3299, compareAt: 3899, category: "lighting", badge: "Sale", tint: LILAC, image: "/products/duneglow-lamp.jpg", blurb: "Ribbed dunes of colour with light spilling from the top.", description: LAMP_DESC, specs: lampSpecs("Lilac · purple · orange · blue") },
+  { slug: "coral-bloom-floor-lamp", name: "Coral Bloom – Sculptural Floor Lamp", price: 7999, compareAt: 9499, category: "lighting", badge: "Best Seller", tint: PINK, image: "/products/coral-bloom-floor-lamp.jpg", blurb: "A floor-standing coral form, lit from inside at every opening.", description: LAMP_DESC, specs: lampSpecs("Magenta · coral · cobalt", "Floor lamp") },
 
   // ── DIY Kits ─────────────────────────────────────────────────────────────
   { slug: "fallingwater-kit", name: "Fallingwater House – DIY Miniature Kit", price: 2499, compareAt: 3999, category: "miniature-kits", badge: "Sale", tint: MINT,

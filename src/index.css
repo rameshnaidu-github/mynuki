@@ -342,51 +342,15 @@
     animation: hero-spin 52s linear infinite;
   }
 
-  /* — the falls: fine streaks drifting downward, clipped to the water — */
-  .hero-fall {
-    position: absolute;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    background-image: repeating-linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0) 0px,
-      rgba(255, 255, 255, 0.52) 3px,
-      rgba(255, 255, 255, 0) 9px,
-      rgba(255, 255, 255, 0) 26px
-    );
-    background-size: 100% 26px;
-    -webkit-mask-image: radial-gradient(ellipse 58% 76% at 50% 46%, #000 26%, transparent 76%);
-    mask-image: radial-gradient(ellipse 58% 76% at 50% 46%, #000 26%, transparent 76%);
-    animation: hero-fall-drift 1.15s linear infinite;
-  }
-  @keyframes hero-fall-drift {
-    to { background-position: 0 26px; }
-  }
-
-  /* spray where the main fall lands */
-  .hero-spray {
-    position: absolute;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    background: radial-gradient(ellipse at 50% 60%, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0) 68%);
-    animation: hero-spray-pulse 5.5s ease-in-out infinite;
-  }
-  @keyframes hero-spray-pulse {
-    0%, 100% { opacity: 0.35; transform: scale(0.96); }
-    50%      { opacity: 0.75; transform: scale(1.04); }
-  }
-
   /* — the orange card and the type inside it — */
-  .hero-float {
-    animation: hero-bob 7s ease-in-out 1.2s infinite;
+  .hero-card {
+    animation: hero-card-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) both,
+               hero-card-glow 6.5s ease-in-out 1.4s infinite,
+               hero-bob 7s ease-in-out 1.2s infinite;
   }
   @keyframes hero-bob {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(-9px); }
-  }
-  .hero-card {
-    animation: hero-card-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) both,
-               hero-card-glow 6.5s ease-in-out 1.4s infinite;
   }
   @keyframes hero-card-in {
     from { opacity: 0; transform: translateY(26px) scale(0.965); }
@@ -417,6 +381,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   /* nothing animates, so the painted overlays would only tint the artwork */
-  .hero-sky, .hero-sun, .hero-fall, .hero-spray { display: none; }
+  .hero-sky, .hero-sun { display: none; }
   .hero-cta:hover { transform: none; box-shadow: none; }
 }

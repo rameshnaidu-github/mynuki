@@ -75,9 +75,9 @@ export default function Header() {
             <Link
               to={user ? "/account" : "/login"}
               aria-label={user ? "Account" : "Log in"}
-              className="w-11 h-11 flex items-center justify-center text-gold hover:text-white"
+              className="w-12 h-12 flex items-center justify-center text-gold hover:text-white"
             >
-              <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+              <svg width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
                 <circle cx="12" cy="8" r="3.4" />
                 <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" strokeLinecap="round" />
               </svg>
@@ -85,9 +85,9 @@ export default function Header() {
             <Link
               to="/cart"
               aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}
-              className="relative w-11 h-11 flex items-center justify-center text-gold hover:text-white"
+              className="relative w-12 h-12 flex items-center justify-center text-gold hover:text-white"
             >
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
                 <path d="M6 7h13l-1.2 9.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z" strokeLinejoin="round" />
                 <path d="M9 7a3 3 0 0 1 6 0" strokeLinecap="round" />
               </svg>

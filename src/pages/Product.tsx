@@ -7,7 +7,6 @@ import WishlistButton from "../components/WishlistButton";
 
 const badgeStyle: Record<string, string> = {
   "New": "bg-peach text-flame",
-  "Best Seller": "bg-flame text-paper",
   "Sale": "bg-berry text-white",
 };
 

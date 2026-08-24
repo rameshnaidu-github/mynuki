@@ -253,11 +253,16 @@
      overlays below can be placed in percentages of the artwork itself. */
   .hero-frame {
     --hero-h: max(calc(100svh - 60px), 560px);
+    /* The artwork is 1600x780 — the whole waterfall is in the frame, so there's
+       no vertical crop to manage on normal screens; only the wide sides trim. */
+    --hero-ar: calc(1600 / 780);
     position: absolute;
-    top: 0;
-    left: calc((100% - max(100%, var(--hero-h) * 4 / 3)) * 0.72);
-    width: max(100%, calc(var(--hero-h) * 4 / 3));
-    aspect-ratio: 4 / 3; /* height follows, so the crop can't drift off the art */
+    /* On very wide/short screens the frame is taller than the section; anchor it
+       to the bottom so the waterfall stays and only the top sky trims away. */
+    bottom: 0;
+    left: calc((100% - max(100%, var(--hero-h) * var(--hero-ar))) * 0.72);
+    width: max(100%, calc(var(--hero-h) * var(--hero-ar)));
+    aspect-ratio: 1600 / 780; /* matches the art, so the crop can't drift */
     isolation: isolate;
   }
 
@@ -295,53 +300,6 @@
     to { transform: rotate(360deg); }
   }
 
-  /* — sun: same circular motion, a touch brighter — */
-  .hero-sun {
-    position: absolute;
-    left: 79%;
-    top: 1.8%;
-    width: 16%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    background: radial-gradient(
-      circle,
-      rgba(255, 238, 156, 0.5) 0%,
-      rgba(255, 214, 90, 0.24) 34%,
-      rgba(255, 200, 70, 0) 68%
-    );
-    animation: hero-sun-breathe 9s ease-in-out infinite;
-  }
-  @keyframes hero-sun-breathe {
-    0%, 100% { opacity: 0.5; }
-    50%      { opacity: 1; }
-  }
-  .hero-sun::before {
-    content: "";
-    position: absolute;
-    inset: -16%;
-    border-radius: 50%;
-    background: conic-gradient(
-      from 0deg,
-      rgba(255, 242, 176, 0) 0deg,
-      rgba(255, 242, 176, 0.34) 14deg,
-      rgba(255, 242, 176, 0) 32deg,
-      rgba(255, 242, 176, 0) 62deg,
-      rgba(255, 242, 176, 0.3) 78deg,
-      rgba(255, 242, 176, 0) 96deg,
-      rgba(255, 242, 176, 0) 160deg,
-      rgba(255, 242, 176, 0.32) 176deg,
-      rgba(255, 242, 176, 0) 194deg,
-      rgba(255, 242, 176, 0) 262deg,
-      rgba(255, 242, 176, 0.3) 278deg,
-      rgba(255, 242, 176, 0) 296deg
-    );
-    -webkit-mask-image: radial-gradient(circle, transparent 26%, #000 46%, transparent 82%);
-    mask-image: radial-gradient(circle, transparent 26%, #000 46%, transparent 82%);
-    animation: hero-spin 52s linear infinite;
-  }
-
   /* — the orange card and the type inside it — */
   .hero-card {
     animation: hero-card-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) both,
@@ -369,6 +327,9 @@
     to   { opacity: 1; transform: none; }
   }
   .hero-cta {
+    /* DM Serif Display has no bold cut, so font-weight can't make it heavier.
+       Stroking each glyph in its own colour thickens it into a real bold. */
+    -webkit-text-stroke: 0.7px currentColor;
     transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease,
                 box-shadow 0.2s ease;
   }
@@ -381,6 +342,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   /* nothing animates, so the painted overlays would only tint the artwork */
-  .hero-sky, .hero-sun { display: none; }
+  .hero-sky { display: none; }
   .hero-cta:hover { transform: none; box-shadow: none; }
 }

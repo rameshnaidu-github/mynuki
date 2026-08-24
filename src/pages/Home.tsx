@@ -10,20 +10,16 @@ export default function Home() {
         <div className="hero-frame">
           <img
             src="/hero-art.jpg"
-            alt="A miniature house set in a painted, Van Gogh-style landscape, captioned: God sends us pieces of art so that we may see ourselves in them"
+            alt="A miniature model of a house with cantilevered terraces over a waterfall, set in a painted, Van Gogh-style landscape"
             className="block w-full h-full"
           />
 
-          {/* sky — eddies turning in place, plus the sun's rays */}
+          {/* sky — eddies turning in place, kept to the painted sky band up top */}
           <div className="hero-sky" aria-hidden="true">
-            <span className="hero-swirl" style={{ left: "5%", top: "4%", width: "24%", ["--dur" as string]: "78s" }} />
-            <span className="hero-swirl" style={{ left: "28%", top: "-6%", width: "30%", ["--dur" as string]: "96s", ["--dir" as string]: "reverse" }} />
-            <span className="hero-swirl" style={{ left: "54%", top: "8%", width: "22%", ["--dur" as string]: "66s" }} />
-            <span className="hero-swirl" style={{ left: "1%", top: "48%", width: "20%", ["--dur" as string]: "88s", ["--dir" as string]: "reverse" }} />
-            <span className="hero-swirl" style={{ left: "38%", top: "44%", width: "26%", ["--dur" as string]: "112s" }} />
-            <span className="hero-swirl" style={{ left: "70%", top: "52%", width: "20%", ["--dur" as string]: "74s", ["--dir" as string]: "reverse" }} />
+            <span className="hero-swirl" style={{ left: "5%", top: "2%", width: "24%", ["--dur" as string]: "78s" }} />
+            <span className="hero-swirl" style={{ left: "30%", top: "-8%", width: "30%", ["--dur" as string]: "96s", ["--dir" as string]: "reverse" }} />
+            <span className="hero-swirl" style={{ left: "66%", top: "4%", width: "22%", ["--dur" as string]: "66s" }} />
           </div>
-          <div className="hero-sun" aria-hidden="true" />
         </div>
 
         <div className="absolute inset-0">
